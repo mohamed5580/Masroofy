@@ -1,0 +1,157 @@
+﻿ 
+using Microsoft.Data.SqlClient;
+using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using Masroofy;
+namespace Personal_Budgeting
+{
+    public partial class Dashbourd : Form 
+    {
+        
+        private string _loggedInUserId;
+        private string _loggedInUserType;
+
+
+
+
+        public Dashbourd()
+        {
+            InitializeComponent();
+
+        }
+
+        private void Dashbourd_Load(object sender, EventArgs e)
+        {
+        }
+
+
+
+        private void ReminderCheckTimer_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void UpdateReminderCountDisplay()
+        {
+
+        }
+
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _reminderCheckTimer?.Stop();
+            Application.Exit(); 
+        }
+
+
+        private void basic_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("هل انت متاكد من الخروج من البرنامج", "تاكيد الخروج", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; 
+            }
+        }
+
+
+        
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close(); 
+        }
+
+
+
+        
+        private void toolStripMenuItem33_Click(object sender, EventArgs e) // Menu "Tracking Income"
+        {
+
+            TrackingIncome track= new TrackingIncome();
+            track.Show();
+
+        }
+
+
+        
+        private void toolStripMenuItem19_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e) 
+        {
+         
+        }
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+
+        
+        private void button10_Click(object sender, EventArgs e) // Panel button "Tracking Income"
+        {
+            
+            toolStripMenuItem33_Click(sender, e);
+        }
+
+
+        private void button7_Click(object sender, EventArgs e) // Panel button "Budgeting Analysis"
+        {
+            
+            toolStripMenuItem19_Click(sender, e);
+        }
+
+        private void button11_Click(object sender, EventArgs e) // Panel button "Reminders"
+        {
+            
+            toolStripMenuItem2_Click_1(sender, e);
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItem7_Click(sender, e);
+        }
+
+
+
+        private void الالهالحاسبةToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("C:\\Windows\\System32\\calc.exe");
+        }
+
+        private void اعداداتToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DBConfig dBConfig = new DBConfig();
+            dBConfig.Show();
+        }
+
+
+        private void نسخاحطياتيToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Backup(); 
+        }
+
+        public void Backup()
+        {
+          
+        }
+        
+        private void timer5_Tick(object sender, EventArgs e)
+        {
+            lblDateTime.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblTime.Text = Microsoft.VisualBasic.DateAndTime.TimeOfDay.ToString("h:mm:ss tt"); // Depends on VB namespace
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            
+         
+        }
+
+        private void نسخToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+         
+        }
+    }
+}
