@@ -1,9 +1,11 @@
 ﻿ 
-using Microsoft.Data.SqlClient;
-using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using Masroofy;
-namespace Personal_Budgeting
+using Masroofy.Data.Database;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic;
+using System.Windows.Forms;
+namespace Masroofy.UI
 {
     public partial class Dashbourd : Form 
     {
@@ -11,14 +13,21 @@ namespace Personal_Budgeting
         private string _loggedInUserId;
         private string _loggedInUserType;
 
+        private readonly IServiceProvider _serviceProvider;
 
+        public Dashbourd(IServiceProvider serviceProvider)
+        {
+            InitializeComponent();
+            _serviceProvider = serviceProvider;
+
+        }
 
 
         public Dashbourd()
         {
-            InitializeComponent();
 
         }
+
 
         private void Dashbourd_Load(object sender, EventArgs e)
         {
@@ -67,8 +76,8 @@ namespace Personal_Budgeting
         private void toolStripMenuItem33_Click(object sender, EventArgs e) // Menu "Tracking Income"
         {
 
-            TrackingIncome track= new TrackingIncome();
-            track.Show();
+            var form = _serviceProvider.GetRequiredService<BudgetCycleForm>();
+            form.Show();
 
         }
 
@@ -130,7 +139,8 @@ namespace Personal_Budgeting
         private void نسخاحطياتيToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Backup(); 
+            DBConfig dBConfig = new DBConfig();
+            dBConfig.Show();
         }
 
         public void Backup()

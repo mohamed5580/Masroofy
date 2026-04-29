@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj": {}
+    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj": {
+    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+        "projectUniqueName": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.csproj",
         "projectName": "Masroofy",
-        "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+        "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.csproj",
         "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\obj\\",
+        "outputPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

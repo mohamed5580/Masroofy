@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Uao+eTLOvd8=",
+  "dgSpecHash": "Cxvzyi6Jtm0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+  "projectFilePath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joemo\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\joemo\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
@@ -97,9 +97,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'MetroFramework.Design 1.2.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+      "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+      "filePath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
       "libraryId": "MetroFramework.Design",
       "targetGraphs": [
         "net9.0-windows"
@@ -109,9 +109,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'MetroFramework.Fonts 1.2.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+      "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+      "filePath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
       "libraryId": "MetroFramework.Fonts",
       "targetGraphs": [
         "net9.0-windows"
@@ -121,9 +121,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'MetroFramework.RunTime 1.2.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+      "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy\\Masroofy.csproj",
+      "filePath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy\\Masroofy.UI.csproj",
       "libraryId": "MetroFramework.RunTime",
       "targetGraphs": [
         "net9.0-windows"

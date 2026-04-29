@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Dashbourd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DBConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BudgetCycleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BudgetCycleScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

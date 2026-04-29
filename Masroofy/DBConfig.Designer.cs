@@ -1,4 +1,4 @@
-﻿namespace Masroofy
+﻿namespace Masroofy.UI
 {
     partial class DBConfig
     {
@@ -182,7 +182,6 @@
             gunaButton1.Size = new Size(256, 65);
             gunaButton1.TabIndex = 12;
             gunaButton1.Text = "استعادة نسخه احتياطية";
-            gunaButton1.Click += gunaButton1_Click;
             // 
             // label6
             // 
@@ -211,9 +210,9 @@
             rbSQLite.AutoSize = true;
             rbSQLite.Location = new Point(183, 234);
             rbSQLite.Name = "rbSQLite";
-            rbSQLite.Size = new Size(74, 24);
+            rbSQLite.Size = new Size(90, 24);
             rbSQLite.TabIndex = 21;
-            rbSQLite.Text = "SQLite";
+            rbSQLite.Text = "SQLiteee";
             rbSQLite.UseVisualStyleBackColor = true;
             rbSQLite.CheckedChanged += rbSQLite_CheckedChanged;
             // 

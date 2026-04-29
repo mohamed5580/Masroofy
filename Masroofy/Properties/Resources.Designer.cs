@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Personal_Budgeting.Properties {
+namespace Masroofy.Properties {
     using System;
     using System.Drawing;
 

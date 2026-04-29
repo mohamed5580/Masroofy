@@ -1,7 +1,11 @@
-using Personal_Budgeting;
+using Masroofy;
+using Masroofy.Business.Services;
+using Masroofy.Data.Database;
+using Masroofy.Data.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using System.Data.SqlClient;
 
-namespace Masroofy
+namespace Masroofy.UI
 {
     internal static class Program
     {
@@ -17,7 +21,7 @@ namespace Masroofy
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var providerStr = Masroofy.Properties.Settings.Default.Provider;
+            var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
 
             var provider = providerStr switch
             {
@@ -25,9 +29,23 @@ namespace Masroofy
                 "MySQL" => DatabaseProvider.MySQL,
                 _ => DatabaseProvider.SqlServer   // default
             };
-
+                
             DataAccessLayer.Configure(provider, "");
-            Application.Run(new Dashbourd());
+
+
+            var services = new ServiceCollection();
+
+            services.AddTransient<IBudgetCycleRepository, BudgetCycleRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+            services.AddTransient<RolloverEngine>();
+            services.AddTransient<BudgetService>();
+
+            services.AddTransient<BudgetCycleForm>();
+            services.AddTransient<Dashbourd>();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            Application.Run(serviceProvider.GetRequiredService<Dashbourd>());
         }
     }
 }

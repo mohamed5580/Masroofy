@@ -11,8 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 using Microsoft.Data.SqlClient;
 
-
-namespace Masroofy
+namespace Masroofy.UI
 {
     public partial class DBConfig : MetroFramework.Forms.MetroForm
     {
@@ -21,19 +20,15 @@ namespace Masroofy
             InitializeComponent();
             // Example of accessing a setting called "ConnectionString" in Properties.Settings
 
-            if (Masroofy.Properties.Settings.Default.Mode == true)
+            if (Masroofy.Data.Properties.Settings.Default.Mode == true)
                 rbWindows.Checked = true;
             else
                 rdSQL.Checked = true;
 
-            tbServer.Text = Masroofy.Properties.Settings.Default.Server;
-            tbDb.Text = Masroofy.Properties.Settings.Default.Database;
-            tbUser.Text = Masroofy.Properties.Settings.Default.Name;
-            tbPass.Text = Masroofy.Properties.Settings.Default.Pass;
-
-            if (Masroofy.Properties.Settings.Default.Provider == "SqlServer") rbSqlServer.Checked = true;
-            else if (Masroofy.Properties.Settings.Default.Provider == "SQLite") rbSQLite.Checked = true;
-            else if (Masroofy.Properties.Settings.Default.Provider == "MySQL") rbMySQL.Checked = true;
+            tbServer.Text = Masroofy.Data.Properties.Settings.Default.Server;
+            tbDb.Text = Masroofy.Data.Properties.Settings.Default.Database;
+            tbUser.Text = Masroofy.Data.Properties.Settings.Default.Name;
+            tbPass.Text = Masroofy.Data.Properties.Settings.Default.Pass;
 
 
         }
@@ -49,18 +44,16 @@ namespace Masroofy
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Masroofy.Properties.Settings.Default.Mode = rbWindows.Checked;
-            Masroofy.Properties.Settings.Default.Server = tbServer.Text;
-            Masroofy.Properties.Settings.Default.Database = tbDb.Text;
-            Masroofy.Properties.Settings.Default.Name = tbUser.Text;
-            Masroofy.Properties.Settings.Default.Pass = tbPass.Text;
-
+            Masroofy.Data.Properties.Settings.Default.Mode = rbWindows.Checked;
+            Masroofy.Data.Properties.Settings.Default.Server = tbServer.Text;
+            Masroofy.Data.Properties.Settings.Default.Database = tbDb.Text;
+            Masroofy.Data.Properties.Settings.Default.Name = tbUser.Text;
+            Masroofy.Data.Properties.Settings.Default.Pass = tbPass.Text;
             // ── حفظ نوع الداتابيز ──
-            if (rbSqlServer.Checked) Masroofy.Properties.Settings.Default.Provider = "SqlServer";
-            else if (rbSQLite.Checked) Masroofy.Properties.Settings.Default.Provider = "SQLite";
-            else if (rbMySQL.Checked) Masroofy.Properties.Settings.Default.Provider = "MySQL";
-
-            Masroofy.Properties.Settings.Default.Save();
+            if (rbSqlServer.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SqlServer";
+            else if (rbSQLite.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SQLite";
+            else if (rbMySQL.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "MySQL";
+            Masroofy.Data.Properties.Settings.Default.Save();
 
             MessageBox.Show(this, "تم الحفظ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Hide();
@@ -81,82 +74,7 @@ namespace Masroofy
 
         }
 
-        private void gunaButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Configure OpenFileDialog to select the backup file
-                OpenFileDialog openFileDialog1 = new OpenFileDialog
-                {
-                    Filter = "DB Backup File|*.bak;",
-                    FilterIndex = 1,
-                    Title = "Select a Backup File",
-                    FileName = "" // Clear the file name
-                };
-
-                // Show the file dialog and get the selected file
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    // Clear connection pools to avoid issues with database locking
-                    SqlConnection.ClearAllPools();
-
-                    // Define the connection string with Windows Authentication
-                    string connectionString = @"Server=" + Masroofy.Properties.Settings.Default.Server + ";Database=master;Integrated Security=True;";
-                    string databaseName = Masroofy.Properties.Settings.Default.Database; // Replace with your database name
-
-                    string createDatabaseQuery = $@"
-                                            IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'{databaseName}')
-                                            BEGIN
-                                                CREATE DATABASE [{databaseName}];
-                                            END";
-
-                    string setSingleUserQuery = $"ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;";
-                    string restoreQuery = $"RESTORE DATABASE [{databaseName}] FROM DISK = '{openFileDialog1.FileName}' WITH REPLACE;";
-                    string setMultiUserQuery = $"ALTER DATABASE [{databaseName}] SET MULTI_USER;";
-
-                    using (SqlConnection con = new SqlConnection(connectionString))
-                    {
-                        con.Open();
-
-                        // Check and create the database if necessary
-                        using (SqlCommand cmd = new SqlCommand(createDatabaseQuery, con))
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        // Set the database to SINGLE_USER mode
-                        using (SqlCommand cmd = new SqlCommand(setSingleUserQuery, con))
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        // Perform the restore operation
-                        using (SqlCommand cmd = new SqlCommand(restoreQuery, con))
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        // Set the database back to MULTI_USER mode
-                        using (SqlCommand cmd = new SqlCommand(setMultiUserQuery, con))
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    // Log success and show message
-                    MessageBox.Show("Database restored successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No backup file was selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Show detailed error message
-                MessageBox.Show($"An error occurred during the restore operation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+     
 
         private void rbSQLite_CheckedChanged(object sender, EventArgs e)
         {

@@ -1,6 +1,6 @@
 ﻿
 
-namespace Personal_Budgeting
+namespace Masroofy.UI
 {
     partial class Dashbourd
     {
@@ -43,15 +43,6 @@ namespace Personal_Budgeting
             toolStripMenuItem19 = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             toolStripMenuItem7 = new ToolStripMenuItem();
-            toolStripMenuItem9 = new ToolStripMenuItem();
-            ToolStripSeparator12 = new ToolStripSeparator();
-            toolStripSeparator1 = new ToolStripSeparator();
-            trackingIncomeToolStripMenuItem = new ToolStripMenuItem();
-            budgetingAnalysisToolStripMenuItem = new ToolStripMenuItem();
-            remindersToolStripMenuItem = new ToolStripMenuItem();
-            savingsGoalsToolStripMenuItem = new ToolStripMenuItem();
-            expenseTrackingToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem5 = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
@@ -131,13 +122,14 @@ namespace Personal_Budgeting
             lblUserType = new Label();
             lblUser = new Label();
             Panel = new Panel();
+            button12 = new Button();
             button9 = new Button();
             button10 = new Button();
-            button11 = new Button();
-            button8 = new Button();
             button7 = new Button();
             tabControl1 = new TabControl();
             notifyIcon1 = new NotifyIcon(components);
+            button8 = new Button();
+            button11 = new Button();
             menuStrip2.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Picture).BeginInit();
@@ -153,13 +145,13 @@ namespace Personal_Budgeting
             menuStrip2.BackColor = SystemColors.ControlLight;
             menuStrip2.Font = new Font("Segoe UI Emoji", 9.75F, FontStyle.Bold);
             menuStrip2.ImageScalingSize = new Size(30, 30);
-            menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem27, toolStripMenuItem33, toolStripMenuItem19, toolStripMenuItem2, toolStripMenuItem7, toolStripMenuItem9, toolStripMenuItem5, toolStripMenuItem1, toolStripMenuItem3 });
+            menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem27, toolStripMenuItem33, toolStripMenuItem19, toolStripMenuItem2, toolStripMenuItem7, toolStripMenuItem1, toolStripMenuItem3 });
             menuStrip2.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip2.Location = new Point(0, 28);
             menuStrip2.Name = "menuStrip2";
             menuStrip2.Padding = new Padding(4);
             menuStrip2.ShowItemToolTips = true;
-            menuStrip2.Size = new Size(1797, 114);
+            menuStrip2.Size = new Size(1174, 114);
             menuStrip2.TabIndex = 2777;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -228,69 +220,6 @@ namespace Personal_Budgeting
             toolStripMenuItem7.TextImageRelation = TextImageRelation.ImageAboveText;
             toolStripMenuItem7.Click += toolStripMenuItem7_Click;
             // 
-            // toolStripMenuItem9
-            // 
-            toolStripMenuItem9.DropDownItems.AddRange(new ToolStripItem[] { ToolStripSeparator12, toolStripSeparator1, trackingIncomeToolStripMenuItem, budgetingAnalysisToolStripMenuItem, remindersToolStripMenuItem, savingsGoalsToolStripMenuItem, expenseTrackingToolStripMenuItem });
-            toolStripMenuItem9.Font = new Font("Segoe UI Emoji", 9.75F, FontStyle.Bold);
-            toolStripMenuItem9.Image = (Image)resources.GetObject("toolStripMenuItem9.Image");
-            toolStripMenuItem9.ImageScaling = ToolStripItemImageScaling.None;
-            toolStripMenuItem9.Margin = new Padding(0, 0, 50, 0);
-            toolStripMenuItem9.Name = "toolStripMenuItem9";
-            toolStripMenuItem9.Size = new Size(78, 106);
-            toolStripMenuItem9.Text = "Tables";
-            toolStripMenuItem9.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // ToolStripSeparator12
-            // 
-            ToolStripSeparator12.Name = "ToolStripSeparator12";
-            ToolStripSeparator12.Size = new Size(259, 6);
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(259, 6);
-            // 
-            // trackingIncomeToolStripMenuItem
-            // 
-            trackingIncomeToolStripMenuItem.Name = "trackingIncomeToolStripMenuItem";
-            trackingIncomeToolStripMenuItem.Size = new Size(262, 26);
-            trackingIncomeToolStripMenuItem.Text = "Tracking Income";
-            // 
-            // budgetingAnalysisToolStripMenuItem
-            // 
-            budgetingAnalysisToolStripMenuItem.Name = "budgetingAnalysisToolStripMenuItem";
-            budgetingAnalysisToolStripMenuItem.Size = new Size(262, 26);
-            budgetingAnalysisToolStripMenuItem.Text = "Budgeting  Analysis";
-            // 
-            // remindersToolStripMenuItem
-            // 
-            remindersToolStripMenuItem.Name = "remindersToolStripMenuItem";
-            remindersToolStripMenuItem.Size = new Size(262, 26);
-            remindersToolStripMenuItem.Text = "Reminders";
-            // 
-            // savingsGoalsToolStripMenuItem
-            // 
-            savingsGoalsToolStripMenuItem.Name = "savingsGoalsToolStripMenuItem";
-            savingsGoalsToolStripMenuItem.Size = new Size(262, 26);
-            savingsGoalsToolStripMenuItem.Text = "Savings & Goals";
-            // 
-            // expenseTrackingToolStripMenuItem
-            // 
-            expenseTrackingToolStripMenuItem.Name = "expenseTrackingToolStripMenuItem";
-            expenseTrackingToolStripMenuItem.Size = new Size(262, 26);
-            expenseTrackingToolStripMenuItem.Text = "Expense Tracking";
-            // 
-            // toolStripMenuItem5
-            // 
-            toolStripMenuItem5.Font = new Font("Segoe UI Emoji", 9.75F, FontStyle.Bold);
-            toolStripMenuItem5.Image = (Image)resources.GetObject("toolStripMenuItem5.Image");
-            toolStripMenuItem5.ImageScaling = ToolStripItemImageScaling.None;
-            toolStripMenuItem5.Margin = new Padding(0, 0, 50, 0);
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(179, 106);
-            toolStripMenuItem5.Text = "Recent operations";
-            toolStripMenuItem5.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Image = (Image)resources.GetObject("toolStripMenuItem1.Image");
@@ -316,7 +245,7 @@ namespace Personal_Budgeting
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(5, 2, 0, 2);
             menuStrip1.RightToLeft = RightToLeft.Yes;
-            menuStrip1.Size = new Size(1797, 28);
+            menuStrip1.Size = new Size(1174, 28);
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -1150,7 +1079,7 @@ namespace Personal_Budgeting
             statusStrip1.Location = new Point(0, 936);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.RightToLeft = RightToLeft.No;
-            statusStrip1.Size = new Size(1797, 26);
+            statusStrip1.Size = new Size(1174, 26);
             statusStrip1.TabIndex = 317;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1183,7 +1112,7 @@ namespace Personal_Budgeting
             tabPage1.Margin = new Padding(4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(4);
-            tabPage1.Size = new Size(1763, 690);
+            tabPage1.Size = new Size(1140, 690);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Main Menu";
             tabPage1.UseVisualStyleBackColor = true;
@@ -1212,18 +1141,39 @@ namespace Personal_Budgeting
             // 
             // Panel
             // 
-            Panel.Controls.Add(button9);
-            Panel.Controls.Add(button10);
             Panel.Controls.Add(button11);
             Panel.Controls.Add(button8);
+            Panel.Controls.Add(button12);
+            Panel.Controls.Add(button9);
+            Panel.Controls.Add(button10);
             Panel.Controls.Add(button7);
             Panel.Dock = DockStyle.Fill;
             Panel.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold);
             Panel.Location = new Point(4, 4);
             Panel.Margin = new Padding(3, 2, 3, 2);
             Panel.Name = "Panel";
-            Panel.Size = new Size(1755, 682);
+            Panel.Size = new Size(1132, 682);
             Panel.TabIndex = 1;
+            // 
+            // button12
+            // 
+            button12.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button12.AutoSize = true;
+            button12.BackColor = Color.PapayaWhip;
+            button12.BackgroundImageLayout = ImageLayout.Stretch;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.FlatStyle = FlatStyle.Flat;
+            button12.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
+            button12.ForeColor = SystemColors.ControlDarkDark;
+            button12.Image = (Image)resources.GetObject("button12.Image");
+            button12.Location = new Point(294, 92);
+            button12.Margin = new Padding(4);
+            button12.Name = "button12";
+            button12.Size = new Size(300, 204);
+            button12.TabIndex = 94;
+            button12.Text = "Dynamic Daily Limit View";
+            button12.TextAlign = ContentAlignment.BottomCenter;
+            button12.UseVisualStyleBackColor = false;
             // 
             // button9
             // 
@@ -1233,13 +1183,13 @@ namespace Personal_Budgeting
             button9.BackgroundImageLayout = ImageLayout.Stretch;
             button9.FlatAppearance.BorderSize = 0;
             button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Microsoft Tai Le", 16.2F, FontStyle.Bold);
+            button9.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
             button9.ForeColor = SystemColors.ControlDarkDark;
             button9.Image = (Image)resources.GetObject("button9.Image");
-            button9.Location = new Point(23, 94);
+            button9.Location = new Point(23, 92);
             button9.Margin = new Padding(4);
             button9.Name = "button9";
-            button9.Size = new Size(311, 257);
+            button9.Size = new Size(255, 204);
             button9.TabIndex = 93;
             button9.Text = "Expense Tracking";
             button9.TextAlign = ContentAlignment.BottomCenter;
@@ -1254,60 +1204,18 @@ namespace Personal_Budgeting
             button10.BackgroundImageLayout = ImageLayout.Stretch;
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
-            button10.Font = new Font("Microsoft Tai Le", 16.2F, FontStyle.Bold);
+            button10.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
             button10.ForeColor = SystemColors.ControlDarkDark;
             button10.Image = (Image)resources.GetObject("button10.Image");
-            button10.Location = new Point(1416, 94);
+            button10.Location = new Point(890, 92);
             button10.Margin = new Padding(4);
             button10.Name = "button10";
-            button10.Size = new Size(312, 257);
+            button10.Size = new Size(226, 204);
             button10.TabIndex = 92;
-            button10.Text = "Tracking Income";
+            button10.Text = "Initialize Budget";
             button10.TextAlign = ContentAlignment.BottomCenter;
             button10.UseVisualStyleBackColor = false;
             button10.Click += button10_Click;
-            // 
-            // button11
-            // 
-            button11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button11.AutoSize = true;
-            button11.BackColor = Color.PapayaWhip;
-            button11.BackgroundImageLayout = ImageLayout.Stretch;
-            button11.FlatAppearance.BorderSize = 0;
-            button11.FlatStyle = FlatStyle.Flat;
-            button11.Font = new Font("Microsoft Tai Le", 16.2F, FontStyle.Bold);
-            button11.ForeColor = SystemColors.ControlDarkDark;
-            button11.Image = (Image)resources.GetObject("button11.Image");
-            button11.Location = new Point(698, 94);
-            button11.Margin = new Padding(4);
-            button11.Name = "button11";
-            button11.Size = new Size(323, 257);
-            button11.TabIndex = 91;
-            button11.Text = "Reminders";
-            button11.TextAlign = ContentAlignment.BottomCenter;
-            button11.UseVisualStyleBackColor = false;
-            button11.Click += button11_Click;
-            // 
-            // button8
-            // 
-            button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button8.AutoSize = true;
-            button8.BackColor = Color.PapayaWhip;
-            button8.BackgroundImageLayout = ImageLayout.Stretch;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Microsoft Tai Le", 16.2F, FontStyle.Bold);
-            button8.ForeColor = SystemColors.ControlDarkDark;
-            button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.Location = new Point(361, 94);
-            button8.Margin = new Padding(4);
-            button8.Name = "button8";
-            button8.Size = new Size(311, 257);
-            button8.TabIndex = 89;
-            button8.Text = "Savings & Goals";
-            button8.TextAlign = ContentAlignment.BottomCenter;
-            button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -1317,15 +1225,15 @@ namespace Personal_Budgeting
             button7.BackgroundImageLayout = ImageLayout.Stretch;
             button7.FlatAppearance.BorderSize = 0;
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Microsoft Tai Le", 16.2F, FontStyle.Bold);
+            button7.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
             button7.ForeColor = SystemColors.ControlDarkDark;
             button7.Image = (Image)resources.GetObject("button7.Image");
-            button7.Location = new Point(1045, 107);
+            button7.Location = new Point(610, 92);
             button7.Margin = new Padding(4);
             button7.Name = "button7";
-            button7.Size = new Size(342, 244);
+            button7.Size = new Size(266, 204);
             button7.TabIndex = 88;
-            button7.Text = "Budgeting  Analysis";
+            button7.Text = "Expense Logging";
             button7.TextAlign = ContentAlignment.BottomCenter;
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
@@ -1341,7 +1249,7 @@ namespace Personal_Budgeting
             tabControl1.Padding = new Point(20, 10);
             tabControl1.RightToLeftLayout = true;
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1771, 737);
+            tabControl1.Size = new Size(1148, 737);
             tabControl1.TabIndex = 10;
             // 
             // notifyIcon1
@@ -1351,11 +1259,51 @@ namespace Personal_Budgeting
             notifyIcon1.Text = "notifyIcon1";
             notifyIcon1.Visible = true;
             // 
+            // button8
+            // 
+            button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button8.AutoSize = true;
+            button8.BackColor = Color.PapayaWhip;
+            button8.BackgroundImageLayout = ImageLayout.Stretch;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
+            button8.ForeColor = SystemColors.ControlDarkDark;
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.Location = new Point(890, 349);
+            button8.Margin = new Padding(4);
+            button8.Name = "button8";
+            button8.Size = new Size(226, 191);
+            button8.TabIndex = 95;
+            button8.Text = "Daily Rollover";
+            button8.TextAlign = ContentAlignment.BottomCenter;
+            button8.UseVisualStyleBackColor = false;
+            // 
+            // button11
+            // 
+            button11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button11.AutoSize = true;
+            button11.BackColor = Color.PapayaWhip;
+            button11.BackgroundImageLayout = ImageLayout.Stretch;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
+            button11.ForeColor = SystemColors.ControlDarkDark;
+            button11.Image = (Image)resources.GetObject("button11.Image");
+            button11.Location = new Point(610, 349);
+            button11.Margin = new Padding(4);
+            button11.Name = "button11";
+            button11.Size = new Size(266, 191);
+            button11.TabIndex = 96;
+            button11.Text = "Transaction History";
+            button11.TextAlign = ContentAlignment.BottomCenter;
+            button11.UseVisualStyleBackColor = false;
+            // 
             // Dashbourd
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoValidate = AutoValidate.Disable;
-            ClientSize = new Size(1797, 962);
+            ClientSize = new Size(1174, 962);
             Controls.Add(menuStrip2);
             Controls.Add(statusStrip1);
             Controls.Add(tabControl1);
@@ -1366,7 +1314,6 @@ namespace Personal_Budgeting
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
-            WindowState = FormWindowState.Maximized;
             FormClosing += basic_FormClosing;
             Load += Dashbourd_Load;
             menuStrip2.ResumeLayout(false);
@@ -1395,8 +1342,6 @@ namespace Personal_Budgeting
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         internal System.Windows.Forms.OpenFileDialog OpenFileDialog1;
-        internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator12;
-        internal System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         internal System.Windows.Forms.Button btnExportExcel;
         internal System.Windows.Forms.Panel Panel2;
         internal System.Windows.Forms.Label Label1;
@@ -1465,8 +1410,6 @@ namespace Personal_Budgeting
         public System.Windows.Forms.ToolStripMenuItem نسخToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem اعداداتToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem19;
-        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
-        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         internal System.Windows.Forms.ToolStripStatusLabel lblDateTime;
         internal System.Windows.Forms.ToolStripStatusLabel lblTime;
@@ -1480,18 +1423,14 @@ namespace Personal_Budgeting
         internal Label lblUser;
         private Panel Panel;
         internal Button button10;
-        internal Button button11;
-        internal Button button8;
         internal Button button7;
         public TabControl tabControl1;
         private ToolStripMenuItem toolStripMenuItem3;
         public NotifyIcon notifyIcon1;
         internal Button button9;
-        private ToolStripMenuItem trackingIncomeToolStripMenuItem;
-        private ToolStripMenuItem budgetingAnalysisToolStripMenuItem;
-        private ToolStripMenuItem remindersToolStripMenuItem;
-        private ToolStripMenuItem savingsGoalsToolStripMenuItem;
-        private ToolStripMenuItem expenseTrackingToolStripMenuItem;
+        internal Button button12;
+        internal Button button11;
+        internal Button button8;
     }
 }
 
