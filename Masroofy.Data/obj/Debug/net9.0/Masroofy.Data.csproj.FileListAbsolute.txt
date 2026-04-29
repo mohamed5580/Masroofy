@@ -12,3 +12,17 @@ C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.Data\obj\Debug\net9.0
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.Data\obj\Debug\net9.0\refint\Masroofy.Data.dll
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.pdb
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.Data\obj\Debug\net9.0\ref\Masroofy.Data.dll
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\bin\Debug\net9.0\Masroofy.Data.dll.config
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\bin\Debug\net9.0\Masroofy.Data.deps.json
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\bin\Debug\net9.0\Masroofy.Data.dll
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\bin\Debug\net9.0\Masroofy.Data.pdb
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.csproj.AssemblyReference.cache
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.AssemblyInfoInputs.cache
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.AssemblyInfo.cs
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.sourcelink.json
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.dll
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\refint\Masroofy.Data.dll
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\Masroofy.Data.pdb
+C:\Users\LENOVO\OneDrive\Desktop\Masroofy\Masroofy.Data\obj\Debug\net9.0\ref\Masroofy.Data.dll

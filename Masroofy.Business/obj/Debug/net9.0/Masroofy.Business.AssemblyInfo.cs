@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Masroofy.Business")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34bf62f5776494fb836db23694aa3a98ac7dbe54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a60cd490072e1e8d8bacb89316c0c306a69577e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Masroofy.Business")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Masroofy.Business")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

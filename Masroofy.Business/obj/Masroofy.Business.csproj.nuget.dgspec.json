@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {}
+    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {
+    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
         "projectName": "Masroofy.Business",
-        "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
-        "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\obj\\",
+        "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\joemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,11 +26,10 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
-                "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj"
+              "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
+                "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj"
               }
             }
           }
@@ -49,11 +44,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "imports": [
             "net461",
@@ -71,25 +65,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
+    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
         "projectName": "Masroofy.Data",
-        "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
-        "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\obj\\",
+        "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\joemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -101,7 +91,6 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -116,11 +105,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.Data.SqlClient": {
@@ -152,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
