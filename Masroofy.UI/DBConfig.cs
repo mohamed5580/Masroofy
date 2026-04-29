@@ -18,7 +18,6 @@ namespace Masroofy.UI
         public DBConfig()
         {
             InitializeComponent();
-            // Example of accessing a setting called "ConnectionString" in Properties.Settings
 
             if (Masroofy.Data.Properties.Settings.Default.Mode == true)
                 rbWindows.Checked = true;
@@ -39,7 +38,6 @@ namespace Masroofy.UI
                 tbUser.Enabled = tbPass.Enabled = false;
             else
                 tbUser.Enabled = tbPass.Enabled = true;
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -49,14 +47,14 @@ namespace Masroofy.UI
             Masroofy.Data.Properties.Settings.Default.Database = tbDb.Text;
             Masroofy.Data.Properties.Settings.Default.Name = tbUser.Text;
             Masroofy.Data.Properties.Settings.Default.Pass = tbPass.Text;
-            // ── حفظ نوع الداتابيز ──
             if (rbSqlServer.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SqlServer";
             else if (rbSQLite.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SQLite";
             else if (rbMySQL.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "MySQL";
+
             Masroofy.Data.Properties.Settings.Default.Save();
 
             MessageBox.Show(this, "تم الحفظ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Hide();
+            this.Close();
         }
 
         private void rdSQL_CheckedChanged(object sender, EventArgs e)
@@ -95,7 +93,6 @@ namespace Masroofy.UI
                 }
                 else
                 {
-                    // لو ما اختارش ملف، ارجع للـ SQL Server
                     return;
                 }
             }
