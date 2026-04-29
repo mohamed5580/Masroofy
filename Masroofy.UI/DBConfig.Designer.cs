@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBConfig));
-            label1 = new Label();
+            lblAmountDisplay = new Label();
             tbServer = new TextBox();
             tbDb = new TextBox();
             label2 = new Label();
@@ -50,14 +50,14 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(28, 90);
-            label1.Name = "label1";
-            label1.Size = new Size(62, 18);
-            label1.TabIndex = 0;
-            label1.Text = "Server:";
+            lblAmountDisplay.AutoSize = true;
+            lblAmountDisplay.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAmountDisplay.ForeColor = Color.FromArgb(64, 64, 64);
+            lblAmountDisplay.Location = new Point(28, 90);
+            lblAmountDisplay.Name = "label1";
+            lblAmountDisplay.Size = new Size(62, 18);
+            lblAmountDisplay.TabIndex = 0;
+            lblAmountDisplay.Text = "Server:";
             // 
             // tbServer
             // 
@@ -249,7 +249,7 @@
             Controls.Add(tbDb);
             Controls.Add(label2);
             Controls.Add(tbServer);
-            Controls.Add(label1);
+            Controls.Add(lblAmountDisplay);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "DBConfig";
@@ -264,7 +264,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAmountDisplay;
         private System.Windows.Forms.TextBox tbServer;
         private System.Windows.Forms.TextBox tbDb;
         private System.Windows.Forms.Label label2;

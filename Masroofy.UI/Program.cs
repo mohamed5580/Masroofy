@@ -42,7 +42,7 @@ namespace Masroofy.UI
 
             services.AddTransient<BudgetCycleForm>();
             services.AddTransient<Dashbourd>();
-
+            services.AddTransient<ExpenseEntryScreen>();
             var serviceProvider = services.BuildServiceProvider();
 
             Application.Run(serviceProvider.GetRequiredService<Dashbourd>());

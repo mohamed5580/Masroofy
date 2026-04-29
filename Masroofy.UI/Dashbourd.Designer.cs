@@ -122,14 +122,14 @@ namespace Masroofy.UI
             lblUserType = new Label();
             lblUser = new Label();
             Panel = new Panel();
+            button11 = new Button();
+            button8 = new Button();
             button12 = new Button();
             button9 = new Button();
             button10 = new Button();
             button7 = new Button();
             tabControl1 = new TabControl();
             notifyIcon1 = new NotifyIcon(components);
-            button8 = new Button();
-            button11 = new Button();
             menuStrip2.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Picture).BeginInit();
@@ -1155,6 +1155,46 @@ namespace Masroofy.UI
             Panel.Size = new Size(1132, 682);
             Panel.TabIndex = 1;
             // 
+            // button11
+            // 
+            button11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button11.AutoSize = true;
+            button11.BackColor = Color.PapayaWhip;
+            button11.BackgroundImageLayout = ImageLayout.Stretch;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
+            button11.ForeColor = SystemColors.ControlDarkDark;
+            button11.Image = (Image)resources.GetObject("button11.Image");
+            button11.Location = new Point(610, 349);
+            button11.Margin = new Padding(4);
+            button11.Name = "button11";
+            button11.Size = new Size(266, 191);
+            button11.TabIndex = 96;
+            button11.Text = "Transaction History";
+            button11.TextAlign = ContentAlignment.BottomCenter;
+            button11.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button8.AutoSize = true;
+            button8.BackColor = Color.PapayaWhip;
+            button8.BackgroundImageLayout = ImageLayout.Stretch;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
+            button8.ForeColor = SystemColors.ControlDarkDark;
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.Location = new Point(890, 349);
+            button8.Margin = new Padding(4);
+            button8.Name = "button8";
+            button8.Size = new Size(226, 191);
+            button8.TabIndex = 95;
+            button8.Text = "Daily Rollover";
+            button8.TextAlign = ContentAlignment.BottomCenter;
+            button8.UseVisualStyleBackColor = false;
+            // 
             // button12
             // 
             button12.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -1233,7 +1273,7 @@ namespace Masroofy.UI
             button7.Name = "button7";
             button7.Size = new Size(266, 204);
             button7.TabIndex = 88;
-            button7.Text = "Expense Logging";
+            button7.Text = "Expense Entry";
             button7.TextAlign = ContentAlignment.BottomCenter;
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
@@ -1258,46 +1298,6 @@ namespace Masroofy.UI
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
             notifyIcon1.Text = "notifyIcon1";
             notifyIcon1.Visible = true;
-            // 
-            // button8
-            // 
-            button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button8.AutoSize = true;
-            button8.BackColor = Color.PapayaWhip;
-            button8.BackgroundImageLayout = ImageLayout.Stretch;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
-            button8.ForeColor = SystemColors.ControlDarkDark;
-            button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.Location = new Point(890, 349);
-            button8.Margin = new Padding(4);
-            button8.Name = "button8";
-            button8.Size = new Size(226, 191);
-            button8.TabIndex = 95;
-            button8.Text = "Daily Rollover";
-            button8.TextAlign = ContentAlignment.BottomCenter;
-            button8.UseVisualStyleBackColor = false;
-            // 
-            // button11
-            // 
-            button11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button11.AutoSize = true;
-            button11.BackColor = Color.PapayaWhip;
-            button11.BackgroundImageLayout = ImageLayout.Stretch;
-            button11.FlatAppearance.BorderSize = 0;
-            button11.FlatStyle = FlatStyle.Flat;
-            button11.Font = new Font("Microsoft Tai Le", 13F, FontStyle.Bold);
-            button11.ForeColor = SystemColors.ControlDarkDark;
-            button11.Image = (Image)resources.GetObject("button11.Image");
-            button11.Location = new Point(610, 349);
-            button11.Margin = new Padding(4);
-            button11.Name = "button11";
-            button11.Size = new Size(266, 191);
-            button11.TabIndex = 96;
-            button11.Text = "Transaction History";
-            button11.TextAlign = ContentAlignment.BottomCenter;
-            button11.UseVisualStyleBackColor = false;
             // 
             // Dashbourd
             // 

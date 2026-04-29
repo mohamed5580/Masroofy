@@ -13,5 +13,8 @@
     <Compile Update="BudgetCycleScreen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ExpenseEntryScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

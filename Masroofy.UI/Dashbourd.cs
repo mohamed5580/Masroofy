@@ -108,7 +108,13 @@ namespace Masroofy.UI
 
         private void button7_Click(object sender, EventArgs e) // Panel button "Budgeting Analysis"
         {
-            
+            // Use the ServiceProvider to get an instance of the screen
+            // This ensures the ITransactionRepository and BudgetService are injected automatically
+            var expenseScreen = _serviceProvider.GetRequiredService<ExpenseEntryScreen>();
+
+            // Show the screen as a dialog so the user focuses on it
+            expenseScreen.ShowDialog();
+
             toolStripMenuItem19_Click(sender, e);
         }
 
