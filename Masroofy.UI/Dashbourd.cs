@@ -76,8 +76,7 @@ namespace Masroofy.UI
         private void toolStripMenuItem33_Click(object sender, EventArgs e) // Menu "Tracking Income"
         {
 
-            var form = _serviceProvider.GetRequiredService<BudgetCycleForm>();
-            form.Show();
+           
 
         }
 
@@ -101,13 +100,14 @@ namespace Masroofy.UI
         
         private void button10_Click(object sender, EventArgs e) // Panel button "Tracking Income"
         {
-            
-            toolStripMenuItem33_Click(sender, e);
+            var form = _serviceProvider.GetRequiredService<BudgetCycleForm>();
+            form.Show();
         }
 
 
         private void button7_Click(object sender, EventArgs e) // Panel button "Budgeting Analysis"
         {
+<<<<<<< Updated upstream
             // Use the ServiceProvider to get an instance of the screen
             // This ensures the ITransactionRepository and BudgetService are injected automatically
             var expenseScreen = _serviceProvider.GetRequiredService<ExpenseEntryScreen>();
@@ -116,6 +116,9 @@ namespace Masroofy.UI
             expenseScreen.ShowDialog();
 
             toolStripMenuItem19_Click(sender, e);
+=======
+
+>>>>>>> Stashed changes
         }
 
         private void button11_Click(object sender, EventArgs e) // Panel button "Reminders"
