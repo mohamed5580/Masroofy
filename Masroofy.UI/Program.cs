@@ -54,6 +54,7 @@ namespace Masroofy.UI
             services.AddTransient<BudgetCycleForm>();
             services.AddTransient<Dashbourd>();
             services.AddTransient<ExpenseEntryScreen>();
+            services.AddTransient<StatisticsDashbourd>();
 
             // Build the provider
             var serviceProvider = services.BuildServiceProvider();

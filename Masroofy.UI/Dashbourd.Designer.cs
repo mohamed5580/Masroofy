@@ -1214,6 +1214,7 @@ namespace Masroofy.UI
             button12.Text = "Dynamic Daily Limit View";
             button12.TextAlign = ContentAlignment.BottomCenter;
             button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // button9
             // 

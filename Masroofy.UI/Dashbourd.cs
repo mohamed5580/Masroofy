@@ -181,5 +181,13 @@ namespace Masroofy.UI
         private void نسخToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            StatisticsDashbourd stats = new StatisticsDashbourd();
+
+            // Show the statistics form
+            stats.Show();
+        }
     }
 }
