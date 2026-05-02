@@ -3,7 +3,8 @@ using Masroofy.Business.Services;
 using Masroofy.Data.Database;
 using Masroofy.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System.Data.SqlClient;
+using System;
+using System.Windows.Forms;
 
 namespace Masroofy.UI
 {
@@ -15,12 +16,11 @@ namespace Masroofy.UI
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // --- Database Configuration ---
             var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
 
             var provider = providerStr switch
@@ -29,22 +29,36 @@ namespace Masroofy.UI
                 "MySQL" => DatabaseProvider.MySQL,
                 _ => DatabaseProvider.SqlServer   // default
             };
-                
+
             DataAccessLayer.Configure(provider, "");
+            Task.Run(async () => await DataAccessLayer.SeedCategoriesAsync()).GetAwaiter().GetResult();
 
-
+            // --- Dependency Injection Registration ---
             var services = new ServiceCollection();
 
+            // 1. Data Layer Registrations
             services.AddTransient<IBudgetCycleRepository, BudgetCycleRepository>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
+
+            // 2. Business Layer Registrations
             services.AddTransient<RolloverEngine>();
             services.AddTransient<BudgetService>();
+            services.AddTransient<ValidationService>(); // Added: Required for LoggingUIController
 
+            // 3. UI Controller Registrations (The Bridge)
+            // These allow your forms to talk to your services cleanly
+            services.AddTransient<LoggingUIController>();   // Added: Required for ExpenseEntryScreen
+            services.AddTransient<DashboardUIController>(); // Added: Required for Dashbourd refreshes
+
+            // 4. UI Forms Registrations
             services.AddTransient<BudgetCycleForm>();
             services.AddTransient<Dashbourd>();
             services.AddTransient<ExpenseEntryScreen>();
+
+            // Build the provider
             var serviceProvider = services.BuildServiceProvider();
 
+            // Run the application starting with the Dashboard
             Application.Run(serviceProvider.GetRequiredService<Dashbourd>());
         }
     }

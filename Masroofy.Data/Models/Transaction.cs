@@ -13,5 +13,12 @@ namespace Masroofy.Data.Models
         public DateTime Timestamp { get; set; }
         public int CategoryId { get; set; }
         public int BudgetCycleId { get; set; }
+
+        public int TransactionId { get; set; }
+
+        public string CategoryName { get; set; }
+
+        public int CycleId { get; set; }
+
     }
 }

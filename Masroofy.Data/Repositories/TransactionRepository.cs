@@ -78,5 +78,6 @@ namespace Masroofy.Data.Repositories
             var param = DataAccessLayer.CreateParameter("@Id", DbType.Int32, id);
             await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, param);
         }
+
     }
 }
