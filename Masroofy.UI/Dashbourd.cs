@@ -130,5 +130,12 @@ namespace Masroofy.UI
             var stats = _serviceProvider.GetRequiredService<StatisticsDashbourd>();
             stats.Show();
         }
+
+        private void button11_Click_1(object sender, EventArgs e)
+        {
+            var trans = _serviceProvider.GetRequiredService<Transactions>();
+            
+            trans.Show();
+        }
     }
 }

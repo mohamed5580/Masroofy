@@ -29,8 +29,11 @@ namespace Masroofy.Data.Repositories
         {
             const string sql = "SELECT * FROM Transactions WHERE BudgetCycleId = @Id ORDER BY Timestamp DESC";
             var p = DataAccessLayer.CreateParameter("@Id", DbType.Int32, cycleId);
+
             var list = new List<Transaction>();
+
             using var reader = await DataAccessLayer.ExecuteReaderAsync(sql, CommandType.Text, p);
+
             while (await reader.ReadAsync())
             {
                 list.Add(new Transaction
@@ -42,6 +45,36 @@ namespace Masroofy.Data.Repositories
                     BudgetCycleId = reader.GetInt32(4)
                 });
             }
+
+            return list;
+        }
+
+        
+        public async Task<List<Transaction>> GetHistoryAsync(int cycleId)
+        {
+            const string sql = @"
+                SELECT t.Id, t.Amount, t.Timestamp, t.BudgetCycleId, c.Name
+                FROM Transactions t
+                JOIN Categories c ON t.CategoryId = c.Id
+                ORDER BY t.Timestamp DESC";
+
+            var list = new List<Transaction>();
+
+            
+            using var reader = await DataAccessLayer.ExecuteReaderAsync(sql, CommandType.Text);
+
+            while (await reader.ReadAsync())
+            {
+                list.Add(new Transaction
+                {
+                    Id = reader.GetInt32(0),
+                    Amount = reader.GetDecimal(1),
+                    Timestamp = DateTime.Parse(reader.GetString(2)),
+                    BudgetCycleId = reader.GetInt32(3),
+                    CategoryName = reader.GetString(4)
+                });
+            }
+
             return list;
         }
 

@@ -6602,19 +6602,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+    "C:\\Users\\Mohamed Farag\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.UI\\Masroofy.UI.csproj",
+      "projectUniqueName": "F:\\A2-SWE\\Masroofy.UI\\Masroofy.UI.csproj",
       "projectName": "Masroofy.UI",
-      "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.UI\\Masroofy.UI.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.UI\\obj\\",
+      "projectPath": "F:\\A2-SWE\\Masroofy.UI\\Masroofy.UI.csproj",
+      "packagesPath": "C:\\Users\\Mohamed Farag\\.nuget\\packages\\",
+      "outputPath": "F:\\A2-SWE\\Masroofy.UI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mohamed Farag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6626,10 +6631,11 @@
       },
       "frameworks": {
         "net9.0-windows7.0": {
+          "framework": "net9.0-windows7.0",
           "targetAlias": "net9.0-windows",
           "projectReferences": {
-            "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {
-              "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj"
+            "F:\\A2-SWE\\Masroofy.Business\\Masroofy.Business.csproj": {
+              "projectPath": "F:\\A2-SWE\\Masroofy.Business\\Masroofy.Business.csproj"
             }
           }
         }
@@ -6644,10 +6650,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net9.0-windows7.0": {
+        "framework": "net9.0-windows7.0",
         "targetAlias": "net9.0-windows",
         "dependencies": {
           "MetroFramework": {
@@ -6722,6 +6729,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.15, 9.0.15]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[9.0.15, 9.0.15]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.15, 9.0.15]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[9.0.15, 9.0.15]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -6730,7 +6755,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
@@ -6747,7 +6772,7 @@
       "message": "Package 'MetroFramework.Design 1.2.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "MetroFramework.Design",
       "targetGraphs": [
-        "net9.0-windows7.0"
+        "net9.0-windows"
       ]
     },
     {
@@ -6757,7 +6782,7 @@
       "message": "Package 'MetroFramework.Fonts 1.2.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "MetroFramework.Fonts",
       "targetGraphs": [
-        "net9.0-windows7.0"
+        "net9.0-windows"
       ]
     },
     {
@@ -6767,7 +6792,7 @@
       "message": "Package 'MetroFramework.RunTime 1.2.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "MetroFramework.RunTime",
       "targetGraphs": [
-        "net9.0-windows7.0"
+        "net9.0-windows"
       ]
     }
   ]

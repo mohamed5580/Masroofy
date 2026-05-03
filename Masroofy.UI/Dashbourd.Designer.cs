@@ -147,11 +147,11 @@ namespace Masroofy.UI
             menuStrip2.ImageScalingSize = new Size(30, 30);
             menuStrip2.Items.AddRange(new ToolStripItem[] { toolStripMenuItem27, toolStripMenuItem33, toolStripMenuItem19, toolStripMenuItem2, toolStripMenuItem7, toolStripMenuItem1, toolStripMenuItem3 });
             menuStrip2.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            menuStrip2.Location = new Point(0, 28);
+            menuStrip2.Location = new Point(0, 24);
             menuStrip2.Name = "menuStrip2";
             menuStrip2.Padding = new Padding(4);
             menuStrip2.ShowItemToolTips = true;
-            menuStrip2.Size = new Size(1174, 114);
+            menuStrip2.Size = new Size(1174, 109);
             menuStrip2.TabIndex = 2777;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -162,7 +162,7 @@ namespace Masroofy.UI
             toolStripMenuItem27.ImageScaling = ToolStripItemImageScaling.None;
             toolStripMenuItem27.Margin = new Padding(0, 0, 100, 0);
             toolStripMenuItem27.Name = "toolStripMenuItem27";
-            toolStripMenuItem27.Size = new Size(78, 106);
+            toolStripMenuItem27.Size = new Size(76, 101);
             toolStripMenuItem27.Text = "Home";
             toolStripMenuItem27.TextAlign = ContentAlignment.BottomCenter;
             toolStripMenuItem27.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -174,7 +174,7 @@ namespace Masroofy.UI
             toolStripMenuItem33.ImageScaling = ToolStripItemImageScaling.None;
             toolStripMenuItem33.Margin = new Padding(0, 0, 50, 0);
             toolStripMenuItem33.Name = "toolStripMenuItem33";
-            toolStripMenuItem33.Size = new Size(147, 106);
+            toolStripMenuItem33.Size = new Size(123, 101);
             toolStripMenuItem33.Text = "Tracking Income";
             toolStripMenuItem33.TextAlign = ContentAlignment.BottomCenter;
             toolStripMenuItem33.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -188,7 +188,7 @@ namespace Masroofy.UI
             toolStripMenuItem19.ImageScaling = ToolStripItemImageScaling.None;
             toolStripMenuItem19.Margin = new Padding(0, 0, 50, 0);
             toolStripMenuItem19.Name = "toolStripMenuItem19";
-            toolStripMenuItem19.Size = new Size(198, 106);
+            toolStripMenuItem19.Size = new Size(157, 101);
             toolStripMenuItem19.Text = "Budgeting &  Analysis";
             toolStripMenuItem19.TextAlign = ContentAlignment.BottomCenter;
             toolStripMenuItem19.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -202,7 +202,7 @@ namespace Masroofy.UI
             toolStripMenuItem2.ImageScaling = ToolStripItemImageScaling.None;
             toolStripMenuItem2.Margin = new Padding(0, 0, 50, 0);
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(113, 106);
+            toolStripMenuItem2.Size = new Size(91, 101);
             toolStripMenuItem2.Text = "Reminders";
             toolStripMenuItem2.TextAlign = ContentAlignment.BottomCenter;
             toolStripMenuItem2.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -215,7 +215,7 @@ namespace Masroofy.UI
             toolStripMenuItem7.ImageScaling = ToolStripItemImageScaling.None;
             toolStripMenuItem7.Margin = new Padding(0, 0, 50, 0);
             toolStripMenuItem7.Name = "toolStripMenuItem7";
-            toolStripMenuItem7.Size = new Size(147, 106);
+            toolStripMenuItem7.Size = new Size(119, 101);
             toolStripMenuItem7.Text = "Savings & Goals";
             toolStripMenuItem7.TextImageRelation = TextImageRelation.ImageAboveText;
             toolStripMenuItem7.Click += toolStripMenuItem7_Click;
@@ -226,7 +226,7 @@ namespace Masroofy.UI
             toolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
             toolStripMenuItem1.Margin = new Padding(0, 0, 50, 0);
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(70, 106);
+            toolStripMenuItem1.Size = new Size(62, 101);
             toolStripMenuItem1.Text = "Close";
             toolStripMenuItem1.TextImageRelation = TextImageRelation.ImageAboveText;
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
@@ -234,7 +234,7 @@ namespace Masroofy.UI
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(14, 106);
+            toolStripMenuItem3.Size = new Size(12, 101);
             // 
             // menuStrip1
             // 
@@ -245,7 +245,7 @@ namespace Masroofy.UI
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(5, 2, 0, 2);
             menuStrip1.RightToLeft = RightToLeft.Yes;
-            menuStrip1.Size = new Size(1174, 28);
+            menuStrip1.Size = new Size(1174, 24);
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -256,27 +256,27 @@ namespace Masroofy.UI
             اToolStripMenuItem.Name = "اToolStripMenuItem";
             اToolStripMenuItem.RightToLeft = RightToLeft.Yes;
             اToolStripMenuItem.RightToLeftAutoMirrorImage = true;
-            اToolStripMenuItem.Size = new Size(80, 24);
+            اToolStripMenuItem.Size = new Size(65, 20);
             اToolStripMenuItem.Text = "Settings";
             // 
             // اعداداتToolStripMenuItem
             // 
             اعداداتToolStripMenuItem.Name = "اعداداتToolStripMenuItem";
-            اعداداتToolStripMenuItem.Size = new Size(201, 26);
+            اعداداتToolStripMenuItem.Size = new Size(162, 22);
             اعداداتToolStripMenuItem.Text = "Server settings";
             اعداداتToolStripMenuItem.Click += اعداداتToolStripMenuItem_Click_1;
             // 
             // نسخاحطياتيToolStripMenuItem
             // 
             نسخاحطياتيToolStripMenuItem.Name = "نسخاحطياتيToolStripMenuItem";
-            نسخاحطياتيToolStripMenuItem.Size = new Size(201, 26);
+            نسخاحطياتيToolStripMenuItem.Size = new Size(162, 22);
             نسخاحطياتيToolStripMenuItem.Text = "Backup";
             نسخاحطياتيToolStripMenuItem.Click += نسخاحطياتيToolStripMenuItem_Click;
             // 
             // نسخToolStripMenuItem
             // 
             نسخToolStripMenuItem.Name = "نسخToolStripMenuItem";
-            نسخToolStripMenuItem.Size = new Size(201, 26);
+            نسخToolStripMenuItem.Size = new Size(162, 22);
             نسخToolStripMenuItem.Text = "Restore Backup";
             نسخToolStripMenuItem.Click += نسخToolStripMenuItem_Click;
             // 
@@ -449,7 +449,7 @@ namespace Masroofy.UI
             txtReorderPoint.Location = new Point(382, 156);
             txtReorderPoint.Margin = new Padding(4);
             txtReorderPoint.Name = "txtReorderPoint";
-            txtReorderPoint.Size = new Size(147, 30);
+            txtReorderPoint.Size = new Size(147, 26);
             txtReorderPoint.TabIndex = 9;
             txtReorderPoint.TextAlign = HorizontalAlignment.Right;
             // 
@@ -497,7 +497,7 @@ namespace Masroofy.UI
             txtProductCode.Margin = new Padding(4);
             txtProductCode.Name = "txtProductCode";
             txtProductCode.ReadOnly = true;
-            txtProductCode.Size = new Size(229, 30);
+            txtProductCode.Size = new Size(229, 26);
             txtProductCode.TabIndex = 0;
             // 
             // Label3
@@ -556,7 +556,7 @@ namespace Masroofy.UI
             cmbCategory.Location = new Point(814, 224);
             cmbCategory.Margin = new Padding(4);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(229, 31);
+            cmbCategory.Size = new Size(229, 27);
             cmbCategory.TabIndex = 2;
             // 
             // Browse
@@ -582,7 +582,7 @@ namespace Masroofy.UI
             cmbSubCategory.Location = new Point(814, 279);
             cmbSubCategory.Margin = new Padding(4);
             cmbSubCategory.Name = "cmbSubCategory";
-            cmbSubCategory.Size = new Size(229, 31);
+            cmbSubCategory.Size = new Size(229, 27);
             cmbSubCategory.TabIndex = 3;
             // 
             // BRemove
@@ -606,7 +606,7 @@ namespace Masroofy.UI
             txtCostPrice.Location = new Point(382, 17);
             txtCostPrice.Margin = new Padding(4);
             txtCostPrice.Name = "txtCostPrice";
-            txtCostPrice.Size = new Size(147, 30);
+            txtCostPrice.Size = new Size(147, 26);
             txtCostPrice.TabIndex = 5;
             txtCostPrice.TextAlign = HorizontalAlignment.Right;
             // 
@@ -627,7 +627,7 @@ namespace Masroofy.UI
             txtProductName.Location = new Point(814, 176);
             txtProductName.Margin = new Padding(4);
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(229, 30);
+            txtProductName.Size = new Size(229, 26);
             txtProductName.TabIndex = 1;
             // 
             // txtSellingPrice
@@ -637,7 +637,7 @@ namespace Masroofy.UI
             txtSellingPrice.Location = new Point(382, 69);
             txtSellingPrice.Margin = new Padding(4);
             txtSellingPrice.Name = "txtSellingPrice";
-            txtSellingPrice.Size = new Size(147, 30);
+            txtSellingPrice.Size = new Size(147, 26);
             txtSellingPrice.TabIndex = 7;
             txtSellingPrice.TextAlign = HorizontalAlignment.Right;
             // 
@@ -684,7 +684,7 @@ namespace Masroofy.UI
             txtDiscount.Location = new Point(382, 262);
             txtDiscount.Margin = new Padding(4);
             txtDiscount.Name = "txtDiscount";
-            txtDiscount.Size = new Size(147, 30);
+            txtDiscount.Size = new Size(147, 26);
             txtDiscount.TabIndex = 6;
             txtDiscount.TextAlign = HorizontalAlignment.Right;
             // 
@@ -695,7 +695,7 @@ namespace Masroofy.UI
             txtVAT.Location = new Point(382, 316);
             txtVAT.Margin = new Padding(4);
             txtVAT.Name = "txtVAT";
-            txtVAT.Size = new Size(147, 30);
+            txtVAT.Size = new Size(147, 26);
             txtVAT.TabIndex = 8;
             txtVAT.TextAlign = HorizontalAlignment.Right;
             // 
@@ -798,7 +798,7 @@ namespace Masroofy.UI
             txtOpeningStock.Location = new Point(382, 207);
             txtOpeningStock.Margin = new Padding(4);
             txtOpeningStock.Name = "txtOpeningStock";
-            txtOpeningStock.Size = new Size(147, 30);
+            txtOpeningStock.Size = new Size(147, 26);
             txtOpeningStock.TabIndex = 10;
             txtOpeningStock.TextAlign = HorizontalAlignment.Right;
             // 
@@ -820,7 +820,7 @@ namespace Masroofy.UI
             txtBarcode.Location = new Point(814, 124);
             txtBarcode.Margin = new Padding(4);
             txtBarcode.Name = "txtBarcode";
-            txtBarcode.Size = new Size(229, 30);
+            txtBarcode.Size = new Size(229, 26);
             txtBarcode.TabIndex = 328;
             // 
             // Label13
@@ -966,7 +966,7 @@ namespace Masroofy.UI
             TextBox1.Location = new Point(768, 13);
             TextBox1.Margin = new Padding(4);
             TextBox1.Name = "TextBox1";
-            TextBox1.Size = new Size(361, 30);
+            TextBox1.Size = new Size(361, 26);
             TextBox1.TabIndex = 343;
             // 
             // Button5
@@ -988,7 +988,7 @@ namespace Masroofy.UI
             dtpManufacturingDate.Name = "dtpManufacturingDate";
             dtpManufacturingDate.RightToLeft = RightToLeft.No;
             dtpManufacturingDate.RightToLeftLayout = true;
-            dtpManufacturingDate.Size = new Size(153, 27);
+            dtpManufacturingDate.Size = new Size(153, 23);
             dtpManufacturingDate.TabIndex = 346;
             // 
             // dtpExpiryDate
@@ -1000,7 +1000,7 @@ namespace Masroofy.UI
             dtpExpiryDate.Name = "dtpExpiryDate";
             dtpExpiryDate.RightToLeft = RightToLeft.No;
             dtpExpiryDate.RightToLeftLayout = true;
-            dtpExpiryDate.Size = new Size(153, 27);
+            dtpExpiryDate.Size = new Size(153, 23);
             dtpExpiryDate.TabIndex = 347;
             // 
             // Button6
@@ -1056,7 +1056,7 @@ namespace Masroofy.UI
             txtSellingPrice2.Location = new Point(382, 111);
             txtSellingPrice2.Margin = new Padding(4);
             txtSellingPrice2.Name = "txtSellingPrice2";
-            txtSellingPrice2.Size = new Size(147, 30);
+            txtSellingPrice2.Size = new Size(147, 26);
             txtSellingPrice2.TabIndex = 357;
             txtSellingPrice2.TextAlign = HorizontalAlignment.Right;
             // 
@@ -1076,10 +1076,10 @@ namespace Masroofy.UI
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { lblDateTime, lblTime });
-            statusStrip1.Location = new Point(0, 936);
+            statusStrip1.Location = new Point(0, 937);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.RightToLeft = RightToLeft.No;
-            statusStrip1.Size = new Size(1174, 26);
+            statusStrip1.Size = new Size(1174, 25);
             statusStrip1.TabIndex = 317;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -1090,13 +1090,13 @@ namespace Masroofy.UI
             lblDateTime.ForeColor = Color.Black;
             lblDateTime.Image = (Image)resources.GetObject("lblDateTime.Image");
             lblDateTime.Name = "lblDateTime";
-            lblDateTime.Size = new Size(96, 20);
+            lblDateTime.Size = new Size(84, 20);
             lblDateTime.Text = "Date Time";
             // 
             // lblTime
             // 
             lblTime.Name = "lblTime";
-            lblTime.Size = new Size(42, 20);
+            lblTime.Size = new Size(33, 20);
             lblTime.Text = "Time";
             // 
             // _reminderCheckTimer
@@ -1108,11 +1108,11 @@ namespace Masroofy.UI
             tabPage1.Controls.Add(lblUserType);
             tabPage1.Controls.Add(lblUser);
             tabPage1.Controls.Add(Panel);
-            tabPage1.Location = new Point(4, 43);
+            tabPage1.Location = new Point(4, 38);
             tabPage1.Margin = new Padding(4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(4);
-            tabPage1.Size = new Size(1140, 690);
+            tabPage1.Size = new Size(1140, 695);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Main Menu";
             tabPage1.UseVisualStyleBackColor = true;
@@ -1123,7 +1123,7 @@ namespace Masroofy.UI
             lblUserType.Location = new Point(1476, 686);
             lblUserType.Margin = new Padding(4, 0, 4, 0);
             lblUserType.Name = "lblUserType";
-            lblUserType.Size = new Size(73, 20);
+            lblUserType.Size = new Size(57, 15);
             lblUserType.TabIndex = 314;
             lblUserType.Text = "User Type";
             lblUserType.Visible = false;
@@ -1134,7 +1134,7 @@ namespace Masroofy.UI
             lblUser.Location = new Point(1573, 746);
             lblUser.Margin = new Padding(4, 0, 4, 0);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(38, 20);
+            lblUser.Size = new Size(30, 15);
             lblUser.TabIndex = 313;
             lblUser.Text = "User";
             lblUser.Visible = false;
@@ -1152,7 +1152,7 @@ namespace Masroofy.UI
             Panel.Location = new Point(4, 4);
             Panel.Margin = new Padding(3, 2, 3, 2);
             Panel.Name = "Panel";
-            Panel.Size = new Size(1132, 682);
+            Panel.Size = new Size(1132, 687);
             Panel.TabIndex = 1;
             // 
             // button11
@@ -1174,6 +1174,7 @@ namespace Masroofy.UI
             button11.Text = "Transaction History";
             button11.TextAlign = ContentAlignment.BottomCenter;
             button11.UseVisualStyleBackColor = false;
+            button11.Click += button11_Click_1;
             // 
             // button8
             // 

@@ -16,5 +16,11 @@
     <Compile Update="ExpenseEntryScreen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="StatisticsDashbourd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Transactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

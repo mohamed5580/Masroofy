@@ -130,6 +130,7 @@
             button4.Size = new Size(104, 46);
             button4.TabIndex = 2;
             button4.Text = "History";
+            button4.Click += button4_Click;
             // 
             // button5
             // 

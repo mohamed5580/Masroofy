@@ -317,5 +317,11 @@ namespace Masroofy
             };
             panel4.Controls.Add(_finalDayBadge);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var trans = _serviceProvider.GetRequiredService<Transactions>();
+            trans.Show();
+        }
     }
 }

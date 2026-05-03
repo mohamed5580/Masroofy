@@ -9,6 +9,7 @@ namespace Masroofy.Data.Repositories
         Task<int> AddAsync(Transaction transaction);
         Task<List<Transaction>> GetByCycleIdAsync(int cycleId);
         Task<Transaction?> GetByIdAsync(int id);
+        Task<List<Transaction>> GetHistoryAsync(int cycleId);
         Task UpdateAsync(Transaction transaction);
         Task DeleteAsync(int id);
     }
