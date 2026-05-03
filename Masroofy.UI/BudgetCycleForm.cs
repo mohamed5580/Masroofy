@@ -18,6 +18,10 @@ namespace Masroofy
 {
     public partial class BudgetCycleForm : Form
     {
+        // Fired whenever a cycle is created, updated, or deleted so that
+        // any open screen (e.g. StatisticsDashbourd) can refresh itself.
+        public static event EventHandler CycleChanged;
+
         private readonly IBudgetCycleRepository _budgetCycleRepository;
         private readonly BudgetService _budgetService;
         private bool _isEditMode;
@@ -113,6 +117,7 @@ namespace Masroofy
                 MessageBox.Show($"تم حفظ الميزانية",
                     "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                CycleChanged?.Invoke(this, EventArgs.Empty);
                 ResetForm();
             }
             catch (Exception ex)
@@ -124,7 +129,7 @@ namespace Masroofy
         // UPDATE
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
-            
+
             if (!ValidateInput()) return;
 
             try
@@ -141,6 +146,7 @@ namespace Masroofy
 
                 await _budgetCycleRepository.UpdateAsync(newbudget);
                 MessageBox.Show("تم التحديث", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CycleChanged?.Invoke(this, EventArgs.Empty);
                 ResetForm();
             }
             catch (Exception ex)
@@ -164,6 +170,7 @@ namespace Masroofy
                 {
                     await _budgetCycleRepository.DeleteAsync(Convert.ToInt32(txtID.Text));
                     MessageBox.Show("تم الحذف", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CycleChanged?.Invoke(this, EventArgs.Empty);
                     ResetForm();
                 }
                 catch (Exception ex)
@@ -185,7 +192,7 @@ namespace Masroofy
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BudgetCycleScreen trackingIncomeScreen = new BudgetCycleScreen();
+            BudgetCycleScreen trackingIncomeScreen = new BudgetCycleScreen(_budgetCycleRepository);
 
             trackingIncomeScreen.Show();
 

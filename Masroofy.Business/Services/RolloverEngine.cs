@@ -7,15 +7,18 @@ namespace Masroofy.Business.Services
 {
     public class RolloverEngine
     {
-        public (decimal, int ) CalculateRemaining(BudgetCycle cycle, List<Transaction> transactions, DateTime currentDate)
+        public (decimal remainingBalance, int remainingDays) CalculateRemaining(BudgetCycle cycle, List<Transaction> transactions, DateTime currentDate)
         {
+            // Total spent is needed for chart and limit recalculation
             decimal totalSpent = transactions.Sum(t => t.Amount);
+
+            // Current Balance is Original Allowance minus all spent
             decimal remainingBalance = cycle.TotalAllowance - totalSpent;
+
             int remainingDays = (int)Math.Ceiling((cycle.EndDate - currentDate).TotalDays);
             if (remainingDays <= 0) remainingDays = 1;
+
             return (remainingBalance, remainingDays);
         }
-
-        public decimal GetNewDailyLimit(decimal remainingBalance, int remainingDays) => remainingBalance / remainingDays;
     }
 }

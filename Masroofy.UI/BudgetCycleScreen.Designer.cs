@@ -127,7 +127,6 @@
             amount.Padding = new Padding(5);
             amount.Size = new Size(10, 33);
             amount.TabIndex = 7;
-            amount.Click += amount_Click;
             // 
             // label1
             // 

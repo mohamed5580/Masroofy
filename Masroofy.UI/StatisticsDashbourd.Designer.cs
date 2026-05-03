@@ -7,9 +7,7 @@
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
@@ -19,9 +17,7 @@
         {
             panel1 = new Panel();
             panel4 = new Panel();
-            panel2 = new Panel();
-            lblSafeDailyLimit = new Label();
-            label1 = new Label();
+            pnlLimitCircle = new Panel();
             button1 = new Button();
             panel3 = new Panel();
             pnlPieChart = new Panel();
@@ -33,7 +29,6 @@
             panel5 = new Panel();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
-            panel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,45 +44,25 @@
             // panel4
             // 
             panel4.BackColor = Color.DarkViolet;
-            panel4.Controls.Add(panel2);
-            panel4.Controls.Add(label1);
+            panel4.Controls.Add(pnlLimitCircle);
             panel4.Controls.Add(button1);
             panel4.Location = new Point(-11, 3);
             panel4.Name = "panel4";
             panel4.Size = new Size(502, 234);
             panel4.TabIndex = 3;
             // 
-            // panel2
+            // pnlLimitCircle
             // 
-            panel2.BackColor = Color.GhostWhite;
-            panel2.Controls.Add(lblSafeDailyLimit);
-            panel2.Location = new Point(141, 37);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(237, 105);
-            panel2.TabIndex = 0;
-            // 
-            // lblSafeDailyLimit
-            // 
-            lblSafeDailyLimit.AutoSize = true;
-            lblSafeDailyLimit.Location = new Point(94, 43);
-            lblSafeDailyLimit.Name = "lblSafeDailyLimit";
-            lblSafeDailyLimit.Size = new Size(50, 20);
-            lblSafeDailyLimit.TabIndex = 0;
-            lblSafeDailyLimit.Text = "label2";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.GhostWhite;
-            label1.Location = new Point(215, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(92, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Today's limit";
+            pnlLimitCircle.BackColor = Color.Transparent;
+            pnlLimitCircle.Location = new Point(171, 20);
+            pnlLimitCircle.Name = "pnlLimitCircle";
+            pnlLimitCircle.Size = new Size(160, 160);
+            pnlLimitCircle.TabIndex = 0;
+            pnlLimitCircle.Paint += pnlLimitCircle_Paint;
             // 
             // button1
             // 
-            button1.Location = new Point(202, 159);
+            button1.Location = new Point(367, 96);
             button1.Name = "button1";
             button1.Size = new Size(120, 29);
             button1.TabIndex = 2;
@@ -114,8 +89,8 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55.3846169F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 44.6153831F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55.38F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 44.62F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel1.Controls.Add(button2, 0, 0);
@@ -183,28 +158,26 @@
             Name = "StatisticsDashbourd";
             panel1.ResumeLayout(false);
             panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private Panel panel3;
-        private Button button1;
-        private Label label1;
-        private Panel panel2;
-        private Label lblSafeDailyLimit;
-        private Panel pnlPieChart;
+        private Panel           panel1;
+        private Panel           panel3;
+        private Panel           panel4;
+        private Panel           panel5;
+        private Panel           pnlLimitCircle;   // custom-painted double circle
+        private Panel           pnlPieChart;
+        private Button          button1;
+        private Button          button2;
+        private Button          button3;
+        private Button          button4;
+        private Button          button5;
         private TableLayoutPanel tableLayoutPanel1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Panel panel4;
-        private Panel panel5;
+
+        // Removed: panel2, lblSafeDailyLimit, label1
+        // These are replaced by pnlLimitCircle which paints everything itself.
     }
 }

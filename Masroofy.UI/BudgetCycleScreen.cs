@@ -1,34 +1,21 @@
-﻿
-using Masroofy.Data.Database;
-using Masroofy.Data.Models;
+﻿using Masroofy.Data.Models;
 using Masroofy.Data.Repositories;
-using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Masroofy
 {
-
     public partial class BudgetCycleScreen : Form
     {
-        private readonly IBudgetCycleRepository _BudgetcycleRepository;
-        private BudgetCycle? _BudgetcurrentCycle;
+        private readonly IBudgetCycleRepository _budgetcycleRepository;
 
-
-        public BudgetCycleScreen()
+        // INJECTION FIX: Using the repository from the ServiceProvider ensures data consistency
+        public BudgetCycleScreen(IBudgetCycleRepository repository)
         {
             InitializeComponent();
-            _BudgetcycleRepository = new BudgetCycleRepository();
-
+            _budgetcycleRepository = repository;
         }
-
 
         private void BudgetCycleScreen_Load(object sender, EventArgs e)
         {
@@ -37,9 +24,9 @@ namespace Masroofy
 
         private async void LoadData()
         {
-            dgw.Rows.Clear(); // مهم جدًا
+            dgw.Rows.Clear();
 
-            var cycles = await _BudgetcycleRepository.GetAllCyclesAsync();
+            var cycles = await _budgetcycleRepository.GetAllCyclesAsync();
 
             if (cycles != null)
             {
@@ -55,45 +42,26 @@ namespace Masroofy
                 }
             }
         }
+
         private void dgw_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (dgw.CurrentRow == null) return;
-            
 
             var row = dgw.CurrentRow;
             try
             {
-                BudgetCycleForm budgetingAnalysis = BudgetCycleForm.Instance;
-                budgetingAnalysis.txtID.Text = row.Cells[0].Value.ToString();
-                budgetingAnalysis.txtAmount.Text = row.Cells[1].Value.ToString();
-                budgetingAnalysis.StartDate.Value = Convert.ToDateTime(row.Cells[2].Value);
-                budgetingAnalysis.EndDate.Value = Convert.ToDateTime(row.Cells[3].Value);
-
-                budgetingAnalysis.btnUpdate.Enabled = true;
-                budgetingAnalysis.btnDelete.Enabled = true;
+                // Passing the ID back to the parent Dashboard via the Tag property
+                this.Tag = row.Cells[0].Value;
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error retrieving record data: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error retrieving record data: {ex.Message}");
             }
         }
 
-        public decimal GetTotalIncome()
-        {
-            return 0;
-        }
-      
-        private void amount_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        public decimal GetTotalIncome() => 0;
+        private void amount_Click(object sender, EventArgs e) { }
     }
 }
-

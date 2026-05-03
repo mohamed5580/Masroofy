@@ -1,117 +1,123 @@
-﻿using System;
+﻿using Masroofy.Business.Services;
+using Masroofy.Data.Repositories;
+using Masroofy.UI;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Masroofy.UI; // Required for LoggingUIController access
-using Masroofy.Business.Services;
-using Masroofy.Data.Repositories;
 
 namespace Masroofy
 {
     public partial class ExpenseEntryScreen : Form
     {
-        // Reference to the controller (The "Brain" per the Sequence Diagram)
-        private readonly LoggingUIController _controller;
+        private readonly LoggingUIController _loggingController;
+        private readonly IBudgetCycleRepository _cycleRepo;
 
-        // Tracking state for the logic
-        private string _selectedCategory = "";
-        private int _currentCycleId;
+        // Tracks whichever category button the user last clicked.
+        // Matches Designer buttons: btnFood=1, btnTransport=2,
+        // btnEntertainment=3, btnUtilities=4, btnOther=5
+        private int _selectedCategoryId = 0;
+        private Button _activeButton = null;
 
-        /// <summary>
-        /// Constructor injected with the controller and current cycle context.
-        /// </summary>
-        public ExpenseEntryScreen(LoggingUIController controller, int currentCycleId = 1)
+        // ── Constructor (injected by Program.cs) ──────────────────────────────
+        public ExpenseEntryScreen(
+            ValidationService validationService,
+            ITransactionRepository transactionRepo,
+            BudgetService budgetService,
+            IBudgetCycleRepository cycleRepo,
+            StatisticsDashbourd dashboard)  // live singleton — enables refresh after save
         {
             InitializeComponent();
-            _controller = controller;
-            _currentCycleId = currentCycleId;
+            _cycleRepo = cycleRepo;
+
+            // Wire up LoggingUIController with the live dashboard reference
+            // so RefreshDashboardData() is called after every successful save.
+            _loggingController = new LoggingUIController(
+                validationService,
+                transactionRepo,
+                budgetService,
+                dashboard
+            );
         }
 
-        #region UI Event Handlers (Original Logic Preserved)
-
-        private void txtAmountInput_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow digits (0-9), backspace, and one decimal point
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            // Only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
-
+        // ── Category buttons (all share one handler via Designer) ─────────────
         private void CategoryButton_Click(object sender, EventArgs e)
         {
-            // Reset all buttons in the flow layout to default color
-            foreach (Control c in flowLayoutPanel1.Controls)
-            {
-                if (c is Button b) b.BackColor = Color.WhiteSmoke;
-            }
+            // Reset previous selection highlight
+            if (_activeButton != null)
+                _activeButton.BackColor = SystemColors.Control;
 
-            // Highlight the clicked button
-            Button clicked = (Button)sender;
-            _selectedCategory = clicked.Text;
-            clicked.BackColor = Color.LightGreen;
+            _activeButton = (Button)sender;
+            _activeButton.BackColor = Color.LimeGreen;
+
+            // Map button name to category ID (matches BudgetService.MapIdToCategoryName)
+            _selectedCategoryId = _activeButton.Name switch
+            {
+                "btnFood" => 1,
+                "btnTransport" => 2,
+                "btnEntertainment" => 3,
+                "btnUtilities" => 4,
+                "btnOther" => 5,
+                _ => 5
+            };
         }
 
+        // ── Confirm button (Designer: btnConfirm_Click) ───────────────────────
+        private async void btnConfirm_Click(object sender, EventArgs e)
+        {
+            // Validate category selection
+            if (_selectedCategoryId == 0)
+            {
+                MessageBox.Show("Please select a category.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Resolve the active cycle from DB (never hardcoded)
+            var activeCycle = await _cycleRepo.GetActiveCycleAsync();
+            if (activeCycle == null)
+            {
+                MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // OnSaveTapped:
+            //   1. Saves transaction to SQLite
+            //   2. Calls dashboard.RefreshDashboardData()
+            //      → DashboardUIController.OnOpen()
+            //        → calculateRemainingBalance() → calculateSafeDailyLimit()
+            //        → Refresh() → Display() → [opt] ShowFinalDayBadge()
+            bool success = await _loggingController.OnSaveTapped(
+                txtAmountInput.Text,
+                _selectedCategoryId,
+                activeCycle.Id);
+
+            if (success)
+            {
+                MessageBox.Show("Expense saved successfully!", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid amount. Please enter a positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // ── Cancel button (Designer: btnCancel_Click) ─────────────────────────
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        #endregion
-
-        #region Sequence Diagram Logic (Integrated)
-
-        private async void btnConfirm_Click(object sender, EventArgs e)
+        // ── Only allow digits and one decimal point (Designer: txtAmountInput_KeyPress)
+        private void txtAmountInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 1. UI Validation: Ensure data is present before calling the controller
-            if (string.IsNullOrEmpty(txtAmountInput.Text) || string.IsNullOrEmpty(_selectedCategory))
-            {
-                MessageBox.Show("Please enter amount and select category!", "Missing Information");
-                return;
-            }
-
-            // 2. Map Category Name to ID (Logic required for your TransactionRepository)
-            // Note: In a full system, this mapping would come from a CategoryService
-            int categoryId = MapCategoryToId(_selectedCategory);
-
-            // 3. Trigger the Controller (Flow: Screen -> Controller -> Service -> Repo)
-            // This satisfies the 'onSaveTapped' trigger in your Sequence Diagram
-            bool success = await _controller.OnSaveTapped(txtAmountInput.Text, categoryId, _currentCycleId);
-
-            if (success)
-            {
-                // US#2: showConfirmation()
-                MessageBox.Show($"Saved {txtAmountInput.Text} for {_selectedCategory}", "Success");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            else
-            {
-                // US#2: showError()
-                MessageBox.Show("Invalid input. Please enter a valid positive number.", "Error");
-            }
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                e.Handled = true;
+            if (e.KeyChar == '.' && txtAmountInput.Text.Contains('.'))
+                e.Handled = true;
         }
-
-        /// <summary>
-        /// Simple helper to map UI strings to Database Category IDs
-        /// </summary>
-        private int MapCategoryToId(string categoryName)
-        {
-            return categoryName switch
-            {
-                "Food" => 1,
-                "Transport" => 2,
-                "Entertainment" => 3,
-                "Utilities" => 4,
-                _ => 5 // "Other"
-            };
-        }
-
-        #endregion
     }
 }

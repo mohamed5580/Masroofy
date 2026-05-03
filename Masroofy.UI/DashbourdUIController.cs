@@ -1,36 +1,70 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Masroofy.Business.Services;
 
 namespace Masroofy.UI
 {
+    /// <summary>
+    /// US#3 – Dynamic Daily Limit View.
+    /// Follows the sequence diagram step-for-step:
+    ///
+    ///   User → onOpen()
+    ///     → calculateRemainingBalance()   → BudgetService.FindAllAndCalculateRemainingAsync()
+    ///                                       → TransactionRepository → SQLite → List<Transaction>
+    ///                                       ← remainingBalance: float
+    ///     → calculateSafeDailyLimit()     ← safeDailyLimit: float
+    ///   → DashboardScreen.refresh()
+    ///   → DashboardScreen.display(safeDailyLimit, remainingBalance)
+    ///   → [opt] if Final Day → DashboardScreen.showFinalDayBadge()
+    /// </summary>
     public class DashboardUIController
     {
-        private readonly Dashbourd _dashboardForm;
+        private readonly StatisticsDashbourd _dashboardScreen;
+        private readonly BudgetService _budgetService;
 
-        /// <summary>
-        /// Constructor that takes the actual Dashboard form instance.
-        /// </summary>
-        public DashboardUIController(Dashbourd dashboardForm)
+        public DashboardUIController(BudgetService budgetService, StatisticsDashbourd dashboardScreen)
         {
-            _dashboardForm = dashboardForm;
+            _budgetService = budgetService;
+            _dashboardScreen = dashboardScreen;
         }
 
-        /// <summary>
-        /// This method fulfills the 'updateDashboard()' requirement in the US #2 sequence diagram.
-        /// </summary>
-        public void UpdateDashboard()
+        // ── onOpen() ─────────────────────────────────────────────────────────
+        public async Task OnOpen(int activeCycleId)
         {
-            // We check InvokeRequired to ensure that if the save happened on a background thread,
-            // we switch back to the UI thread before trying to update labels.
-            if (_dashboardForm.InvokeRequired)
-            {
-                _dashboardForm.Invoke(new Action(() => _dashboardForm.RefreshData()));
-            }
-            else
-            {
-                // This calls the RefreshData() method we just added to your Dashbourd.cs
-                _dashboardForm.RefreshData();
-            }
+            // Step 1: calculateRemainingBalance()
+            var (remainingBalance, remainingDays) =
+                await CalculateRemainingBalance(activeCycleId);
+
+            // Step 2: calculateSafeDailyLimit()
+            float safeDailyLimit = CalculateSafeDailyLimit(remainingBalance, remainingDays);
+
+            // Step 3: DashboardScreen.refresh()
+            _dashboardScreen.Refresh();
+
+            // Step 4: DashboardScreen.display(safeDailyLimit: float, remainingBalance: float)
+            var categoryTotals = await _budgetService.GetCategoryBreakdownAsync(activeCycleId);
+            _dashboardScreen.Display(safeDailyLimit, (float)remainingBalance, categoryTotals);
+
+            // Step 5 [opt]: Final Day of Cycle → showFinalDayBadge()
+            if (remainingDays == 1)
+                _dashboardScreen.ShowFinalDayBadge();
+        }
+
+        // ── calculateRemainingBalance() ───────────────────────────────────────
+        private async Task<(decimal remainingBalance, int remainingDays)>
+            CalculateRemainingBalance(int cycleId)
+        {
+            // Calls BudgetService.FindAllAndCalculateRemainingAsync()
+            // which hits TransactionRepository → SQLite → List<Transaction>
+            return await _budgetService.FindAllAndCalculateRemainingAsync(cycleId);
+        }
+
+        // ── calculateSafeDailyLimit() ─────────────────────────────────────────
+        private float CalculateSafeDailyLimit(decimal remainingBalance, int remainingDays)
+        {
+            if (remainingDays <= 0) return (float)remainingBalance;
+            return (float)Math.Round(remainingBalance / remainingDays, 2);
         }
     }
 }
