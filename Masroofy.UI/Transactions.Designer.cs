@@ -42,6 +42,8 @@
             Column5 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             CycleId = new DataGridViewTextBoxColumn();
+            btnEdit = new Button();
+            btnDel = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgw).BeginInit();
             SuspendLayout();
@@ -49,6 +51,8 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnDel);
+            panel1.Controls.Add(btnEdit);
             panel1.Controls.Add(amount);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(dgw);
@@ -113,7 +117,7 @@
             dgw.DefaultCellStyle = dataGridViewCellStyle3;
             dgw.EnableHeadersVisualStyles = false;
             dgw.GridColor = Color.Gray;
-            dgw.Location = new Point(24, 67);
+            dgw.Location = new Point(24, 54);
             dgw.Margin = new Padding(4);
             dgw.MultiSelect = false;
             dgw.Name = "dgw";
@@ -172,6 +176,26 @@
             CycleId.Name = "CycleId";
             CycleId.ReadOnly = true;
             // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.Green;
+            btnEdit.Location = new Point(543, 335);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(75, 23);
+            btnEdit.TabIndex = 8;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // btnDel
+            // 
+            btnDel.BackColor = Color.OrangeRed;
+            btnDel.Location = new Point(638, 335);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(75, 23);
+            btnDel.TabIndex = 9;
+            btnDel.Text = "Delete";
+            btnDel.UseVisualStyleBackColor = false;
+            // 
             // Transactions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -200,5 +224,7 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn CycleId;
+        private Button btnDel;
+        private Button btnEdit;
     }
 }

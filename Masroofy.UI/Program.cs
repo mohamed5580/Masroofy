@@ -65,8 +65,10 @@ namespace Masroofy.UI
                 sp.GetRequiredService<IBudgetCycleRepository>()
             ));
             services.AddTransient<Transactions>(sp => new Transactions(
-    sp.GetRequiredService<ITransactionRepository>()
-));
+            sp.GetRequiredService<ITransactionRepository>(),
+            sp.GetRequiredService<BudgetService>(),
+            sp.GetRequiredService<StatisticsDashbourd>()
+             ));
             services.AddSingleton<Dashbourd>(sp => new Dashbourd(sp));
 
             var serviceProvider = services.BuildServiceProvider();

@@ -1,5 +1,7 @@
 ﻿using Masroofy.Data.Repositories;
 using Masroofy.Data.Models;
+using Masroofy.Business.Services; // for validation
+using Microsoft.VisualBasic; //for inputBox
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,22 +12,26 @@ namespace Masroofy.UI
     public partial class Transactions : Form
     {
         private readonly ITransactionRepository _repo;
-        private int _cycleId;
-
-        public Transactions(ITransactionRepository repo)
+        private readonly BudgetService _budgetService;
+        private readonly ValidationService _validationService = new ValidationService();
+        private readonly StatisticsDashbourd _statsDashboard;
+        private int _cycleId = 1; 
+        public Transactions(ITransactionRepository repo, BudgetService budgetService, StatisticsDashbourd statsDashboard)
         {
             InitializeComponent();
             _repo = repo;
+            _budgetService = budgetService;
             this.Load += Transactions_Load;
+            btnEdit.Click += btnEdit_Click;
+            btnDel.Click += btnDel_Click;
+            _statsDashboard = statsDashboard;
         }
 
-       
         private async void Transactions_Load(object sender, EventArgs e)
         {
             await LoadHistory();
         }
 
-        // loadHistory()
         private async Task LoadHistory()
         {
             try
@@ -39,7 +45,6 @@ namespace Masroofy.UI
             }
         }
 
-        // display()
         private void ShowTransactions(List<Transaction> transactions)
         {
             dgw.Rows.Clear();
@@ -56,14 +61,74 @@ namespace Masroofy.UI
             }
         }
 
-        private void dgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //edit btn
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
-            // ممكن تستخدمها بعدين لو عايز تفاصيل
+            if (dgw.SelectedRows.Count > 0)
+            {
+                int transactionId = Convert.ToInt32(dgw.SelectedRows[0].Cells[0].Value);
+                decimal currentAmount = Convert.ToDecimal(dgw.SelectedRows[0].Cells[1].Value);
+
+                // inpubt box to get the new amount from the user
+                string input = Interaction.InputBox("Enter the new amount:", "Edit Transaction", currentAmount.ToString());
+
+                if (decimal.TryParse(input, out decimal newAmount))
+                {
+                    // using the IsValidAmount method in ValidationService
+                    if (_validationService.IsValidAmount(newAmount))
+                    {
+                        var t = new Transaction { Id = transactionId, Amount = newAmount };
+                        await _repo.UpdateAsync(t);
+
+                        //update the budget after editing the transaction
+                        await _budgetService.RecalculateAfterExpenseAsync(_cycleId);
+
+                        MessageBox.Show("Transaction Updated Successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _statsDashboard.RefreshDashboardData(); // refresh the dashboard to reflect changes
+                        await LoadHistory();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter a valid amount greater than 0.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a transaction to edit first.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        //delete btn
+        private async void btnDel_Click(object sender, EventArgs e)
         {
-            // optional
+            if (dgw.SelectedRows.Count > 0)
+            {
+                int transactionId = Convert.ToInt32(dgw.SelectedRows[0].Cells[0].Value);
+
+                var result = MessageBox.Show(
+                    "Are you sure you want to delete this transaction? This will update your daily limit.",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    await _repo.DeleteAsync(transactionId);
+
+                    // update the budget after deleting the transaction
+                    await _budgetService.RecalculateAfterExpenseAsync(_cycleId);
+                    _statsDashboard.RefreshDashboardData();
+                    await LoadHistory(); 
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a transaction to delete first.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
+        private void dgw_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
     }
 }
