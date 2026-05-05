@@ -81,7 +81,6 @@ namespace Masroofy.Data.Repositories
         public async Task<Transaction?> GetByIdAsync(int id) { return null; }
         public async Task UpdateAsync(Transaction t)
         {
-            // بنعمل Update للمبلغ (Amount) بناءً على الـ ID[cite: 5]
             const string sql = "UPDATE Transactions SET Amount = @Amount WHERE Id = @Id";
 
             var p1 = DataAccessLayer.CreateParameter("@Amount", DbType.Decimal, t.Amount);
@@ -92,7 +91,6 @@ namespace Masroofy.Data.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            // بنمسح العملية بناءً على الـ ID[cite: 5]
             const string sql = "DELETE FROM Transactions WHERE Id = @Id";
             var p = DataAccessLayer.CreateParameter("@Id", DbType.Int32, id);
 

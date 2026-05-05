@@ -23,11 +23,6 @@ namespace Masroofy.Business.Services
             _rolloverEngine = rolloverEngine;
         }
 
-        // ── US#3 core: sequence diagram's findAll() arrow ─────────────────────
-        // DashboardUIController.calculateRemainingBalance() calls this.
-        // It hits TransactionRepository → SQLite → List<Transaction>
-        // then returns (remainingBalance, remainingDays) so the controller
-        // can do calculateSafeDailyLimit() as a separate step.
         public async Task<(decimal remainingBalance, int remainingDays)>
             FindAllAndCalculateRemainingAsync(int cycleId)
         {
@@ -37,11 +32,11 @@ namespace Masroofy.Business.Services
             var transactions = await _transactionRepo.GetByCycleIdAsync(cycleId);
             return _rolloverEngine.CalculateRemaining(cycle, transactions, DateTime.Today);
         }
+        public async Task<List<Category>?> GetByNameAsync(string name)
+        {
+            return await _cycleRepo.GetByCategoryAsync(name);
+        }
 
-        // ── Called after an expense is logged ────────────────────────────────
-        // FIX: Removed "cycle.TotalAllowance = remainingBalance" — that line was
-        // overwriting the user's original budget in the DB on every single expense,
-        // causing the allowance to shrink each time and breaking every calculation.
         public async Task<(decimal newLimit, decimal totalSpent, decimal percentage)>
             RecalculateAfterExpenseAsync(int cycleId)
         {
@@ -97,6 +92,11 @@ namespace Masroofy.Business.Services
                     g => MapIdToCategoryName(g.Key),
                     g => g.Sum(t => t.Amount)
                 );
+        }
+
+        public async Task<decimal> GetTotalCycleAsync()
+        {
+            return await _cycleRepo.GetTotalCycleAsync();
         }
 
         private string MapIdToCategoryName(int id) => id switch

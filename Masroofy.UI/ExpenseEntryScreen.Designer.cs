@@ -48,13 +48,13 @@
             flowLayoutPanel1.BackColor = Color.DarkOrchid;
             flowLayoutPanel1.Controls.Add(btnFood);
             flowLayoutPanel1.Controls.Add(btnTransport);
-            flowLayoutPanel1.Controls.Add(btnEntertainment);
             flowLayoutPanel1.Controls.Add(btnUtilities);
             flowLayoutPanel1.Controls.Add(btnOther);
+            flowLayoutPanel1.Controls.Add(btnEntertainment);
             flowLayoutPanel1.ForeColor = Color.ForestGreen;
-            flowLayoutPanel1.Location = new Point(58, 189);
+            flowLayoutPanel1.Location = new Point(58, 207);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(539, 120);
+            flowLayoutPanel1.Size = new Size(539, 85);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // btnFood
@@ -79,7 +79,7 @@
             // 
             // btnEntertainment
             // 
-            btnEntertainment.Location = new Point(203, 3);
+            btnEntertainment.Location = new Point(403, 3);
             btnEntertainment.Name = "btnEntertainment";
             btnEntertainment.Size = new Size(123, 75);
             btnEntertainment.TabIndex = 2;
@@ -89,7 +89,7 @@
             // 
             // btnUtilities
             // 
-            btnUtilities.Location = new Point(332, 3);
+            btnUtilities.Location = new Point(203, 3);
             btnUtilities.Name = "btnUtilities";
             btnUtilities.Size = new Size(94, 75);
             btnUtilities.TabIndex = 3;
@@ -99,7 +99,7 @@
             // 
             // btnOther
             // 
-            btnOther.Location = new Point(432, 3);
+            btnOther.Location = new Point(303, 3);
             btnOther.Name = "btnOther";
             btnOther.Size = new Size(94, 75);
             btnOther.TabIndex = 4;
@@ -179,6 +179,7 @@
             Controls.Add(txtAmountInput);
             Name = "ExpenseEntryScreen";
             Text = "Add Expense";
+            Load += ExpenseEntryScreen_Load;
             flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

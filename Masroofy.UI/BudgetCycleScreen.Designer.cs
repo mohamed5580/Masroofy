@@ -35,14 +35,14 @@
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgw = new DataGridView();
+            panel1 = new Panel();
+            amount = new Label();
+            label1 = new Label();
             ID = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             IsActive = new DataGridViewTextBoxColumn();
-            panel1 = new Panel();
-            amount = new Label();
-            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgw).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -76,8 +76,8 @@
             dgw.DefaultCellStyle = dataGridViewCellStyle4;
             dgw.EnableHeadersVisualStyles = false;
             dgw.GridColor = Color.Gray;
-            dgw.Location = new Point(24, 69);
-            dgw.Margin = new Padding(4);
+            dgw.Location = new Point(27, 92);
+            dgw.Margin = new Padding(5);
             dgw.MultiSelect = false;
             dgw.Name = "dgw";
             dgw.ReadOnly = true;
@@ -101,9 +101,46 @@
             dgw.RowTemplate.Height = 30;
             dgw.RowTemplate.Resizable = DataGridViewTriState.False;
             dgw.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgw.Size = new Size(747, 274);
+            dgw.Size = new Size(854, 365);
             dgw.TabIndex = 5;
+            dgw.CellContentClick += dgw_CellContentClick;
             dgw.MouseDoubleClick += dgw_MouseDoubleClick;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(amount);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(dgw);
+            panel1.Location = new Point(14, 21);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(907, 481);
+            panel1.TabIndex = 6;
+            // 
+            // amount
+            // 
+            amount.AutoSize = true;
+            amount.BackColor = Color.MediumPurple;
+            amount.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            amount.ForeColor = Color.White;
+            amount.Location = new Point(270, 29);
+            amount.Name = "amount";
+            amount.Padding = new Padding(5);
+            amount.Size = new Size(10, 35);
+            amount.TabIndex = 7;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.BlueViolet;
+            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(27, 29);
+            label1.Name = "label1";
+            label1.Padding = new Padding(5);
+            label1.Size = new Size(204, 35);
+            label1.TabIndex = 6;
+            label1.Text = "Total Budget Cycle : ";
             // 
             // ID
             // 
@@ -145,51 +182,13 @@
             IsActive.Name = "IsActive";
             IsActive.ReadOnly = true;
             // 
-            // panel1
-            // 
-            panel1.BackColor = Color.White;
-            panel1.Controls.Add(amount);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(dgw);
-            panel1.Location = new Point(12, 16);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(794, 361);
-            panel1.TabIndex = 6;
-            // 
-            // amount
-            // 
-            amount.AutoSize = true;
-            amount.BackColor = Color.MediumPurple;
-            amount.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            amount.ForeColor = Color.White;
-            amount.Location = new Point(236, 22);
-            amount.Name = "amount";
-            amount.Padding = new Padding(4);
-            amount.Size = new Size(8, 28);
-            amount.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.BlueViolet;
-            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(24, 22);
-            label1.Name = "label1";
-            label1.Padding = new Padding(4);
-            label1.Size = new Size(162, 28);
-            label1.TabIndex = 6;
-            label1.Text = "Total Budget Cycle : ";
-            // 
             // BudgetCycleScreen
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkViolet;
-            ClientSize = new Size(817, 386);
+            ClientSize = new Size(934, 515);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "BudgetCycleScreen";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Budget Cycle Screen";
@@ -207,10 +206,10 @@
         private Label label1;
         private Label amount;
         private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn IsActive;
-        private DataGridViewTextBoxColumn ID;
     }
 }

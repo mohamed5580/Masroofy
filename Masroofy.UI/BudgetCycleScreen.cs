@@ -1,4 +1,5 @@
-﻿using Masroofy.Data.Models;
+﻿using Masroofy.Business.Services;
+using Masroofy.Data.Models;
 using Masroofy.Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,21 @@ namespace Masroofy
     public partial class BudgetCycleScreen : Form
     {
         private readonly IBudgetCycleRepository _budgetcycleRepository;
-
+        private readonly BudgetService _budgetService;
         // INJECTION FIX: Using the repository from the ServiceProvider ensures data consistency
-        public BudgetCycleScreen(IBudgetCycleRepository repository)
+
+        public BudgetCycleScreen(IBudgetCycleRepository repository, BudgetService _budgetCycle)
         {
             InitializeComponent();
             _budgetcycleRepository = repository;
+            _budgetService = _budgetCycle;
         }
 
-        private void BudgetCycleScreen_Load(object sender, EventArgs e)
+        private async void BudgetCycleScreen_Load(object sender, EventArgs e)
         {
             LoadData();
+            var total = await GetTotalIncomeAsync();
+            amount.Text = total.ToString("0.##");
         }
 
         private async void LoadData()
@@ -51,8 +56,14 @@ namespace Masroofy
             try
             {
                 // Passing the ID back to the parent Dashboard via the Tag property
-                this.Tag = row.Cells[0].Value;
-                this.DialogResult = DialogResult.OK;
+                BudgetCycleForm.Instance.txtID.Text = row.Cells[0].Value.ToString();
+                BudgetCycleForm.Instance.txtAmount.Text = row.Cells[1].Value.ToString();
+                BudgetCycleForm.Instance.StartDate.Value = Convert.ToDateTime(row.Cells[2].Value);
+                BudgetCycleForm.Instance.EndDate.Value = Convert.ToDateTime(row.Cells[3].Value);
+                BudgetCycleForm.Instance.btnSave.Enabled = false;
+                BudgetCycleForm.Instance.btnUpdate.Enabled = true;
+                BudgetCycleForm.Instance.btnDelete.Enabled = true;
+
                 this.Close();
             }
             catch (Exception ex)
@@ -61,7 +72,20 @@ namespace Masroofy
             }
         }
 
-        public decimal GetTotalIncome() => 0;
+        private async Task<decimal> GetTotalIncomeAsync()
+        {
+            var totalCycle = await _budgetService.GetTotalCycleAsync();
+
+            if (totalCycle == null)
+                return 0;
+
+            return totalCycle;
+        }
         private void amount_Click(object sender, EventArgs e) { }
+
+        private void dgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

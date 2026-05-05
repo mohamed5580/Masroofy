@@ -15,7 +15,8 @@ namespace Masroofy.UI
         private readonly BudgetService _budgetService;
         private readonly ValidationService _validationService = new ValidationService();
         private readonly StatisticsDashbourd _statsDashboard;
-        private int _cycleId = 1; 
+        private int _cycleId = 1;
+        private int _selectedCategoryId = 0;
         public Transactions(ITransactionRepository repo, BudgetService budgetService, StatisticsDashbourd statsDashboard)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace Masroofy.UI
         {
             try
             {
+                dgw.Rows.Clear();
                 var transactions = await _repo.GetHistoryAsync(_cycleId);
                 ShowTransactions(transactions);
             }
@@ -47,7 +49,6 @@ namespace Masroofy.UI
 
         private void ShowTransactions(List<Transaction> transactions)
         {
-            dgw.Rows.Clear();
 
             foreach (var t in transactions)
             {
@@ -119,7 +120,7 @@ namespace Masroofy.UI
                     // update the budget after deleting the transaction
                     await _budgetService.RecalculateAfterExpenseAsync(_cycleId);
                     _statsDashboard.RefreshDashboardData();
-                    await LoadHistory(); 
+                    await LoadHistory();
                 }
             }
             else
@@ -130,5 +131,44 @@ namespace Masroofy.UI
 
         private void dgw_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
+
+        private async void CategoryTxt_TextChanged(object sender, EventArgs e)
+        {
+            string search = CategoryTxt.Text.Trim();
+
+            dgw.Rows.Clear();
+
+            var transactions = await _repo.GetHistoryAsync(_cycleId);
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                transactions = transactions
+                    .Where(t => t.CategoryName != null &&
+                                t.CategoryName.Contains(search, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            ShowTransactions(transactions);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = dateTimePicker1.Value.Date;
+
+            dgw.Rows.Clear();
+
+            var transactions = await _repo.GetHistoryAsync(_cycleId);
+
+            transactions = transactions
+                .Where(t => t.Timestamp.Date == selectedDate)
+                .ToList();
+
+            ShowTransactions(transactions);
+        }
     }
 }

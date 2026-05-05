@@ -16,10 +16,10 @@ namespace Masroofy.UI
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+
 
             var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
+
             var provider = providerStr switch
             {
                 "SQLite" => DatabaseProvider.SQLite,
@@ -28,7 +28,6 @@ namespace Masroofy.UI
             };
 
             DataAccessLayer.Configure(provider, "");
-            Task.Run(async () => await DataAccessLayer.SeedCategoriesAsync()).GetAwaiter().GetResult();
 
             var services = new ServiceCollection();
 
@@ -44,7 +43,7 @@ namespace Masroofy.UI
             // If it is Transient, every GetRequiredService<StatisticsDashbourd>()
             // returns a NEW blank form — the user never sees the one with data,
             // and LoggingUIController cannot reference the live instance.
-            services.AddSingleton<StatisticsDashbourd>(sp => new StatisticsDashbourd(sp));
+
 
             // FIX: ExpenseEntryScreen gets the singleton StatisticsDashbourd injected
             // so its internal LoggingUIController can call RefreshDashboardData()
@@ -62,18 +61,22 @@ namespace Masroofy.UI
                 sp.GetRequiredService<BudgetService>()
             ));
             services.AddTransient<BudgetCycleScreen>(sp => new BudgetCycleScreen(
-                sp.GetRequiredService<IBudgetCycleRepository>()
+                sp.GetRequiredService<IBudgetCycleRepository>(),
+                sp.GetRequiredService<BudgetService>()
             ));
             services.AddTransient<Transactions>(sp => new Transactions(
             sp.GetRequiredService<ITransactionRepository>(),
             sp.GetRequiredService<BudgetService>(),
             sp.GetRequiredService<StatisticsDashbourd>()
              ));
+            services.AddSingleton<StatisticsDashbourd>(sp => new StatisticsDashbourd(sp));
             services.AddSingleton<Dashbourd>(sp => new Dashbourd(sp));
+            services.AddSingleton<Setting>(sp => new Setting(sp));
 
             var serviceProvider = services.BuildServiceProvider();
 
             Application.Run(serviceProvider.GetRequiredService<Dashbourd>());
+
         }
     }
 }

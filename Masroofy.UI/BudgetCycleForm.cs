@@ -192,7 +192,7 @@ namespace Masroofy
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BudgetCycleScreen trackingIncomeScreen = new BudgetCycleScreen(_budgetCycleRepository);
+            BudgetCycleScreen trackingIncomeScreen = new BudgetCycleScreen(_budgetCycleRepository, _budgetService);
 
             trackingIncomeScreen.Show();
 

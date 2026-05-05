@@ -1,6 +1,9 @@
 ﻿using Masroofy.Business.Services;
 using Masroofy.Data.Repositories;
 using Masroofy.UI;
+using Microsoft.Extensions.DependencyInjection;
+using Mysqlx.Session;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,8 +12,13 @@ namespace Masroofy
 {
     public partial class ExpenseEntryScreen : Form
     {
+        private readonly BudgetService _budgetService;
+
         private readonly LoggingUIController _loggingController;
+        private readonly StatisticsDashbourd _StatisticsDashbourdController;
         private readonly IBudgetCycleRepository _cycleRepo;
+        private readonly IServiceProvider _serviceProvider;
+        private float _safeDailyLimit = 0;
 
         // Tracks whichever category button the user last clicked.
         // Matches Designer buttons: btnFood=1, btnTransport=2,
@@ -28,7 +36,7 @@ namespace Masroofy
         {
             InitializeComponent();
             _cycleRepo = cycleRepo;
-
+            _budgetService = budgetService;
             // Wire up LoggingUIController with the live dashboard reference
             // so RefreshDashboardData() is called after every successful save.
             _loggingController = new LoggingUIController(
@@ -60,7 +68,21 @@ namespace Masroofy
                 _ => 5
             };
         }
+        private async Task<(decimal remainingBalance, int remainingDays)>
+          CalculateRemainingBalance(int cycleId)
+        {
+            // Calls BudgetService.FindAllAndCalculateRemainingAsync()
+            // which hits TransactionRepository → SQLite → List<Transaction>
+            return await _budgetService.FindAllAndCalculateRemainingAsync(cycleId);
+        }
 
+        // ── calculateSafeDailyLimit() ─────────────────────────────────────────
+        private float CalculateSafeDailyLimit(decimal remainingBalance, int remainingDays)
+        {
+            if (remainingDays <= 0) return (float)remainingBalance;
+            return (float)Math.Round(remainingBalance / remainingDays, 2);
+        }
+       
         // ── Confirm button (Designer: btnConfirm_Click) ───────────────────────
         private async void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -74,37 +96,132 @@ namespace Masroofy
 
             // Resolve the active cycle from DB (never hardcoded)
             var activeCycle = await _cycleRepo.GetActiveCycleAsync();
+
+            if (activeCycle == null)
+            {
+                Refresh();
+                // Show "--" in the circle instead of "Loading..."
+                _safeDailyLimit = 0;
+                return;
+            }
+            var (remainingBalance, remainingDays) =
+                await CalculateRemainingBalance(activeCycle.Id);
+
+        
             if (activeCycle == null)
             {
                 MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            var worning = remainingBalance - Convert.ToDecimal(txtAmountInput.Text);
+     
 
-            // OnSaveTapped:
-            //   1. Saves transaction to SQLite
-            //   2. Calls dashboard.RefreshDashboardData()
-            //      → DashboardUIController.OnOpen()
-            //        → calculateRemainingBalance() → calculateSafeDailyLimit()
-            //        → Refresh() → Display() → [opt] ShowFinalDayBadge()
-            bool success = await _loggingController.OnSaveTapped(
+            decimal totalBudget = activeCycle.TotalAllowance;
+
+            decimal remainingPercentage = totalBudget > 0
+                ? (Convert.ToDecimal(remainingBalance) / totalBudget) * 100
+                : 0;
+
+            decimal remainingPercentage1 = totalBudget > 0
+             ? (Convert.ToDecimal(worning) / totalBudget) * 100
+             : 0;
+
+            if (worning <= 0 )
+            {
+                var result = MessageBox.Show($"This expense exceeds your remaining budget! Your remaining budget will be = {worning} ", "Warning", MessageBoxButtons.YesNo,
+         MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    bool success = await _loggingController.OnSaveTapped(
                 txtAmountInput.Text,
                 _selectedCategoryId,
                 activeCycle.Id);
 
-            if (success)
+                    if (success)
+                    {
+                        MessageBox.Show("Expense saved successfully! ", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Reset();
+                        Dashbourd.Instance.ShowNotification("Worning", $"You used %{remainingPercentage} of your budget");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid amount. Please enter a positive number.",
+                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                
+
+            }
+          
+
+            if (remainingPercentage <= 80)
             {
-                MessageBox.Show("Expense saved successfully!", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+
+                var result = MessageBox.Show(
+          $"You used %{remainingPercentage} of your budget {totalBudget}. Do you want to continue?",
+         "Confirmation",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    bool success = await _loggingController.OnSaveTapped(
+                txtAmountInput.Text,
+                _selectedCategoryId,
+                activeCycle.Id);
+
+                    if (success)
+                    {
+                        MessageBox.Show("Expense saved successfully! ", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Reset();
+                        Dashbourd.Instance.ShowNotification("Worning", $"You used %{remainingPercentage} of your budget");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid amount. Please enter a positive number.",
+                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+
             }
             else
             {
-                MessageBox.Show("Invalid amount. Please enter a positive number.",
-                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
 
+                bool success = await _loggingController.OnSaveTapped(
+                txtAmountInput.Text,
+                _selectedCategoryId,
+                activeCycle.Id);
+
+                if (success)
+                {
+                    MessageBox.Show("Expense saved successfully! ", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Reset();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid amount. Please enter a positive number.",
+                        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+
+
+        }
+        void Reset()
+        {
+            _selectedCategoryId = 0;
+            if (_activeButton != null)
+                _activeButton.BackColor = SystemColors.Control;
+            _activeButton = null;
+            txtAmountInput.Text = "";
+        }   
         // ── Cancel button (Designer: btnCancel_Click) ─────────────────────────
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -118,6 +235,11 @@ namespace Masroofy
                 e.Handled = true;
             if (e.KeyChar == '.' && txtAmountInput.Text.Contains('.'))
                 e.Handled = true;
+        }
+
+        private void ExpenseEntryScreen_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,9 +21,10 @@ namespace Masroofy.UI
     public class DashboardUIController
     {
         private readonly StatisticsDashbourd _dashboardScreen;
+
         private readonly BudgetService _budgetService;
 
-        public DashboardUIController(BudgetService budgetService, StatisticsDashbourd dashboardScreen)
+        public DashboardUIController(BudgetService budgetService, StatisticsDashbourd dashboardScreen )
         {
             _budgetService = budgetService;
             _dashboardScreen = dashboardScreen;

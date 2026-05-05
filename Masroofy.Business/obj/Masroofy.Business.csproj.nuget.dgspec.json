@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\A2-SWE\\Masroofy.Business\\Masroofy.Business.csproj": {}
+    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {}
   },
   "projects": {
-    "F:\\A2-SWE\\Masroofy.Business\\Masroofy.Business.csproj": {
+    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\A2-SWE\\Masroofy.Business\\Masroofy.Business.csproj",
+        "projectUniqueName": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
         "projectName": "Masroofy.Business",
-        "projectPath": "F:\\A2-SWE\\Masroofy.Business\\Masroofy.Business.csproj",
-        "packagesPath": "C:\\Users\\Mohamed Farag\\.nuget\\packages\\",
-        "outputPath": "F:\\A2-SWE\\Masroofy.Business\\obj\\",
+        "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
+        "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joemo\\Source\\Repos\\Masroofy\\Masroofy.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mohamed Farag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -30,11 +30,10 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "F:\\A2-SWE\\Masroofy.Data\\Masroofy.Data.csproj": {
-                "projectPath": "F:\\A2-SWE\\Masroofy.Data\\Masroofy.Data.csproj"
+              "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
+                "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj"
               }
             }
           }
@@ -49,11 +48,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "imports": [
             "net461",
@@ -66,43 +64,29 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.15, 9.0.15]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.15, 9.0.15]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.15, 9.0.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\A2-SWE\\Masroofy.Data\\Masroofy.Data.csproj": {
+    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\A2-SWE\\Masroofy.Data\\Masroofy.Data.csproj",
+        "projectUniqueName": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
         "projectName": "Masroofy.Data",
-        "projectPath": "F:\\A2-SWE\\Masroofy.Data\\Masroofy.Data.csproj",
-        "packagesPath": "C:\\Users\\Mohamed Farag\\.nuget\\packages\\",
-        "outputPath": "F:\\A2-SWE\\Masroofy.Data\\obj\\",
+        "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
+        "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joemo\\Source\\Repos\\Masroofy\\Masroofy.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mohamed Farag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -115,7 +99,6 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -130,11 +113,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.Data.SqlClient": {
@@ -161,26 +143,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.15, 9.0.15]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.15, 9.0.15]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.15, 9.0.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

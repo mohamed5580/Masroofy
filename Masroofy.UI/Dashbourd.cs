@@ -18,15 +18,32 @@ namespace Masroofy.UI
         private readonly IServiceProvider _serviceProvider;
         private readonly BudgetService _budgetService;
 
+        private static Dashbourd _instance;
+        public static Dashbourd Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Dashbourd();
+                }
+                return _instance;
+            }
+        }
+
+
         public Dashbourd(IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _serviceProvider = serviceProvider;
             _budgetService = _serviceProvider.GetRequiredService<BudgetService>();
+            _instance = this;
         }
 
         public Dashbourd()
         {
+            InitializeComponent();
+            _instance = this;
         }
 
         public async void RefreshData()
@@ -71,7 +88,10 @@ namespace Masroofy.UI
             if (result == DialogResult.No) e.Cancel = true;
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e) { this.Close(); }
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void toolStripMenuItem33_Click(object sender, EventArgs e)
         {
@@ -81,7 +101,13 @@ namespace Masroofy.UI
 
         private void toolStripMenuItem19_Click(object sender, EventArgs e) { }
         private void toolStripMenuItem2_Click_1(object sender, EventArgs e) { }
-        private void toolStripMenuItem7_Click(object sender, EventArgs e) { }
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+
+            var expenseScreen = _serviceProvider.GetRequiredService<Setting>();
+            expenseScreen.ShowDialog();
+
+        }
 
         private void button10_Click(object sender, EventArgs e) { toolStripMenuItem33_Click(sender, e); }
 
@@ -122,7 +148,11 @@ namespace Masroofy.UI
             lblTime.Text = Microsoft.VisualBasic.DateAndTime.TimeOfDay.ToString("h:mm:ss tt");
         }
 
-        private void button9_Click(object sender, EventArgs e) { }
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+            ShowNotification("تذكير", "لا تنسى تحديث ميزانيتك اليوم!");
+        }
         private void نسخToolStripMenuItem_Click(object sender, EventArgs e) { }
 
         private void button12_Click(object sender, EventArgs e)
@@ -134,8 +164,39 @@ namespace Masroofy.UI
         private void button11_Click_1(object sender, EventArgs e)
         {
             var trans = _serviceProvider.GetRequiredService<Transactions>();
-            
+
             trans.Show();
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+        public void ShowNotification(string title, string message)
+        {
+
+            notifyIcon1.BalloonTipTitle = title;
+            notifyIcon1.BalloonTipText = message;
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon1.ShowBalloonTip(20000);
+
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var expenseScreen = _serviceProvider.GetRequiredService<Setting>();
+            expenseScreen.ShowDialog();
+        }
+
+        private void setPINToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

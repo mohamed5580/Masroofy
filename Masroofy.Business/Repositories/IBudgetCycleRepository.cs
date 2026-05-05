@@ -12,7 +12,9 @@ namespace Masroofy.Data.Repositories
         Task<int> CreateAsync(BudgetCycle cycle);
         Task<BudgetCycle?> GetActiveCycleAsync();
         Task<List<BudgetCycle>> GetAllCyclesAsync();
+        Task<decimal> GetTotalCycleAsync();
         Task<BudgetCycle?> GetByIdAsync(int id);
+        Task<List<Category?>> GetByCategoryAsync(string name);
         Task UpdateAsync(BudgetCycle cycle);
         Task DeactivateCurrentCycleAsync();
         Task DeleteAsync(int id);
