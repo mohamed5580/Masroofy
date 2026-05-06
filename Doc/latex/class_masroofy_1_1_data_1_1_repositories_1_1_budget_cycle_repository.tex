@@ -1,0 +1,128 @@
+\doxysection{Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository Class Reference}
+\label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository}\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+Inheritance diagram for Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$ int $>$ \textbf{ Create\+Async} (\textbf{ Budget\+Cycle} cycle)
+\item 
+async Task$<$ \textbf{ Budget\+Cycle}?$>$ \textbf{ Get\+Active\+Cycle\+Async} ()
+\item 
+async Task$<$ decimal $>$ \textbf{ Get\+Total\+Cycle\+Async} ()
+\item 
+async Task$<$ List$<$ \textbf{ Category} $>$ $>$ \textbf{ Get\+By\+Category\+Async} (string search)
+\item 
+async Task \textbf{ Update\+Async} (\textbf{ Budget\+Cycle} cycle)
+\item 
+async Task \textbf{ Delete\+Async} (int id)
+\item 
+async Task \textbf{ Deactivate\+Current\+Cycle\+Async} ()
+\item 
+async Task$<$ List$<$ \textbf{ Budget\+Cycle} $>$ $>$ \textbf{ Get\+All\+Cycles\+Async} ()
+\item 
+async Task$<$ \textbf{ Budget\+Cycle}?$>$ \textbf{ Get\+By\+Id\+Async} (int id)
+\end{DoxyCompactItemize}
+
+
+\label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{CreateAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_af08b476693232d95aaf62ab530cff040} 
+async Task$<$ int $>$ Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\textbf{ Budget\+Cycle}}]{cycle}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!DeactivateCurrentCycleAsync@{DeactivateCurrentCycleAsync}}
+\index{DeactivateCurrentCycleAsync@{DeactivateCurrentCycleAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{DeactivateCurrentCycleAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_ad98b7b0b4d456b0e48a6a37985e8fb61} 
+async Task Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Deactivate\+Current\+Cycle\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!DeleteAsync@{DeleteAsync}}
+\index{DeleteAsync@{DeleteAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{DeleteAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_a185a6ddf6eedf01fffa9132d36180d0a} 
+async Task Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Delete\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!GetActiveCycleAsync@{GetActiveCycleAsync}}
+\index{GetActiveCycleAsync@{GetActiveCycleAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{GetActiveCycleAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_a95cfc7a7a3808ae2e8f0ba9dccef8de6} 
+async Task$<$ \textbf{ Budget\+Cycle}?$>$ Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Get\+Active\+Cycle\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!GetAllCyclesAsync@{GetAllCyclesAsync}}
+\index{GetAllCyclesAsync@{GetAllCyclesAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{GetAllCyclesAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_a1f3e3cc1971e968060dbba528b774cc1} 
+async Task$<$ List$<$ \textbf{ Budget\+Cycle} $>$ $>$ Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Get\+All\+Cycles\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!GetByCategoryAsync@{GetByCategoryAsync}}
+\index{GetByCategoryAsync@{GetByCategoryAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{GetByCategoryAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_a347962d501bb13fcf48f1fcd3fccdb1c} 
+async Task$<$ List$<$ \textbf{ Category} $>$ $>$ Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Get\+By\+Category\+Async (\begin{DoxyParamCaption}\item[{string}]{search}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{GetByIdAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_a242ca5cd4ade6b24161e728e6974c2e9} 
+async Task$<$ \textbf{ Budget\+Cycle}?$>$ Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!GetTotalCycleAsync@{GetTotalCycleAsync}}
+\index{GetTotalCycleAsync@{GetTotalCycleAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{GetTotalCycleAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_a21a1a2b334f1ec77d1e2a545f54b5f71} 
+async Task$<$ decimal $>$ Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Get\+Total\+Cycle\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+\index{Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Masroofy.Data.Repositories.BudgetCycleRepository@{Masroofy.Data.Repositories.BudgetCycleRepository}}
+\doxysubsubsection{UpdateAsync()}
+{\footnotesize\ttfamily \label{class_masroofy_1_1_data_1_1_repositories_1_1_budget_cycle_repository_ab1d4e02cd3f8384f8aa1032b75689ff7} 
+async Task Masroofy.\+Data.\+Repositories.\+Budget\+Cycle\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\textbf{ Budget\+Cycle}}]{cycle}{}\end{DoxyParamCaption})}
+
+
+
+Implements \textbf{ Masroofy.\+Data.\+Repositories.\+IBudget\+Cycle\+Repository} \doxyref{}{p.}{interface_masroofy_1_1_data_1_1_repositories_1_1_i_budget_cycle_repository}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+joemo/\+source/\+repos/\+\+Masroofy/\+\+Masroofy.\+Business/\+\+Repositories/\+Budget\+Cycle\+Repository.\+cs\end{DoxyCompactItemize}

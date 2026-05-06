@@ -178,7 +178,7 @@ namespace Masroofy.UI
             notifyIcon1.BalloonTipTitle = title;
             notifyIcon1.BalloonTipText = message;
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
-            notifyIcon1.ShowBalloonTip(20000);
+            notifyIcon1.ShowBalloonTip(50000);
 
         }
 

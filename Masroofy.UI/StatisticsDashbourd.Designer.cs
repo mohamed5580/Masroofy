@@ -157,6 +157,7 @@
             Controls.Add(pnlPieChart);
             Controls.Add(panel1);
             Name = "StatisticsDashbourd";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += StatisticsDashbourd_Load;
             panel1.ResumeLayout(false);
             panel4.ResumeLayout(false);

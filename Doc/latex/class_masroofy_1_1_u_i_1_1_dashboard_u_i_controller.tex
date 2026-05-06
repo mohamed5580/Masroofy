@@ -1,0 +1,26 @@
+\doxysection{Masroofy.\+UI.\+Dashboard\+UIController Class Reference}
+\label{class_masroofy_1_1_u_i_1_1_dashboard_u_i_controller}\index{Masroofy.UI.DashboardUIController@{Masroofy.UI.DashboardUIController}}
+
+
+US\#3 – Dynamic Daily Limit View. Follows the sequence diagram step-\/for-\/step:\+  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_masroofy_1_1_u_i_1_1_dashboard_u_i_controller_aa6f8fcdba8879062d2d45ef16b44baf9} 
+{\bfseries Dashboard\+UIController} (\textbf{ Budget\+Service} budget\+Service, \textbf{ Statistics\+Dashbourd} dashboard\+Screen)
+\item 
+\label{class_masroofy_1_1_u_i_1_1_dashboard_u_i_controller_a544002ce129d21d8c9e36c9c57e8277e} 
+async Task {\bfseries On\+Open} (int active\+Cycle\+Id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+US\#3 – Dynamic Daily Limit View. Follows the sequence diagram step-\/for-\/step:\+ 
+
+User → on\+Open() → calculate\+Remaining\+Balance() → Budget\+Service.\+Find\+All\+And\+Calculate\+Remaining\+Async() → Transaction\+Repository → SQLite → List$<$\+Transaction$>$ ← remaining\+Balance:\+ float → calculate\+Safe\+Daily\+Limit() ← safe\+Daily\+Limit:\+ float → Dashboard\+Screen.\+refresh() → Dashboard\+Screen.\+display(safe\+Daily\+Limit, remaining\+Balance) → [opt] if Final Day → Dashboard\+Screen.\+show\+Final\+Day\+Badge() 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+C:\+/\+\+Users/\+joemo/\+source/\+repos/\+\+Masroofy/\+\+Masroofy.\+UI/\+\+Helper/\+Dashbourd\+UIController.\+cs\end{DoxyCompactItemize}

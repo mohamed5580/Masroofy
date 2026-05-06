@@ -19,9 +19,9 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnFood = new Button();
             btnTransport = new Button();
-            btnEntertainment = new Button();
             btnUtilities = new Button();
             btnOther = new Button();
+            btnEntertainment = new Button();
             btnConfirm = new Button();
             btnCancel = new Button();
             label1 = new Label();
@@ -77,16 +77,6 @@
             btnTransport.UseVisualStyleBackColor = true;
             btnTransport.Click += CategoryButton_Click;
             // 
-            // btnEntertainment
-            // 
-            btnEntertainment.Location = new Point(403, 3);
-            btnEntertainment.Name = "btnEntertainment";
-            btnEntertainment.Size = new Size(123, 75);
-            btnEntertainment.TabIndex = 2;
-            btnEntertainment.Text = "Entertainment";
-            btnEntertainment.UseVisualStyleBackColor = true;
-            btnEntertainment.Click += CategoryButton_Click;
-            // 
             // btnUtilities
             // 
             btnUtilities.Location = new Point(203, 3);
@@ -106,6 +96,16 @@
             btnOther.Text = "Other";
             btnOther.UseVisualStyleBackColor = true;
             btnOther.Click += CategoryButton_Click;
+            // 
+            // btnEntertainment
+            // 
+            btnEntertainment.Location = new Point(403, 3);
+            btnEntertainment.Name = "btnEntertainment";
+            btnEntertainment.Size = new Size(123, 75);
+            btnEntertainment.TabIndex = 2;
+            btnEntertainment.Text = "Entertainment";
+            btnEntertainment.UseVisualStyleBackColor = true;
+            btnEntertainment.Click += CategoryButton_Click;
             // 
             // btnConfirm
             // 
@@ -178,6 +178,7 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(txtAmountInput);
             Name = "ExpenseEntryScreen";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Add Expense";
             Load += ExpenseEntryScreen_Load;
             flowLayoutPanel1.ResumeLayout(false);
