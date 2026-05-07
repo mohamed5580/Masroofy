@@ -323,7 +323,7 @@
             AcceptButton = btnSave;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(469, 752);
+            ClientSize = new Size(469, 785);
             Controls.Add(label9);
             Controls.Add(button3);
             Controls.Add(label8);

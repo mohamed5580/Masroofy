@@ -171,6 +171,11 @@ namespace Masroofy.UI
         }
         private async void btnSet_Click(object sender, EventArgs e)
         {
+            
+            if (Masroofy.Data.Properties.Settings.Default.PINCheck == false)
+            {
+                Masroofy.Data.Properties.Settings.Default.PINCheck = true;
+            }
             string input = Interaction.InputBox("Enter a 4-digit PIN:", "Set PIN", "");
 
             if (!new ValidationService().IsValidPin(input))
