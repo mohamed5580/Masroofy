@@ -86,6 +86,7 @@ namespace Masroofy.Data.Database
             return p;
         }
 
+
         // FIX: Added this method to solve the 'Program.cs' error
         public static async Task SeedCategoriesAsync()
         {

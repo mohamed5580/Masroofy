@@ -49,8 +49,8 @@
             flowLayoutPanel1.Controls.Add(btnFood);
             flowLayoutPanel1.Controls.Add(btnTransport);
             flowLayoutPanel1.Controls.Add(btnUtilities);
-            flowLayoutPanel1.Controls.Add(btnOther);
             flowLayoutPanel1.Controls.Add(btnEntertainment);
+            flowLayoutPanel1.Controls.Add(btnOther);
             flowLayoutPanel1.ForeColor = Color.ForestGreen;
             flowLayoutPanel1.Location = new Point(58, 207);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -89,7 +89,7 @@
             // 
             // btnOther
             // 
-            btnOther.Location = new Point(303, 3);
+            btnOther.Location = new Point(432, 3);
             btnOther.Name = "btnOther";
             btnOther.Size = new Size(94, 75);
             btnOther.TabIndex = 4;
@@ -99,7 +99,7 @@
             // 
             // btnEntertainment
             // 
-            btnEntertainment.Location = new Point(403, 3);
+            btnEntertainment.Location = new Point(303, 3);
             btnEntertainment.Name = "btnEntertainment";
             btnEntertainment.Size = new Size(123, 75);
             btnEntertainment.TabIndex = 2;

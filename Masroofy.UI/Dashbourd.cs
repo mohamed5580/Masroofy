@@ -38,6 +38,10 @@ namespace Masroofy.UI
             _serviceProvider = serviceProvider;
             _budgetService = _serviceProvider.GetRequiredService<BudgetService>();
             _instance = this;
+
+
+       
+           
         }
 
         public Dashbourd()
@@ -50,16 +54,12 @@ namespace Masroofy.UI
         {
             try
             {
-                // There is no GetActiveCycleAsync, so get the current cycle ID another way.
-                // For example, if you have a method to get all cycles, pick the latest one.
-                // This is a placeholder; replace with your actual logic to get the active cycle ID.
-                int currentCycleId = 1; // Default or fetch from another service/repository
+               
+                int currentCycleId = 1; 
 
                 var (newLimit, totalSpent, remaining) = await _budgetService.RecalculateAfterExpenseAsync(currentCycleId);
 
-                // Update UI Labels - Use your actual Designer Names here
-                // lblLimit.Text = $"{newLimit:N2} EGP";
-                // lblRemaining.Text = $"{remaining:N2} EGP";
+               
 
                 Console.WriteLine($"Dashboard Refreshed: New Limit is {newLimit}");
             }
@@ -116,7 +116,7 @@ namespace Masroofy.UI
             var expenseScreen = _serviceProvider.GetRequiredService<ExpenseEntryScreen>();
             if (expenseScreen.ShowDialog() == DialogResult.OK)
             {
-                RefreshData(); // DATA UPDATE FIX: Updates main screen after logging
+                RefreshData();
             }
         }
 
@@ -130,17 +130,16 @@ namespace Masroofy.UI
 
         private void اعداداتToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DBConfig dBConfig = new DBConfig();
+            Setting dBConfig = new Setting();
             dBConfig.Show();
         }
 
         private void نسخاحطياتيToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DBConfig dBConfig = new DBConfig();
-            dBConfig.Show();
+  
         }
 
-        public void Backup() { }
+
 
         private void timer5_Tick(object sender, EventArgs e)
         {
@@ -190,8 +189,7 @@ namespace Masroofy.UI
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            var expenseScreen = _serviceProvider.GetRequiredService<Setting>();
-            expenseScreen.ShowDialog();
+     
         }
 
         private void setPINToolStripMenuItem_Click(object sender, EventArgs e)

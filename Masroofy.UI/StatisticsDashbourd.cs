@@ -12,7 +12,6 @@ namespace Masroofy
 {
     public partial class StatisticsDashbourd : Form
     {
-        // ── State ─────────────────────────────────────────────────────────────
         private Dictionary<string, decimal> _chartData = new();
         private decimal _totalSpent = 0;
         private float _safeDailyLimit = 0;
@@ -21,7 +20,6 @@ namespace Masroofy
         private readonly IServiceProvider _serviceProvider;
         private Label _finalDayBadge;
 
-        // ── Fixed colors per category (must match BudgetService.MapIdToCategoryName)
         private static readonly Dictionary<string, Color> CategoryColors = new()
         {
             { "Food",          Color.LimeGreen    },
@@ -31,7 +29,6 @@ namespace Masroofy
             { "Other",         Color.Coral        }
         };
 
-        // ── Constructor ───────────────────────────────────────────────────────
         public StatisticsDashbourd(IServiceProvider serviceProvider)
         {
             InitializeComponent();
@@ -48,11 +45,6 @@ namespace Masroofy
             this.FormClosing += (s, e) => { e.Cancel = true; this.Hide(); };
         }
 
-        // ═════════════════════════════════════════════════════════════════════
-        //  Sequence-diagram methods called by DashboardUIController
-        // ═════════════════════════════════════════════════════════════════════
-
-        // DashboardScreen.refresh()
         public new void Refresh()
         {
             _safeDailyLimit = 0;
@@ -64,41 +56,29 @@ namespace Masroofy
             pnlPieChart.Invalidate();
         }
 
-        // DashboardScreen.display(safeDailyLimit, remainingBalance, categoryTotals)
         public void Display(float safeDailyLimit, float remainingBalance,
                             Dictionary<string, decimal> categoryTotals)
         {
             _safeDailyLimit = safeDailyLimit;
 
-            // ── Exceptional scenario detection ────────────────────────────────
-            // A "negative rollover" / deficit means the user overspent a previous
-            // day, so the remaining balance divided by remaining days is noticeably
-            // lower than it should be.  We signal this when remainingBalance < 0
-            // OR when the daily limit has been pushed below a meaningful threshold
-            // (i.e. the limit shrank because of yesterday's overspend).
-            // The simplest reliable signal: remainingBalance went negative.
+
             _isTightBudget = remainingBalance < 0;
 
-            // Feed pie chart
             _chartData = categoryTotals ?? new Dictionary<string, decimal>();
             _totalSpent = 0;
             foreach (var v in _chartData.Values) _totalSpent += v;
 
-            // Repaint both custom panels
             pnlLimitCircle.Invalidate();
             pnlPieChart.Invalidate();
         }
 
-        // DashboardScreen.showFinalDayBadge()  [opt – last day of cycle]
         public void ShowFinalDayBadge()
         {
             _finalDayBadge.Visible = true;
             _finalDayBadge.BringToFront();
         }
 
-        // ═════════════════════════════════════════════════════════════════════
-        //  Double-circle painter  (pnlLimitCircle)
-        // ═════════════════════════════════════════════════════════════════════
+
         private void pnlLimitCircle_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
@@ -108,9 +88,6 @@ namespace Masroofy
             int w = pnlLimitCircle.Width;   // 160
             int h = pnlLimitCircle.Height;  // 160
 
-            // ── Ring colours ──────────────────────────────────────────────────
-            // Normal:      white fill,  white outer ring,  white inner ring
-            // Tight budget (exceptional scenario): orange rings to signal deficit
             Color outerRingColor = _isTightBudget ? Color.OrangeRed : Color.White;
             Color innerRingColor = _isTightBudget ? Color.Orange : Color.White;
             Color fillColor = _isTightBudget ? Color.FromArgb(255, 255, 235, 205)
@@ -137,10 +114,6 @@ namespace Masroofy
             using (var innerPen = new Pen(innerRingColor, innerThickness))
                 g.DrawEllipse(innerPen, innerRect);
 
-            // ── Text inside inner circle ──────────────────────────────────────
-            // Line 1: "Today's Limit"  (small)
-            // Line 2: "50 EGP"         (large, bold)
-            // Line 3: "⚠ Tight Budget" (only in exceptional scenario)
 
             var innerBounds = new RectangleF(
                 innerRect.X, innerRect.Y,
@@ -185,9 +158,7 @@ namespace Masroofy
             }
         }
 
-        // ═════════════════════════════════════════════════════════════════════
-        //  Pie chart + legend painter  (pnlPieChart)
-        // ═════════════════════════════════════════════════════════════════════
+
         private void pnlPieChart_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
@@ -260,9 +231,6 @@ namespace Masroofy
         private static Color GetCategoryColor(string name) =>
             CategoryColors.TryGetValue(name, out var c) ? c : Color.LightGray;
 
-        // ═════════════════════════════════════════════════════════════════════
-        //  Data loading
-        // ═════════════════════════════════════════════════════════════════════
         private void StatisticsDashbourd_Load(object sender, EventArgs e) =>
             RefreshDashboardData();
 
@@ -277,7 +245,6 @@ namespace Masroofy
                 if (activeCycle == null)
                 {
                     Refresh();
-                    // Show "--" in the circle instead of "Loading..."
                     _safeDailyLimit = 0;
                     pnlLimitCircle.Invalidate();
                     return;
@@ -293,7 +260,6 @@ namespace Masroofy
             }
         }
 
-        // ── Log Expense button ────────────────────────────────────────────────
         private void button1_Click(object sender, EventArgs e)
         {
             var entryScreen = _serviceProvider.GetRequiredService<ExpenseEntryScreen>();
@@ -301,7 +267,6 @@ namespace Masroofy
             RefreshDashboardData();
         }
 
-        // ── Final Day badge ───────────────────────────────────────────────────
         private void BuildFinalDayBadge()
         {
             _finalDayBadge = new Label

@@ -45,6 +45,7 @@ namespace Masroofy.Data.Repositories
             }
             return null;
         }
+
         public async Task<decimal> GetTotalCycleAsync()
         {
 

@@ -31,23 +31,13 @@ namespace Masroofy.UI
 
             var services = new ServiceCollection();
 
-            // ── Core layers ────────────────────────────────────────────────────
             services.AddTransient<IBudgetCycleRepository, BudgetCycleRepository>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<RolloverEngine>();
             services.AddTransient<BudgetService>();
             services.AddTransient<ValidationService>();
 
-            // ── Forms ──────────────────────────────────────────────────────────
-            // FIX: StatisticsDashbourd MUST be Singleton.
-            // If it is Transient, every GetRequiredService<StatisticsDashbourd>()
-            // returns a NEW blank form — the user never sees the one with data,
-            // and LoggingUIController cannot reference the live instance.
-
-
-            // FIX: ExpenseEntryScreen gets the singleton StatisticsDashbourd injected
-            // so its internal LoggingUIController can call RefreshDashboardData()
-            // on the exact form the user is currently looking at.
+            
             services.AddTransient<ExpenseEntryScreen>(sp => new ExpenseEntryScreen(
                 sp.GetRequiredService<ValidationService>(),
                 sp.GetRequiredService<ITransactionRepository>(),
@@ -74,6 +64,19 @@ namespace Masroofy.UI
             services.AddSingleton<Setting>(sp => new Setting(sp));
 
             var serviceProvider = services.BuildServiceProvider();
+
+
+            if (Masroofy.Data.Properties.Settings.Default.PINCheck)
+            {
+
+                using (var pinForm = new PIN()) 
+                {
+                    if (pinForm.ShowDialog() != DialogResult.OK)
+                    {
+                        return;  
+                    }
+                }
+            }
 
             Application.Run(serviceProvider.GetRequiredService<Dashbourd>());
 

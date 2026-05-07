@@ -23,8 +23,6 @@ namespace Masroofy.UI
             _repo = repo;
             _budgetService = budgetService;
             this.Load += Transactions_Load;
-            btnEdit.Click += btnEdit_Click;
-            btnDel.Click += btnDel_Click;
             _statsDashboard = statsDashboard;
         }
 
@@ -70,22 +68,19 @@ namespace Masroofy.UI
                 int transactionId = Convert.ToInt32(dgw.SelectedRows[0].Cells[0].Value);
                 decimal currentAmount = Convert.ToDecimal(dgw.SelectedRows[0].Cells[1].Value);
 
-                // inpubt box to get the new amount from the user
                 string input = Interaction.InputBox("Enter the new amount:", "Edit Transaction", currentAmount.ToString());
 
                 if (decimal.TryParse(input, out decimal newAmount))
                 {
-                    // using the IsValidAmount method in ValidationService
                     if (_validationService.IsValidAmount(newAmount))
                     {
                         var t = new Transaction { Id = transactionId, Amount = newAmount };
                         await _repo.UpdateAsync(t);
 
-                        //update the budget after editing the transaction
                         await _budgetService.RecalculateAfterExpenseAsync(_cycleId);
 
                         MessageBox.Show("Transaction Updated Successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _statsDashboard.RefreshDashboardData(); // refresh the dashboard to reflect changes
+                        _statsDashboard.RefreshDashboardData(); 
                         await LoadHistory();
                     }
                     else
@@ -100,7 +95,6 @@ namespace Masroofy.UI
             }
         }
 
-        //delete btn
         private async void btnDel_Click(object sender, EventArgs e)
         {
             if (dgw.SelectedRows.Count > 0)
@@ -117,7 +111,6 @@ namespace Masroofy.UI
                 {
                     await _repo.DeleteAsync(transactionId);
 
-                    // update the budget after deleting the transaction
                     await _budgetService.RecalculateAfterExpenseAsync(_cycleId);
                     _statsDashboard.RefreshDashboardData();
                     await LoadHistory();
@@ -170,5 +163,7 @@ namespace Masroofy.UI
 
             ShowTransactions(transactions);
         }
+
+        
     }
 }

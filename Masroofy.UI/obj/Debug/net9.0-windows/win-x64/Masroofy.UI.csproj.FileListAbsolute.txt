@@ -705,7 +705,6 @@ C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x6
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.BudgetCycleForm.resources
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.BudgetCycleScreen.resources
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Dashbourd.resources
-C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.DBConfig.resources
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.ExpenseEntryScreen.resources
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Properties.Resources.resources
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.StatisticsDashbourd.resources
@@ -723,3 +722,4 @@ C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x6
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.genruntimeconfig.cache
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\ref\Masroofy.UI.dll
 C:\Users\joemo\source\repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Setting.resources
+C:\Users\joemo\source\repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.PIN.resources

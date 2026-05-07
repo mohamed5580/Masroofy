@@ -9,10 +9,8 @@ namespace Masroofy.Business.Services
     {
         public (decimal remainingBalance, int remainingDays) CalculateRemaining(BudgetCycle cycle, List<Transaction> transactions, DateTime currentDate)
         {
-            // Total spent is needed for chart and limit recalculation
             decimal totalSpent = transactions.Sum(t => t.Amount);
 
-            // Current Balance is Original Allowance minus all spent
             decimal remainingBalance = cycle.TotalAllowance - totalSpent;
 
             int remainingDays = (int)Math.Ceiling((cycle.EndDate - currentDate).TotalDays);

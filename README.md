@@ -1,6 +1,10 @@
 # 💰 Masroofy — Personal Budget Tracker
 
+<<<<<<< HEAD
+**Masroofy** (مصروفي — *"My Expenses"* in Arabic) is a Windows desktop application for personal budget management. It lets users define time-bounded budget cycles, log daily expenses by category, visualise spending with a live pie chart and daily-limit indicator, and protect the app with a numeric PIN.
+=======
 **Masroofy** (Masroofy — *"My Expenses"* in Arabic) is a Windows desktop application for personal budget management. It lets users define time-bounded budget cycles, log daily expenses by category, visualise spending with a live pie chart and daily-limit indicator, and protect the app with a numeric PIN.
+>>>>>>> ab0c5db03f605a7b2a0833a0f293459950d61d52
 
 The project is built in **C# / .NET 9** using **Windows Forms** and follows a clean **three-layer architecture** (Data → Business → UI) with full **dependency injection** via `Microsoft.Extensions.DependencyInjection`.
 

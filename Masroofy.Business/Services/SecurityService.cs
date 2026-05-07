@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using Masroofy.Data.Database;
+using System.Data;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Masroofy.Business.Services
@@ -38,8 +40,28 @@ namespace Masroofy.Business.Services
         public bool IsLockedOut() => _lockoutUntil.HasValue && DateTime.Now < _lockoutUntil.Value;
 
         public bool HasPin() => !string.IsNullOrEmpty(_storedHash);
+        public async Task<bool> VerifyPinAsync(string plainPin)
+        {
+            if (!new ValidationService().IsValidPin(plainPin))
+                return false;
 
-        private static string ComputeSha256Hash(string rawData)
+            string hashedPin = ComputeSha256Hash(plainPin);
+
+            const string sql = @"
+        SELECT PIN
+        FROM Authentication
+        LIMIT 1";
+
+            object result = await DataAccessLayer.ExecuteScalarAsync(sql, CommandType.Text);
+
+            if (result == null || result == DBNull.Value)
+                return false;
+
+            string savedPin = result.ToString();
+
+            return savedPin == hashedPin;
+        }
+        public static string ComputeSha256Hash(string rawData)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

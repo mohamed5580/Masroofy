@@ -4,7 +4,7 @@
     <Compile Update="Dashbourd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DBConfig.cs">
+    <Compile Update="Setting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="BudgetCycleForm.cs">
@@ -16,7 +16,7 @@
     <Compile Update="ExpenseEntryScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Setting.cs">
+    <Compile Update="PIN.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="StatisticsDashbourd.cs">

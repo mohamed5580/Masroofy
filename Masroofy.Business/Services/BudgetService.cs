@@ -49,12 +49,10 @@ namespace Masroofy.Business.Services
             var (remainingBalance, remainingDays) =
                 _rolloverEngine.CalculateRemaining(cycle, transactions, DateTime.Today);
 
-            // DO NOT write cycle.TotalAllowance back — it is the original budget.
             decimal newLimit = remainingDays > 0
                 ? Math.Round(remainingBalance / remainingDays, 2)
                 : Math.Round(remainingBalance, 2);
 
-            // Use original cycle.TotalAllowance (unchanged) for correct percentage
             decimal percentage = cycle.TotalAllowance > 0
                 ? Math.Round(totalSpent / cycle.TotalAllowance * 100, 1)
                 : 0;

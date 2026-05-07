@@ -48,9 +48,6 @@ namespace Masroofy.UI
             menuStrip1 = new MenuStrip();
             اToolStripMenuItem = new ToolStripMenuItem();
             اعداداتToolStripMenuItem = new ToolStripMenuItem();
-            نسخاحطياتيToolStripMenuItem = new ToolStripMenuItem();
-            نسخToolStripMenuItem = new ToolStripMenuItem();
-            settingToolStripMenuItem = new ToolStripMenuItem();
             OpenFileDialog1 = new OpenFileDialog();
             btnExportExcel = new Button();
             Panel2 = new Panel();
@@ -129,7 +126,6 @@ namespace Masroofy.UI
             button7 = new Button();
             tabControl1 = new TabControl();
             notifyIcon1 = new NotifyIcon(components);
-            setPINToolStripMenuItem = new ToolStripMenuItem();
             menuStrip2.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Picture).BeginInit();
@@ -251,7 +247,7 @@ namespace Masroofy.UI
             // 
             // اToolStripMenuItem
             // 
-            اToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { اعداداتToolStripMenuItem, نسخاحطياتيToolStripMenuItem, نسخToolStripMenuItem, settingToolStripMenuItem, setPINToolStripMenuItem });
+            اToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { اعداداتToolStripMenuItem });
             اToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             اToolStripMenuItem.Name = "اToolStripMenuItem";
             اToolStripMenuItem.RightToLeft = RightToLeft.Yes;
@@ -265,27 +261,6 @@ namespace Masroofy.UI
             اعداداتToolStripMenuItem.Size = new Size(224, 26);
             اعداداتToolStripMenuItem.Text = "Server settings";
             اعداداتToolStripMenuItem.Click += اعداداتToolStripMenuItem_Click_1;
-            // 
-            // نسخاحطياتيToolStripMenuItem
-            // 
-            نسخاحطياتيToolStripMenuItem.Name = "نسخاحطياتيToolStripMenuItem";
-            نسخاحطياتيToolStripMenuItem.Size = new Size(224, 26);
-            نسخاحطياتيToolStripMenuItem.Text = "Backup";
-            نسخاحطياتيToolStripMenuItem.Click += نسخاحطياتيToolStripMenuItem_Click;
-            // 
-            // نسخToolStripMenuItem
-            // 
-            نسخToolStripMenuItem.Name = "نسخToolStripMenuItem";
-            نسخToolStripMenuItem.Size = new Size(224, 26);
-            نسخToolStripMenuItem.Text = "Restore Backup";
-            نسخToolStripMenuItem.Click += نسخToolStripMenuItem_Click;
-            // 
-            // settingToolStripMenuItem
-            // 
-            settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            settingToolStripMenuItem.Size = new Size(224, 26);
-            settingToolStripMenuItem.Text = "Setting";
-            settingToolStripMenuItem.Click += settingToolStripMenuItem_Click;
             // 
             // OpenFileDialog1
             // 
@@ -1266,13 +1241,6 @@ namespace Masroofy.UI
             notifyIcon1.Visible = true;
             notifyIcon1.MouseDoubleClick += notifyIcon1_MouseDoubleClick;
             // 
-            // setPINToolStripMenuItem
-            // 
-            setPINToolStripMenuItem.Name = "setPINToolStripMenuItem";
-            setPINToolStripMenuItem.Size = new Size(224, 26);
-            setPINToolStripMenuItem.Text = "Set PIN";
-            setPINToolStripMenuItem.Click += setPINToolStripMenuItem_Click;
-            // 
             // Dashbourd
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -1380,8 +1348,6 @@ namespace Masroofy.UI
         internal System.Windows.Forms.TextBox txtSellingPrice2;
         internal System.Windows.Forms.Label Label24;
         public System.Windows.Forms.ToolStripMenuItem اToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem نسخاحطياتيToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem نسخToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem اعداداتToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem19;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -1403,8 +1369,6 @@ namespace Masroofy.UI
         public NotifyIcon notifyIcon1;
         internal Button button12;
         internal Button button11;
-        private ToolStripMenuItem settingToolStripMenuItem;
-        private ToolStripMenuItem setPINToolStripMenuItem;
     }
 }
 

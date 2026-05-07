@@ -11,7 +11,6 @@ namespace Masroofy
     {
         private readonly IBudgetCycleRepository _budgetcycleRepository;
         private readonly BudgetService _budgetService;
-        // INJECTION FIX: Using the repository from the ServiceProvider ensures data consistency
 
         public BudgetCycleScreen(IBudgetCycleRepository repository, BudgetService _budgetCycle)
         {
@@ -55,7 +54,6 @@ namespace Masroofy
             var row = dgw.CurrentRow;
             try
             {
-                // Passing the ID back to the parent Dashboard via the Tag property
                 BudgetCycleForm.Instance.txtID.Text = row.Cells[0].Value.ToString();
                 BudgetCycleForm.Instance.txtAmount.Text = row.Cells[1].Value.ToString();
                 BudgetCycleForm.Instance.StartDate.Value = Convert.ToDateTime(row.Cells[2].Value);
