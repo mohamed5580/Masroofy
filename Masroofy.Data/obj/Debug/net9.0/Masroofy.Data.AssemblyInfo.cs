@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Masroofy.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76e75f3ceb89993216c3763c867669f1928316eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b92c8d70227136b8832c7f40fb8467a0d3f00faf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Masroofy.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Masroofy.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

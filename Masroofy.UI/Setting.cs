@@ -252,6 +252,15 @@ namespace Masroofy.UI
             await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, paramPin);
         }
 
+        public async Task DeleteAllPINAsync()
+        {
+            const string sql = "DELETE FROM Authentication";
+
+            await DataAccessLayer.ExecuteNonQueryAsync(
+                sql,
+                CommandType.Text
+            );
+        }
         private static string ComputeSha256Hash(string rawData)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -285,7 +294,7 @@ namespace Masroofy.UI
         {
             Masroofy.Data.Properties.Settings.Default.PINCheck = false;
             Masroofy.Data.Properties.Settings.Default.Save();
-
+            DeleteAllPINAsync();
             MessageBox.Show("PIN Removed successfully ", "Confirmation",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
