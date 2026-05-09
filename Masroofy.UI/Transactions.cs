@@ -47,6 +47,7 @@ namespace Masroofy.UI
 
         private void ShowTransactions(List<Transaction> transactions)
         {
+            dgw.Rows.Clear();
 
             foreach (var t in transactions)
             {
@@ -59,7 +60,6 @@ namespace Masroofy.UI
                 );
             }
         }
-
         //edit btn
         private async void btnEdit_Click(object sender, EventArgs e)
         {

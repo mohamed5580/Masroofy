@@ -38,7 +38,8 @@ namespace Masroofy.UI
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            Setting dBConfig = new Setting();
+            dBConfig.Show();
         }
 
         private async void LoginBtn_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace Masroofy.UI
                 return;
 
             }
+
 
             bool isValid = await _authenticationService.VerifyPinAsync(enteredPin);
 
@@ -141,6 +143,12 @@ namespace Masroofy.UI
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Setting dBConfig = new Setting();
+            dBConfig.Show();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Masroofy.UI
+﻿using System;
+using System.ComponentModel;
+namespace Masroofy.UI
 {
     partial class PIN
     {
@@ -28,15 +30,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PIN));
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(PIN));
             label2 = new Label();
             pictureBox1 = new PictureBox();
             txtPIN = new TextBox();
             LoginBtn = new Button();
             label1 = new Label();
             pictureBox2 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            pictureBox3 = new PictureBox();
+            ((ISupportInitialize)pictureBox1).BeginInit();
+            ((ISupportInitialize)pictureBox2).BeginInit();
+            ((ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -110,15 +114,24 @@
             // 
             pictureBox2.AccessibleRole = AccessibleRole.None;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Dock = DockStyle.Right;
             pictureBox2.ErrorImage = (Image)resources.GetObject("pictureBox2.ErrorImage");
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(549, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(466, 533);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 5004;
             pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(12, 12);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(45, 46);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 5005;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
             // 
             // PIN
             // 
@@ -126,6 +139,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1015, 533);
+            Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(label1);
             Controls.Add(LoginBtn);
@@ -139,8 +153,9 @@
             FormClosing += PIN_FormClosing;
             FormClosed += PIN_FormClosed;
             Load += PIN_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((ISupportInitialize)pictureBox1).EndInit();
+            ((ISupportInitialize)pictureBox2).EndInit();
+            ((ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -153,5 +168,6 @@
         private Button LoginBtn;
         private Label label1;
         private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
     }
 }

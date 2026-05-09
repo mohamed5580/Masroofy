@@ -36,6 +36,18 @@ namespace Masroofy.UI
             tbUser.Text = Masroofy.Data.Properties.Settings.Default.Name;
             tbPass.Text = Masroofy.Data.Properties.Settings.Default.Pass;
 
+            if (Masroofy.Data.Properties.Settings.Default.Provider == "SqlServer" ) {
+                rbSqlServer.Checked=true;
+            }
+            else if(Masroofy.Data.Properties.Settings.Default.Provider == "SQLite")
+            {
+                rbSQLite.Checked = true;
+            }
+            else if(Masroofy.Data.Properties.Settings.Default.Provider == "MySQL")
+            {
+                rbMySQL.Checked = true;
+            }
+
 
         }
         public Setting(IServiceProvider serviceProvider)

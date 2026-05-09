@@ -14,18 +14,39 @@ namespace Masroofy.Data.Database
     public static class DataAccessLayer
     {
         public static DatabaseProvider Provider { get; private set; } = DatabaseProvider.SQLite;
+
         private static string _connectionString = string.Empty;
 
         public static void Configure(DatabaseProvider provider, string connectionString)
         {
             Provider = provider;
-            _connectionString = connectionString;
+            _connectionString = connectionString ?? string.Empty;
+        }
+
+        private static string GetConnectionString()
+        {
+            if (!string.IsNullOrWhiteSpace(_connectionString))
+                return _connectionString;
+
+            return Provider switch
+            {
+                DatabaseProvider.SQLite =>
+                    $"Data Source={Masroofy.Data.Properties.Settings.Default.Database};",
+
+                DatabaseProvider.SqlServer =>
+                    "Server=localhost;Database=Masroofy;Trusted_Connection=True;TrustServerCertificate=True;",
+
+                DatabaseProvider.MySQL =>
+                    throw new InvalidOperationException(
+                        "MySQL connection string is not configured."),
+
+                _ => throw new NotSupportedException()
+            };
         }
 
         private static DbConnection CreateConnection()
         {
-            string cs = string.IsNullOrWhiteSpace(_connectionString) ?
-                $"Data Source={Masroofy.Data.Properties.Settings.Default.Database};" : _connectionString;
+            string cs = GetConnectionString();
 
             return Provider switch
             {
@@ -44,66 +65,109 @@ namespace Masroofy.Data.Database
             return cmd;
         }
 
-        public static async Task<int> ExecuteNonQueryAsync(string query, CommandType type, params DbParameter[] parameters)
+        public static async Task<int> ExecuteNonQueryAsync(
+            string query,
+            CommandType type,
+            params DbParameter[] parameters)
         {
             await using var conn = CreateConnection();
             await using var cmd = CreateCommand(query, type, conn);
-            if (parameters != null) cmd.Parameters.AddRange(parameters);
+
+            if (parameters?.Length > 0)
+                cmd.Parameters.AddRange(parameters);
+
             await conn.OpenAsync();
+
             return await cmd.ExecuteNonQueryAsync();
         }
 
-        public static async Task<object?> ExecuteScalarAsync(string query, CommandType type, params DbParameter[] parameters)
+        public static async Task<object?> ExecuteScalarAsync(
+            string query,
+            CommandType type,
+            params DbParameter[] parameters)
         {
             await using var conn = CreateConnection();
             await using var cmd = CreateCommand(query, type, conn);
-            if (parameters != null) cmd.Parameters.AddRange(parameters);
+
+            if (parameters?.Length > 0)
+                cmd.Parameters.AddRange(parameters);
+
             await conn.OpenAsync();
+
             return await cmd.ExecuteScalarAsync();
         }
 
-        public static async Task<DbDataReader> ExecuteReaderAsync(string query, CommandType type, params DbParameter[] parameters)
+        public static async Task<DbDataReader> ExecuteReaderAsync(
+            string query,
+            CommandType type,
+            params DbParameter[] parameters)
         {
             var conn = CreateConnection();
             var cmd = CreateCommand(query, type, conn);
-            if (parameters != null) cmd.Parameters.AddRange(parameters);
+
+            if (parameters?.Length > 0)
+                cmd.Parameters.AddRange(parameters);
+
             await conn.OpenAsync();
+
             return await cmd.ExecuteReaderAsync(CommandBehavior.CloseConnection);
         }
 
-        public static DbParameter CreateParameter(string name, DbType type, object value)
+        public static DbParameter CreateParameter(string name, DbType type, object? value)
         {
-            DbParameter p = Provider switch
+            DbParameter parameter = Provider switch
             {
                 DatabaseProvider.SQLite => new SqliteParameter(),
                 DatabaseProvider.SqlServer => new SqlParameter(),
                 DatabaseProvider.MySQL => new MySqlParameter(),
                 _ => throw new NotSupportedException()
             };
-            p.ParameterName = name;
-            p.DbType = type;
-            p.Value = value ?? DBNull.Value;
-            return p;
+
+            parameter.ParameterName = name;
+            parameter.DbType = type;
+            parameter.Value = value ?? DBNull.Value;
+
+            return parameter;
         }
 
-
-        // FIX: Added this method to solve the 'Program.cs' error
         public static async Task SeedCategoriesAsync()
         {
-            string query = @"
-                INSERT OR IGNORE INTO Categories (Id, Name) VALUES (1, 'Food');
-                INSERT OR IGNORE INTO Categories (Id, Name) VALUES (2, 'Transport');
-                INSERT OR IGNORE INTO Categories (Id, Name) VALUES (3, 'Entertainment');
-                INSERT OR IGNORE INTO Categories (Id, Name) VALUES (4, 'Utilities');
-                INSERT OR IGNORE INTO Categories (Id, Name) VALUES (5, 'Other');";
-            try
+            string sql = Provider switch
             {
-                await ExecuteNonQueryAsync(query, CommandType.Text);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Seed Error: " + ex.Message);
-            }
+                DatabaseProvider.SQLite => @"
+                    INSERT OR IGNORE INTO Categories (Id, Name) VALUES (1, 'Food');
+                    INSERT OR IGNORE INTO Categories (Id, Name) VALUES (2, 'Transport');
+                    INSERT OR IGNORE INTO Categories (Id, Name) VALUES (3, 'Entertainment');
+                    INSERT OR IGNORE INTO Categories (Id, Name) VALUES (4, 'Utilities');
+                    INSERT OR IGNORE INTO Categories (Id, Name) VALUES (5, 'Other');",
+
+                DatabaseProvider.SqlServer => @"
+                    IF NOT EXISTS (SELECT 1 FROM Categories WHERE Name = 'Food')
+                        INSERT INTO Categories (Name) VALUES ('Food');
+
+                    IF NOT EXISTS (SELECT 1 FROM Categories WHERE Name = 'Transport')
+                        INSERT INTO Categories (Name) VALUES ('Transport');
+
+                    IF NOT EXISTS (SELECT 1 FROM Categories WHERE Name = 'Entertainment')
+                        INSERT INTO Categories (Name) VALUES ('Entertainment');
+
+                    IF NOT EXISTS (SELECT 1 FROM Categories WHERE Name = 'Utilities')
+                        INSERT INTO Categories (Name) VALUES ('Utilities');
+
+                    IF NOT EXISTS (SELECT 1 FROM Categories WHERE Name = 'Other')
+                        INSERT INTO Categories (Name) VALUES ('Other');",
+
+                DatabaseProvider.MySQL => @"
+                    INSERT IGNORE INTO Categories (Id, Name) VALUES (1, 'Food');
+                    INSERT IGNORE INTO Categories (Id, Name) VALUES (2, 'Transport');
+                    INSERT IGNORE INTO Categories (Id, Name) VALUES (3, 'Entertainment');
+                    INSERT IGNORE INTO Categories (Id, Name) VALUES (4, 'Utilities');
+                    INSERT IGNORE INTO Categories (Id, Name) VALUES (5, 'Other');",
+
+                _ => throw new NotSupportedException()
+            };
+
+            await ExecuteNonQueryAsync(sql, CommandType.Text);
         }
     }
 }

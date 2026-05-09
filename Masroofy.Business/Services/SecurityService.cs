@@ -47,19 +47,41 @@ namespace Masroofy.Business.Services
 
             string hashedPin = ComputeSha256Hash(plainPin);
 
-            const string sql = @"
-        SELECT PIN
-        FROM Authentication
-        LIMIT 1";
+            string sql = DataAccessLayer.Provider switch
+            {
+                DatabaseProvider.SQLite => @"
+            SELECT PIN
+            FROM Authentication
+            WHERE PIN = @PIN
+            LIMIT 1;",
 
-            object result = await DataAccessLayer.ExecuteScalarAsync(sql, CommandType.Text);
+                DatabaseProvider.SqlServer => @"
+            SELECT TOP 1 PIN
+            FROM Authentication
+            WHERE PIN = @PIN;",
 
-            if (result == null || result == DBNull.Value)
-                return false;
+                DatabaseProvider.MySQL => @"
+            SELECT PIN
+            FROM Authentication
+            WHERE PIN = @PIN
+            LIMIT 1;",
 
-            string savedPin = result.ToString();
+                _ => throw new NotSupportedException()
+            };
 
-            return savedPin == hashedPin;
+            var param = DataAccessLayer.CreateParameter(
+                "@PIN",
+                DbType.String,
+                hashedPin
+            );
+
+            object result = await DataAccessLayer.ExecuteScalarAsync(
+                sql,
+                CommandType.Text,
+                param
+            );
+
+            return result != null && result != DBNull.Value;
         }
         public static string ComputeSha256Hash(string rawData)
         {

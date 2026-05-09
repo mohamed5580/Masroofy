@@ -71,7 +71,6 @@ namespace Masroofy.UI
 
         private void Dashbourd_Load(object sender, EventArgs e)
         {
-            RefreshData();
         }
 
         private void ReminderCheckTimer_Tick(object sender, EventArgs e) { }

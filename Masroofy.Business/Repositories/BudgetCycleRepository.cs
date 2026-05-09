@@ -14,35 +14,60 @@ namespace Masroofy.Data.Repositories
 
         public async Task<int> CreateAsync(BudgetCycle cycle)
         {
-            const string sql = @"
-                INSERT INTO BudgetCycles (TotalAllowance, StartDate, EndDate, IsActive)
-                VALUES (@TotalAllowance, @StartDate, @EndDate, @IsActive);
-                SELECT last_insert_rowid();";
+            string sql = DataAccessLayer.Provider switch
+            {
+                DatabaseProvider.SQLite => @"
+            INSERT INTO BudgetCycles (TotalAllowance, StartDate, EndDate, IsActive)
+            VALUES (@TotalAllowance, @StartDate, @EndDate, @IsActive);
+            SELECT last_insert_rowid();",
 
-            var paramTotal = DataAccessLayer.CreateParameter("@TotalAllowance", DbType.Decimal, cycle.TotalAllowance);
-            var paramStart = DataAccessLayer.CreateParameter("@StartDate", DbType.String, cycle.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
-            var paramEnd = DataAccessLayer.CreateParameter("@EndDate", DbType.String, cycle.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
-            var paramActive = DataAccessLayer.CreateParameter("@IsActive", DbType.Int32, cycle.IsActive ? 1 : 0);
+                DatabaseProvider.SqlServer => @"
+            INSERT INTO BudgetCycles (TotalAllowance, StartDate, EndDate, IsActive)
+            VALUES (@TotalAllowance, @StartDate, @EndDate, @IsActive);
+            SELECT SCOPE_IDENTITY();",
 
-            var result = await DataAccessLayer.ExecuteScalarAsync(sql, CommandType.Text, paramTotal, paramStart, paramEnd, paramActive);
+                DatabaseProvider.MySQL => @"
+            INSERT INTO BudgetCycles (TotalAllowance, StartDate, EndDate, IsActive)
+            VALUES (@TotalAllowance, @StartDate, @EndDate, @IsActive);
+            SELECT LAST_INSERT_ID();",
+
+                _ => throw new NotSupportedException()
+            };
+
+            var parameters = new[]
+            {
+        DataAccessLayer.CreateParameter("@TotalAllowance", DbType.Decimal, cycle.TotalAllowance),
+        DataAccessLayer.CreateParameter("@StartDate", DbType.DateTime, cycle.StartDate),
+        DataAccessLayer.CreateParameter("@EndDate", DbType.DateTime, cycle.EndDate),
+        DataAccessLayer.CreateParameter("@IsActive", DbType.Boolean, cycle.IsActive)
+    };
+
+            var result = await DataAccessLayer.ExecuteScalarAsync(sql, CommandType.Text, parameters);
+
             return Convert.ToInt32(result);
         }
 
         public async Task<BudgetCycle?> GetActiveCycleAsync()
         {
-            const string sql = "SELECT * FROM BudgetCycles WHERE IsActive = 1";
+            const string sql = @"
+        SELECT Id, TotalAllowance, StartDate, EndDate, IsActive 
+        FROM BudgetCycles 
+        WHERE IsActive = 1";
+
             using var reader = await DataAccessLayer.ExecuteReaderAsync(sql, CommandType.Text);
+
             if (await reader.ReadAsync())
             {
                 return new BudgetCycle
                 {
                     Id = reader.GetInt32(0),
                     TotalAllowance = reader.GetDecimal(1),
-                    StartDate = DateTime.Parse(reader.GetString(2)),
-                    EndDate = DateTime.Parse(reader.GetString(3)),
-                    IsActive = reader.GetInt32(4) == 1
+                    StartDate = reader.GetDateTime(2),
+                    EndDate = reader.GetDateTime(3),
+                    IsActive = reader.GetBoolean(4)
                 };
             }
+
             return null;
         }
 
@@ -92,21 +117,24 @@ namespace Masroofy.Data.Repositories
         public async Task UpdateAsync(BudgetCycle cycle)
         {
             const string sql = @"
-                UPDATE BudgetCycles 
-                SET TotalAllowance = @TotalAllowance, 
-                    StartDate = @StartDate, 
-                    EndDate = @EndDate, 
-                    IsActive = @IsActive 
-                WHERE Id = @Id";
+            UPDATE BudgetCycles 
+            SET TotalAllowance = @TotalAllowance,
+                StartDate = @StartDate,
+                EndDate = @EndDate,
+                IsActive = @IsActive
+            WHERE Id = @Id";
 
-            var paramTotal = DataAccessLayer.CreateParameter("@TotalAllowance", DbType.Decimal, cycle.TotalAllowance);
-            var paramStart = DataAccessLayer.CreateParameter("@StartDate", DbType.String, cycle.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
-            var paramEnd = DataAccessLayer.CreateParameter("@EndDate", DbType.String, cycle.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
-            var paramActive = DataAccessLayer.CreateParameter("@IsActive", DbType.Int32, cycle.IsActive ? 1 : 0);
-            var paramId = DataAccessLayer.CreateParameter("@Id", DbType.Int32, cycle.Id);
+                var parameters = new[]
+                {
+            DataAccessLayer.CreateParameter("@TotalAllowance", DbType.Decimal, cycle.TotalAllowance),
+            DataAccessLayer.CreateParameter("@StartDate", DbType.DateTime, cycle.StartDate),
+            DataAccessLayer.CreateParameter("@EndDate", DbType.DateTime, cycle.EndDate),
+            DataAccessLayer.CreateParameter("@IsActive", DbType.Boolean, cycle.IsActive),
+            DataAccessLayer.CreateParameter("@Id", DbType.Int32, cycle.Id)
+        };
 
-            await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, paramTotal, paramStart, paramEnd, paramActive, paramId);
-        }
+                await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);
+            }
         public async Task DeleteAsync(int id)
         {
             const string sql = "DELETE FROM BudgetCycles WHERE Id = @Id";
@@ -123,39 +151,53 @@ namespace Masroofy.Data.Repositories
 
         public async Task<List<BudgetCycle>> GetAllCyclesAsync()
         {
-            const string sql = "SELECT Id, TotalAllowance, StartDate, EndDate, IsActive FROM BudgetCycles ORDER BY StartDate DESC";
+            const string sql = @"
+        SELECT Id, TotalAllowance, StartDate, EndDate, IsActive 
+        FROM BudgetCycles 
+        ORDER BY StartDate DESC";
+
             var list = new List<BudgetCycle>();
+
             using var reader = await DataAccessLayer.ExecuteReaderAsync(sql, CommandType.Text);
-            while ( await reader.ReadAsync())
+
+            while (await reader.ReadAsync())
             {
                 list.Add(new BudgetCycle
                 {
                     Id = reader.GetInt32(0),
                     TotalAllowance = reader.GetDecimal(1),
-                    StartDate = DateTime.Parse(reader.GetString(2)),
-                    EndDate = DateTime.Parse(reader.GetString(3)),
-                    IsActive = reader.GetInt32(4) == 1
+                    StartDate = reader.GetDateTime(2),
+                    EndDate = reader.GetDateTime(3),
+                    IsActive = reader.GetBoolean(4)
                 });
             }
+
             return list;
         }
 
-       public async Task<BudgetCycle?> GetByIdAsync(int id)
+        public async Task<BudgetCycle?> GetByIdAsync(int id)
         {
-            const string sql = "SELECT * FROM BudgetCycles WHERE Id = @Id";
+            const string sql = @"
+        SELECT Id, TotalAllowance, StartDate, EndDate, IsActive 
+        FROM BudgetCycles 
+        WHERE Id = @Id";
+
             var param = DataAccessLayer.CreateParameter("@Id", DbType.Int32, id);
+
             using var reader = await DataAccessLayer.ExecuteReaderAsync(sql, CommandType.Text, param);
+
             if (await reader.ReadAsync())
             {
                 return new BudgetCycle
                 {
                     Id = reader.GetInt32(0),
                     TotalAllowance = reader.GetDecimal(1),
-                    StartDate = DateTime.Parse(reader.GetString(2)),
-                    EndDate = DateTime.Parse(reader.GetString(3)),
-                    IsActive = reader.GetInt32(4) == 1
+                    StartDate = reader.GetDateTime(2),   // ✔ FIX
+                    EndDate = reader.GetDateTime(3),     // ✔ FIX
+                    IsActive = reader.GetBoolean(4)      // ✔ FIX (أفضل من Int32)
                 };
             }
+
             return null;
         }
     }
