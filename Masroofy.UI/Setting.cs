@@ -74,7 +74,18 @@ namespace Masroofy.UI
             if (rbSqlServer.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SqlServer";
             else if (rbSQLite.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SQLite";
             else if (rbMySQL.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "MySQL";
-
+             var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
+            
+             var provider = providerStr switch
+             {
+                 "SQLite" => DatabaseProvider.SQLite,
+                 "MySQL" => DatabaseProvider.MySQL,
+                 _ => DatabaseProvider.SqlServer
+             };
+            
+             DataAccessLayer.Configure(provider, "");
+            
+             MessageBox.Show(this, "تم الحفظ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Masroofy.Data.Properties.Settings.Default.Save();
 
             MessageBox.Show(this, "تم الحفظ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
