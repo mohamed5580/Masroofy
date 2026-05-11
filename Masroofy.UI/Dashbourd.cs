@@ -17,8 +17,9 @@ namespace Masroofy.UI
 
         private readonly IServiceProvider _serviceProvider;
         private readonly BudgetService _budgetService;
+        private readonly IBudgetCycleRepository _cycleRepo;
 
-        private static Dashbourd _instance;
+        public static Dashbourd _instance;
         public static Dashbourd Instance
         {
             get
@@ -32,34 +33,33 @@ namespace Masroofy.UI
         }
 
 
-        public Dashbourd(IServiceProvider serviceProvider)
+        public Dashbourd(IServiceProvider serviceProvider, IBudgetCycleRepository cycleRepo)
         {
             InitializeComponent();
             _serviceProvider = serviceProvider;
             _budgetService = _serviceProvider.GetRequiredService<BudgetService>();
             _instance = this;
-
-
-       
-           
+             _cycleRepo= cycleRepo;
+            ShowNotify();
         }
 
         public Dashbourd()
         {
             InitializeComponent();
             _instance = this;
+
         }
 
         public async void RefreshData()
         {
             try
             {
-               
-                int currentCycleId = 1; 
+
+                int currentCycleId = 1;
 
                 var (newLimit, totalSpent, remaining) = await _budgetService.RecalculateAfterExpenseAsync(currentCycleId);
 
-               
+
 
                 Console.WriteLine($"Dashboard Refreshed: New Limit is {newLimit}");
             }
@@ -98,13 +98,31 @@ namespace Masroofy.UI
             form.Show();
         }
 
-        private void toolStripMenuItem19_Click(object sender, EventArgs e) { }
-        private void toolStripMenuItem2_Click_1(object sender, EventArgs e) { }
+        private void toolStripMenuItem19_Click(object sender, EventArgs e)
+        {
+            var expenseScreen = _serviceProvider.GetRequiredService<ExpenseEntryScreen>();
+            if (expenseScreen.ShowDialog() == DialogResult.OK)
+            {
+                RefreshData();
+            }
+        }
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+
+
+            var TransactionsScreen = _serviceProvider.GetRequiredService<Transactions>();
+            if (TransactionsScreen.ShowDialog() == DialogResult.OK)
+            {
+                RefreshData();
+            }
+
+        }
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
         {
 
-            var expenseScreen = _serviceProvider.GetRequiredService<Setting>();
-            expenseScreen.ShowDialog();
+
+            Setting dBConfig = new Setting();
+            dBConfig.Show();
 
         }
 
@@ -135,21 +153,18 @@ namespace Masroofy.UI
 
         private void نسخاحطياتيToolStripMenuItem_Click(object sender, EventArgs e)
         {
-  
+
         }
 
 
 
         private void timer5_Tick(object sender, EventArgs e)
         {
-            lblDateTime.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            lblTime.Text = Microsoft.VisualBasic.DateAndTime.TimeOfDay.ToString("h:mm:ss tt");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
 
-            ShowNotification("تذكير", "لا تنسى تحديث ميزانيتك اليوم!");
         }
         private void نسخToolStripMenuItem_Click(object sender, EventArgs e) { }
 
@@ -164,6 +179,57 @@ namespace Masroofy.UI
             var trans = _serviceProvider.GetRequiredService<Transactions>();
 
             trans.Show();
+        }
+        public async void ShowNotify()
+        {
+
+
+            var activeCycle = await _cycleRepo.GetActiveCycleAsync();
+
+            if (activeCycle == null)
+            {
+                Refresh();
+                return;
+            }
+            var (remainingBalance, remainingDays) =
+                await CalculateRemainingBalance(activeCycle.Id);
+
+            decimal totalBudget = activeCycle.TotalAllowance;
+
+            decimal remainingPercentage = totalBudget > 0
+                ? (Convert.ToDecimal(remainingBalance) / totalBudget) * 100
+                : 0;
+            if (activeCycle == null)
+            {
+                MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (remainingPercentage < 80)
+            {
+            }
+           
+
+            if (remainingPercentage <= 80)
+            {
+                ShowNotification("Low Budget Alert", $"Your remaining budget is critically low at {remainingPercentage:F2}%!");
+                panel1.Visible = true;
+                panel1.BackColor = Color.Red;
+                Dashbourd._instance.massagee.Text = $"Remaining Balance: {remainingBalance:C}\n Remaining Days: {remainingDays}\nRemaining Percentage: {remainingPercentage:F2}%";
+            }
+            else
+            {
+                panel1.Visible = false;
+
+            }
+
+
+        }
+        private async Task<(decimal remainingBalance, int remainingDays)>
+        CalculateRemainingBalance(int cycleId)
+        {
+            return await _budgetService.FindAllAndCalculateRemainingAsync(cycleId);
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -188,10 +254,20 @@ namespace Masroofy.UI
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-     
+
         }
 
         private void setPINToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

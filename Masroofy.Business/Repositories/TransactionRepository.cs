@@ -95,7 +95,7 @@ namespace Masroofy.Data.Repositories
                     Amount = reader.GetDecimal(1),
                     Timestamp = reader.GetDateTime(2),
                     BudgetCycleId = reader.GetInt32(3),
-                    CategoryName = "" // أو null
+                    CategoryName = reader.GetString(4).ToString() // أو null
                 });
             }
 
@@ -130,26 +130,14 @@ namespace Masroofy.Data.Repositories
 
         public async Task UpdateAsync(Transaction t)
         {
-            const string sql = @"
-            UPDATE Transactions
-            SET Amount = @Amount,
-                Timestamp = @Timestamp,
-                CategoryId = @CategoryId,
-                BudgetCycleId = @BudgetCycleId
-            WHERE Id = @Id";
+            // بنعمل Update للمبلغ (Amount) بناءً على الـ ID[cite: 5]
+            const string sql = "UPDATE Transactions SET Amount = @Amount WHERE Id = @Id";
 
-            var parameters = new[]
-            {
-            DataAccessLayer.CreateParameter("@Amount", DbType.Decimal, t.Amount),
-            DataAccessLayer.CreateParameter("@Timestamp", DbType.DateTime, t.Timestamp),
-            DataAccessLayer.CreateParameter("@CategoryId", DbType.Int32, t.CategoryId),
-            DataAccessLayer.CreateParameter("@BudgetCycleId", DbType.Int32, t.BudgetCycleId),
-            DataAccessLayer.CreateParameter("@Id", DbType.Int32, t.Id)
-        };
+            var p1 = DataAccessLayer.CreateParameter("@Amount", DbType.Decimal, t.Amount);
+            var p2 = DataAccessLayer.CreateParameter("@Id", DbType.Int32, t.Id);
 
-            await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, parameters);
+            await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, p1, p2);
         }
-
         public async Task DeleteAsync(int id)
         {
             const string sql = "DELETE FROM Transactions WHERE Id = @Id";

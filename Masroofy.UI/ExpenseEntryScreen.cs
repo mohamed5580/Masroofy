@@ -41,7 +41,10 @@ namespace Masroofy
                 dashboard
             );
         }
-
+        public ExpenseEntryScreen()
+        {
+            InitializeComponent();
+        }
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             if (_activeButton != null)
@@ -117,18 +120,18 @@ namespace Masroofy
             decimal remainingPercentage1 = totalBudget > 0
              ? (Convert.ToDecimal(worning) / totalBudget) * 100
              : 0;
-
-            if (worning <= 0 )
+           
+            if (worning <= 0 || remainingPercentage1 <=80 )
             {
-                var result = MessageBox.Show($"This expense exceeds your remaining budget! Your remaining budget will be = {worning} ", "Warning", MessageBoxButtons.YesNo,
+                var result = MessageBox.Show($"This expense exceeds your remaining budget! Your remaining budget will be = {remainingPercentage1}% ", "Warning", MessageBoxButtons.YesNo,
          MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     bool success = await _loggingController.OnSaveTapped(
-                txtAmountInput.Text,
-                _selectedCategoryId,
-                activeCycle.Id);
+                    txtAmountInput.Text,
+                    _selectedCategoryId,
+                    activeCycle.Id);
 
                     if (success)
                     {
@@ -136,6 +139,7 @@ namespace Masroofy
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Reset();
                         Dashbourd.Instance.ShowNotification("Worning", $"You used %{remainingPercentage} of your budget");
+                        Dashbourd._instance.ShowNotify();
                         return;
                     }
                     else
@@ -173,6 +177,7 @@ namespace Masroofy
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Reset();
                         Dashbourd.Instance.ShowNotification("Worning", $"You used %{remainingPercentage} of your budget");
+                        Dashbourd._instance.ShowNotify();
                         return;
                     }
                     else

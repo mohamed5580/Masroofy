@@ -12,18 +12,20 @@ namespace Masroofy.UI
     public partial class Transactions : Form
     {
         private readonly ITransactionRepository _repo;
+        private readonly IBudgetCycleRepository _cycleRepo;
         private readonly BudgetService _budgetService;
         private readonly ValidationService _validationService = new ValidationService();
         private readonly StatisticsDashbourd _statsDashboard;
         private int _cycleId = 1;
         private int _selectedCategoryId = 0;
-        public Transactions(ITransactionRepository repo, BudgetService budgetService, StatisticsDashbourd statsDashboard)
+        public Transactions(ITransactionRepository repo, BudgetService budgetService, StatisticsDashbourd statsDashboard, IBudgetCycleRepository cycleRepo)
         {
             InitializeComponent();
             _repo = repo;
             _budgetService = budgetService;
             this.Load += Transactions_Load;
             _statsDashboard = statsDashboard;
+            _cycleRepo = cycleRepo;
         }
 
         private async void Transactions_Load(object sender, EventArgs e)
@@ -36,8 +38,11 @@ namespace Masroofy.UI
             try
             {
                 dgw.Rows.Clear();
+
                 var transactions = await _repo.GetHistoryAsync(_cycleId);
+
                 ShowTransactions(transactions);
+
             }
             catch (Exception ex)
             {
@@ -115,11 +120,58 @@ namespace Masroofy.UI
                     _statsDashboard.RefreshDashboardData();
                     await LoadHistory();
                 }
+                ShowNotify();
             }
             else
             {
                 MessageBox.Show("Please select a transaction to delete first.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+        public async void ShowNotify()
+        {
+
+
+            var activeCycle = await _cycleRepo.GetActiveCycleAsync();
+
+            if (activeCycle == null)
+            {
+                Refresh();
+                return;
+            }
+            var (remainingBalance, remainingDays) =
+                await CalculateRemainingBalance(activeCycle.Id);
+
+            decimal totalBudget = activeCycle.TotalAllowance;
+
+            decimal remainingPercentage = totalBudget > 0
+                ? (Convert.ToDecimal(remainingBalance) / totalBudget) * 100
+                : 0;
+            if (activeCycle == null)
+            {
+                MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Dashbourd._instance.panel1.Visible = true;
+           
+            if (remainingPercentage <= 80)
+            {
+                ShowNotification("Low Budget Alert", $"Your remaining budget is critically low at {remainingPercentage:F2}%!");
+                Dashbourd._instance.panel1.Visible = true;
+                Dashbourd._instance.panel1.BackColor = Color.Red;
+                Dashbourd._instance.massagee.Text = $"Remaining Balance: {remainingBalance:C}\n Remaining Days: {remainingDays}\nRemaining Percentage: {remainingPercentage:F2}%";
+            }
+            else
+            {
+                Dashbourd._instance.panel1.Visible = false;
+
+            }
+        }
+        private async Task<(decimal remainingBalance, int remainingDays)>
+      CalculateRemainingBalance(int cycleId)
+        {
+            return await _budgetService.FindAllAndCalculateRemainingAsync(cycleId);
         }
 
         private void dgw_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
@@ -148,7 +200,15 @@ namespace Masroofy.UI
         {
 
         }
+        public void ShowNotification(string title, string message)
+        {
 
+            Dashbourd._instance.notifyIcon1.BalloonTipTitle = title;
+            Dashbourd._instance.notifyIcon1.BalloonTipText = message;
+            Dashbourd._instance.notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+            Dashbourd._instance.notifyIcon1.ShowBalloonTip(50000);
+
+        }
         private async void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             DateTime selectedDate = dateTimePicker1.Value.Date;

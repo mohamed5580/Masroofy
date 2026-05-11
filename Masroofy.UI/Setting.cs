@@ -74,6 +74,7 @@ namespace Masroofy.UI
             if (rbSqlServer.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SqlServer";
             else if (rbSQLite.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SQLite";
             else if (rbMySQL.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "MySQL";
+
              var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
             
              var provider = providerStr switch
