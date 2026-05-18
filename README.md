@@ -34,7 +34,7 @@ It allows users to manage budget cycles, track expenses, visualize spending stat
 ## 📸 Preview
 
 <p align="center">
-  <img src="https://via.placeholder.com/1000x500.png?text=Masroofy+Dashboard+Preview"
+  <img src="https://github.com/mohamed5580/Masroofy/blob/main/Doc/Dashboard.png"
        alt="Masroofy Preview"
        width="90%">
 </p>
@@ -91,7 +91,7 @@ Masroofy/
 
 🚀 Technologies Used
 
-<div align="center"> <table> <tr> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png" width="70"/><br/> <b>C#</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/dotnet/dotnet.png" width="70"/><br/> <b>.NET 9</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/sqlite/sqlite.png" width="70"/><br/> <b>SQLite</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/mysql/mysql.png" width="70"/><br/> <b>MySQL</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/microsoft-sql-server/microsoft-sql-server.png" width="70"/><br/> <b>SQL Server</b> </td> </tr> </table> </div>
+<div align="center"> <table> <tr> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png" width="70"/><br/> <b>C#</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/dotnet/dotnet.png" width="70"/><br/> <b>.NET 9</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/sqlite/sqlite.png" width="70"/><br/> <b>SQLite</b> </td> <td align="center"> <img src="https://raw.githubusercontent.com/github/explore/main/topics/mysql/mysql.png" width="70"/><br/> <b>MySQL</b> </td> <td align="center"> <img src="https://github.com/mohamed5580/Masroofy/blob/main/Doc/microsoft-sql-server.png" width="70"/><br/> <b>SQL Server</b> </td> </tr> </table> </div>
 
 ⚙️ How to Run
 1️⃣ Clone Repository
@@ -119,7 +119,7 @@ Daily safe spending limit
 Pie chart analytics
 Final-day warnings
 
-<p align="center"> <img src="https://via.placeholder.com/900x400.png?text=Statistics+Dashboard" width="85%" alt="Dashboard"/> </p>
+<p align="center"> <img src="https://github.com/mohamed5580/Masroofy/blob/main/Doc/Dashboard.png" width="85%" alt="Dashboard"/> </p>
 
 📦 Dependencies
 Package	Purpose
