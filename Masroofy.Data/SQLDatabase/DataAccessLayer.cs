@@ -23,22 +23,24 @@ namespace Masroofy.Data.Database
             _connectionString = connectionString ?? string.Empty;
         }
 
-        private static string GetConnectionString()
+        public static string GetConnectionString()
         {
             if (!string.IsNullOrWhiteSpace(_connectionString))
                 return _connectionString;
 
+            var settings = Masroofy.Data.Properties.Settings.Default;
+            string port = "3306";
+
             return Provider switch
             {
                 DatabaseProvider.SQLite =>
-                    $"Data Source={Masroofy.Data.Properties.Settings.Default.Database};",
+                    $"Data Source={settings.Database};",   
 
                 DatabaseProvider.SqlServer =>
-                    "Server=localhost;Database=Masroofy;Trusted_Connection=True;TrustServerCertificate=True;",
+                     $"Server={settings.Server};Database={settings.Database};Trusted_Connection=True;TrustServerCertificate=True;",
 
                 DatabaseProvider.MySQL =>
-                    throw new InvalidOperationException(
-                        "MySQL connection string is not configured."),
+                    $"Server={settings.Server};Port={port};Database={settings.Database};Uid={settings.Name};Pwd={settings.Pass};",
 
                 _ => throw new NotSupportedException()
             };

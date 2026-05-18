@@ -15,7 +15,7 @@ namespace Masroofy
         private Dictionary<string, decimal> _chartData = new();
         private decimal _totalSpent = 0;
         private float _safeDailyLimit = 0;
-        private bool _isTightBudget = false;   // true = exceptional scenario
+        private bool _isTightBudget = false;  
 
         private readonly IServiceProvider _serviceProvider;
         private Label _finalDayBadge;
@@ -35,13 +35,10 @@ namespace Masroofy
             _serviceProvider = serviceProvider;
             BuildFinalDayBadge();
 
-            // Load dashboard data automatically when the form first opens
             this.Load += StatisticsDashbourd_Load;
 
-            // Refresh automatically whenever a budget cycle is saved, updated, or deleted
             BudgetCycleForm.CycleChanged += (s, e) => RefreshDashboardData();
 
-            // FIX: hide instead of dispose so the DI singleton stays alive
             this.FormClosing += (s, e) => { e.Cancel = true; this.Hide(); };
         }
 
@@ -85,8 +82,8 @@ namespace Masroofy
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
-            int w = pnlLimitCircle.Width;   // 160
-            int h = pnlLimitCircle.Height;  // 160
+            int w = pnlLimitCircle.Width;   
+            int h = pnlLimitCircle.Height; 
 
             Color outerRingColor = _isTightBudget ? Color.OrangeRed : Color.White;
             Color innerRingColor = _isTightBudget ? Color.Orange : Color.White;
@@ -95,7 +92,7 @@ namespace Masroofy
             Color textColor = _isTightBudget ? Color.OrangeRed : Color.DarkViolet;
 
             int outerThickness = 6;
-            int gap = 8;   // gap between outer and inner ring
+            int gap = 8;   
             int innerThickness = 4;
 
             // Outer circle
@@ -285,7 +282,7 @@ namespace Masroofy
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var trans = _serviceProvider.GetRequiredService<Transactions>();
+            var trans = _serviceProvider.GetRequiredService<HistoryTransactions>();
             trans.Show();
         }
     }

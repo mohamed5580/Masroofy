@@ -22,7 +22,7 @@
     <Compile Update="StatisticsDashbourd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Transactions.cs">
+    <Compile Update="HistoryTransactions.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

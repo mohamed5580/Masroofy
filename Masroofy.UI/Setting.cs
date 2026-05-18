@@ -42,6 +42,7 @@ namespace Masroofy.UI
             else if(Masroofy.Data.Properties.Settings.Default.Provider == "SQLite")
             {
                 rbSQLite.Checked = true;
+
             }
             else if(Masroofy.Data.Properties.Settings.Default.Provider == "MySQL")
             {
@@ -71,26 +72,30 @@ namespace Masroofy.UI
             Masroofy.Data.Properties.Settings.Default.Database = tbDb.Text;
             Masroofy.Data.Properties.Settings.Default.Name = tbUser.Text;
             Masroofy.Data.Properties.Settings.Default.Pass = tbPass.Text;
-            if (rbSqlServer.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SqlServer";
-            else if (rbSQLite.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "SQLite";
-            else if (rbMySQL.Checked) Masroofy.Data.Properties.Settings.Default.Provider = "MySQL";
 
-             var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
+            if (rbSqlServer.Checked)
+                Masroofy.Data.Properties.Settings.Default.Provider = "SqlServer";
+            else if (rbSQLite.Checked)
+                Masroofy.Data.Properties.Settings.Default.Provider = "SQLite";
+            else if (rbMySQL.Checked)
+                Masroofy.Data.Properties.Settings.Default.Provider = "MySQL";
+
+            var providerStr = Masroofy.Data.Properties.Settings.Default.Provider;
             
-             var provider = providerStr switch
-             {
-                 "SQLite" => DatabaseProvider.SQLite,
-                 "MySQL" => DatabaseProvider.MySQL,
-                 _ => DatabaseProvider.SqlServer
-             };
-            
-             DataAccessLayer.Configure(provider, "");
-            
-             MessageBox.Show(this, "تم الحفظ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var provider = providerStr switch
+            {
+                "SQLite" => DatabaseProvider.SQLite,
+                "MySQL" => DatabaseProvider.MySQL,
+                _ => DatabaseProvider.SqlServer
+            };
+
+            DataAccessLayer.Configure(provider, "");
             Masroofy.Data.Properties.Settings.Default.Save();
 
-            MessageBox.Show(this, "تم الحفظ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+            MessageBox.Show(this, "Success ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Application.Restart();
+            Environment.Exit(0);
+
         }
 
         private void rdSQL_CheckedChanged(object sender, EventArgs e)
@@ -113,6 +118,7 @@ namespace Masroofy.UI
         private void rbSQLite_CheckedChanged(object sender, EventArgs e)
         {
             if (!rbSQLite.Checked) return;
+
             rbSQLite.Checked = true;
             rbSqlServer.Checked = false;
             rbMySQL.Checked = false;
@@ -184,7 +190,8 @@ namespace Masroofy.UI
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             Masroofy.Data.Properties.Settings.Default.PINCheck = true;
             Masroofy.Data.Properties.Settings.Default.Save();
-
+            Application.Restart();
+            Environment.Exit(0);
         }
         public async Task<bool> HasPinAsync()
         {
@@ -224,6 +231,8 @@ namespace Masroofy.UI
 
             Masroofy.Data.Properties.Settings.Default.PINCheck = true;
             Masroofy.Data.Properties.Settings.Default.Save();
+            Application.Restart();
+            Environment.Exit(0);
 
         }
 
@@ -321,7 +330,8 @@ namespace Masroofy.UI
             DeleteAllPINAsync();
             MessageBox.Show("PIN Removed successfully ", "Confirmation",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            Application.Restart();
+            Environment.Exit(0);
         }
     }
 }

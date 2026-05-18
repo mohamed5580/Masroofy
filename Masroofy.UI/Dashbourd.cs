@@ -83,8 +83,8 @@ namespace Masroofy.UI
 
         private void basic_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("هل انت متاكد من الخروج من البرنامج", "تاكيد الخروج", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No) e.Cancel = true;
+            Application.Exit();
+
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -110,7 +110,7 @@ namespace Masroofy.UI
         {
 
 
-            var TransactionsScreen = _serviceProvider.GetRequiredService<Transactions>();
+            var TransactionsScreen = _serviceProvider.GetRequiredService<HistoryTransactions>();
             if (TransactionsScreen.ShowDialog() == DialogResult.OK)
             {
                 RefreshData();
@@ -176,7 +176,7 @@ namespace Masroofy.UI
 
         private void button11_Click_1(object sender, EventArgs e)
         {
-            var trans = _serviceProvider.GetRequiredService<Transactions>();
+            var trans = _serviceProvider.GetRequiredService<HistoryTransactions>();
 
             trans.Show();
         }
@@ -194,10 +194,12 @@ namespace Masroofy.UI
             var (remainingBalance, remainingDays) =
                 await CalculateRemainingBalance(activeCycle.Id);
 
-            decimal totalBudget = activeCycle.TotalAllowance;
+            
+
+            decimal totalBudget = activeCycle.TotalAllowance ;
 
             decimal remainingPercentage = totalBudget > 0
-                ? (Convert.ToDecimal(remainingBalance) / totalBudget) * 100
+                ? (Convert.ToDecimal(totalBudget - remainingBalance) / totalBudget) * 100
                 : 0;
             if (activeCycle == null)
             {
@@ -206,16 +208,20 @@ namespace Masroofy.UI
                 return;
             }
 
-            if (remainingPercentage < 80)
-            {
-            }
-           
 
-            if (remainingPercentage <= 80)
+            
+            if (remainingPercentage >= 80 && remainingPercentage < 100)
             {
                 ShowNotification("Low Budget Alert", $"Your remaining budget is critically low at {remainingPercentage:F2}%!");
                 panel1.Visible = true;
-                panel1.BackColor = Color.Red;
+                panel1.BackColor = Color.Green;
+                Dashbourd._instance.massagee.Text = $"Remaining Balance: {remainingBalance:C}\n Remaining Days: {remainingDays}\nRemaining Percentage: {remainingPercentage:F2}%";
+            }
+            else if( remainingPercentage > 100)
+            {
+                ShowNotification("Low Budget Alert", $"Your remaining budget is critically low at {remainingPercentage:F2}%!");
+                panel1.Visible = true;
+                panel1.BackColor = Color.DarkRed;
                 Dashbourd._instance.massagee.Text = $"Remaining Balance: {remainingBalance:C}\n Remaining Days: {remainingDays}\nRemaining Percentage: {remainingPercentage:F2}%";
             }
             else

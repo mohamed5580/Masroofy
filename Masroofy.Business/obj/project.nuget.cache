@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BZ+gQZSM3Tc=",
+  "dgSpecHash": "wFirCML93vg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
+  "projectFilePath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joemo\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\joemo\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",

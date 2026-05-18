@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Masroofy.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae93d1c09fda264881ea2e257bc9e1875a1a2df7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab129b9bb2aac178fe9a616c051e66429f3c0ebd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Masroofy.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Masroofy.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

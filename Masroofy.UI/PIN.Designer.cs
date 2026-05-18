@@ -119,6 +119,7 @@ namespace Masroofy.UI
             pictureBox2.Location = new Point(549, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(466, 533);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 5004;
             pictureBox2.TabStop = false;
             // 

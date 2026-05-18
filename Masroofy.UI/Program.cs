@@ -54,7 +54,7 @@ namespace Masroofy.UI
                 sp.GetRequiredService<IBudgetCycleRepository>(),
                 sp.GetRequiredService<BudgetService>()
             ));
-            services.AddTransient<Transactions>(sp => new Transactions(
+            services.AddTransient<HistoryTransactions>(sp => new HistoryTransactions(
             sp.GetRequiredService<ITransactionRepository>(),
             sp.GetRequiredService<BudgetService>(),
             sp.GetRequiredService<StatisticsDashbourd>(),

@@ -82,12 +82,12 @@ namespace Masroofy
         {
             if (!decimal.TryParse(txtAmount.Text, out decimal amount) || amount <= 0)
             {
-                MessageBox.Show("المبلغ غير صحيح", "تحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("The amount is incorrect", "verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (EndDate.Value <= StartDate.Value)
             {
-                MessageBox.Show("تاريخ النهاية يجب أن يكون بعد تاريخ البداية", "تحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("The end date must be after the start date.", "verification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -114,15 +114,15 @@ namespace Masroofy
                 int newId = await _budgetService.CreateCycleAsync(cycle);
 
 
-                MessageBox.Show($"تم حفظ الميزانية",
-                    "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Budget was successfully saved",
+                    "successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CycleChanged?.Invoke(this, EventArgs.Empty);
                 ResetForm();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطأ: {ex.Message}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"worng: {ex.Message}", "worng", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -145,13 +145,13 @@ namespace Masroofy
                 };
 
                 await _budgetCycleRepository.UpdateAsync(newbudget);
-                MessageBox.Show("تم التحديث", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Updated", "successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CycleChanged?.Invoke(this, EventArgs.Empty);
                 ResetForm();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطأ: {ex.Message}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"worng: {ex.Message}", "worng", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -160,22 +160,22 @@ namespace Masroofy
         {
             if (txtID == null)
             {
-                MessageBox.Show("لا توجد ميزانية محددة للحذف", "تنبيه");
+                MessageBox.Show("There is no specific budget for deletion", "تنبيه");
                 return;
             }
 
-            if (MessageBox.Show("هل أنت متأكد من الحذف؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure about deleting it?", "to be sure", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 try
                 {
                     await _budgetCycleRepository.DeleteAsync(Convert.ToInt32(txtID.Text));
-                    MessageBox.Show("تم الحذف", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Deleted", "successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CycleChanged?.Invoke(this, EventArgs.Empty);
                     ResetForm();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"خطأ: {ex.Message}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"worng: {ex.Message}", "worng", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

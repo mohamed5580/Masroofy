@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {}
+    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {
+    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
+        "projectUniqueName": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
         "projectName": "Masroofy.Business",
-        "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
+        "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\Masroofy.Business.csproj",
         "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Business\\obj\\",
+        "outputPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
-                "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj"
+              "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
+                "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
+    "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
+        "projectUniqueName": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
         "projectName": "Masroofy.Data",
-        "projectPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
+        "projectPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\Masroofy.Data.csproj",
         "packagesPath": "C:\\Users\\joemo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joemo\\source\\repos\\Masroofy\\Masroofy.Data\\obj\\",
+        "outputPath": "C:\\Users\\joemo\\OneDrive\\Documents\\GitHub\\Masroofy\\Masroofy.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Masroofy.UI
 {
-    public partial class Transactions : Form
+    public partial class HistoryTransactions : Form
     {
         private readonly ITransactionRepository _repo;
         private readonly IBudgetCycleRepository _cycleRepo;
@@ -18,7 +18,7 @@ namespace Masroofy.UI
         private readonly StatisticsDashbourd _statsDashboard;
         private int _cycleId = 1;
         private int _selectedCategoryId = 0;
-        public Transactions(ITransactionRepository repo, BudgetService budgetService, StatisticsDashbourd statsDashboard, IBudgetCycleRepository cycleRepo)
+        public HistoryTransactions(ITransactionRepository repo, BudgetService budgetService, StatisticsDashbourd statsDashboard, IBudgetCycleRepository cycleRepo)
         {
             InitializeComponent();
             _repo = repo;
@@ -85,8 +85,10 @@ namespace Masroofy.UI
                         await _budgetService.RecalculateAfterExpenseAsync(_cycleId);
 
                         MessageBox.Show("Transaction Updated Successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _statsDashboard.RefreshDashboardData(); 
+                        _statsDashboard.RefreshDashboardData();
                         await LoadHistory();
+                        Dashbourd._instance.ShowNotify();
+
                     }
                     else
                     {
@@ -120,54 +122,15 @@ namespace Masroofy.UI
                     _statsDashboard.RefreshDashboardData();
                     await LoadHistory();
                 }
-                ShowNotify();
+                Dashbourd._instance.ShowNotify();
+
             }
             else
             {
                 MessageBox.Show("Please select a transaction to delete first.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public async void ShowNotify()
-        {
 
-
-            var activeCycle = await _cycleRepo.GetActiveCycleAsync();
-
-            if (activeCycle == null)
-            {
-                Refresh();
-                return;
-            }
-            var (remainingBalance, remainingDays) =
-                await CalculateRemainingBalance(activeCycle.Id);
-
-            decimal totalBudget = activeCycle.TotalAllowance;
-
-            decimal remainingPercentage = totalBudget > 0
-                ? (Convert.ToDecimal(remainingBalance) / totalBudget) * 100
-                : 0;
-            if (activeCycle == null)
-            {
-                MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            Dashbourd._instance.panel1.Visible = true;
-           
-            if (remainingPercentage <= 80)
-            {
-                ShowNotification("Low Budget Alert", $"Your remaining budget is critically low at {remainingPercentage:F2}%!");
-                Dashbourd._instance.panel1.Visible = true;
-                Dashbourd._instance.panel1.BackColor = Color.Red;
-                Dashbourd._instance.massagee.Text = $"Remaining Balance: {remainingBalance:C}\n Remaining Days: {remainingDays}\nRemaining Percentage: {remainingPercentage:F2}%";
-            }
-            else
-            {
-                Dashbourd._instance.panel1.Visible = false;
-
-            }
-        }
         private async Task<(decimal remainingBalance, int remainingDays)>
       CalculateRemainingBalance(int cycleId)
         {
@@ -224,6 +187,9 @@ namespace Masroofy.UI
             ShowTransactions(transactions);
         }
 
-        
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

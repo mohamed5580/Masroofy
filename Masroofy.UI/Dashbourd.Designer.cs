@@ -1248,6 +1248,7 @@ namespace Masroofy.UI
             // label25
             // 
             label25.AutoSize = true;
+            label25.ForeColor = SystemColors.Control;
             label25.Location = new Point(104, 29);
             label25.Name = "label25";
             label25.Size = new Size(73, 20);
@@ -1257,6 +1258,7 @@ namespace Masroofy.UI
             // massagee
             // 
             massagee.AutoSize = true;
+            massagee.ForeColor = SystemColors.Control;
             massagee.Location = new Point(104, 65);
             massagee.Name = "massagee";
             massagee.Size = new Size(34, 20);

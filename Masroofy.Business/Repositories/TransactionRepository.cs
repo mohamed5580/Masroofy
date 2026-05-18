@@ -146,5 +146,17 @@ namespace Masroofy.Data.Repositories
 
             await DataAccessLayer.ExecuteNonQueryAsync(sql, CommandType.Text, param);
         }
+
+        public async Task<decimal> GetTotalspendingAsync()
+        {
+            const string sql = "SELECT COALESCE(SUM(Amount), 0) FROM Transaction";
+
+            using var reader = await DataAccessLayer.ExecuteReaderAsync(sql, CommandType.Text);
+
+            if (await reader.ReadAsync())
+                return reader.IsDBNull(0) ? 0 : reader.GetDecimal(0);
+
+            return 0;
+        }
     }
 }

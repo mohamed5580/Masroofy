@@ -11,9 +11,6 @@ namespace Masroofy.UI
         private readonly ValidationService _validationService;
         private readonly ITransactionRepository _repository;
         private readonly BudgetService _budgetService;
-
-        // FIX: holds the live singleton dashboard reference so we can
-        // trigger a full sequence-diagram refresh after every save.
         private readonly StatisticsDashbourd? _dashboard;
 
         public LoggingUIController(
@@ -45,9 +42,7 @@ namespace Masroofy.UI
                 BudgetCycleId = budgetCycleId
             });
 
-            // 2. Re-run the full US#3 sequence diagram flow on the live dashboard:
-            //    calculateRemainingBalance → calculateSafeDailyLimit
-            //    → refresh() → display() → [opt] showFinalDayBadge()
+        
             _dashboard?.RefreshDashboardData();
 
             return true;

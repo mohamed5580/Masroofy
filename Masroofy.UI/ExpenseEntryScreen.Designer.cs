@@ -20,14 +20,16 @@
             btnFood = new Button();
             btnTransport = new Button();
             btnUtilities = new Button();
-            btnOther = new Button();
             btnEntertainment = new Button();
+            btnOther = new Button();
             btnConfirm = new Button();
             btnCancel = new Button();
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
             panel4 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -87,16 +89,6 @@
             btnUtilities.UseVisualStyleBackColor = true;
             btnUtilities.Click += CategoryButton_Click;
             // 
-            // btnOther
-            // 
-            btnOther.Location = new Point(432, 3);
-            btnOther.Name = "btnOther";
-            btnOther.Size = new Size(94, 75);
-            btnOther.TabIndex = 4;
-            btnOther.Text = "Other";
-            btnOther.UseVisualStyleBackColor = true;
-            btnOther.Click += CategoryButton_Click;
-            // 
             // btnEntertainment
             // 
             btnEntertainment.Location = new Point(303, 3);
@@ -106,6 +98,16 @@
             btnEntertainment.Text = "Entertainment";
             btnEntertainment.UseVisualStyleBackColor = true;
             btnEntertainment.Click += CategoryButton_Click;
+            // 
+            // btnOther
+            // 
+            btnOther.Location = new Point(432, 3);
+            btnOther.Name = "btnOther";
+            btnOther.Size = new Size(94, 75);
+            btnOther.TabIndex = 4;
+            btnOther.Text = "Other";
+            btnOther.UseVisualStyleBackColor = true;
+            btnOther.Click += CategoryButton1_Click;
             // 
             // btnConfirm
             // 
@@ -165,10 +167,29 @@
             panel4.Size = new Size(659, 10);
             panel4.TabIndex = 8;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.BlueViolet;
+            panel2.Location = new Point(649, 9);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(10, 489);
+            panel2.TabIndex = 9;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.BlueViolet;
+            panel3.Location = new Point(-1, 10);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(10, 488);
+            panel3.TabIndex = 10;
+            // 
             // ExpenseEntryScreen
             // 
+            AcceptButton = btnConfirm;
             BackColor = SystemColors.ButtonFace;
             ClientSize = new Size(659, 500);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(panel4);
             Controls.Add(panel1);
             Controls.Add(label2);
@@ -198,5 +219,7 @@
         private Label label2;
         private Panel panel1;
         private Panel panel4;
+        private Panel panel2;
+        private Panel panel3;
     }
 }

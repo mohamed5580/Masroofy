@@ -20,7 +20,7 @@ namespace Masroofy
         private readonly IServiceProvider _serviceProvider;
         private float _safeDailyLimit = 0;
 
-        
+
         private int _selectedCategoryId = 0;
         private Button _activeButton = null;
 
@@ -29,7 +29,7 @@ namespace Masroofy
             ITransactionRepository transactionRepo,
             BudgetService budgetService,
             IBudgetCycleRepository cycleRepo,
-            StatisticsDashbourd dashboard)  
+            StatisticsDashbourd dashboard)
         {
             InitializeComponent();
             _cycleRepo = cycleRepo;
@@ -63,6 +63,7 @@ namespace Masroofy
                 _ => 5
             };
         }
+
         private async Task<(decimal remainingBalance, int remainingDays)>
           CalculateRemainingBalance(int cycleId)
         {
@@ -74,7 +75,7 @@ namespace Masroofy
             if (remainingDays <= 0) return (float)remainingBalance;
             return (float)Math.Round(remainingBalance / remainingDays, 2);
         }
-       
+
         private async void btnConfirm_Click(object sender, EventArgs e)
         {
             if (_selectedCategoryId == 0)
@@ -97,10 +98,12 @@ namespace Masroofy
                 _safeDailyLimit = 0;
                 return;
             }
+
             var (remainingBalance, remainingDays) =
                 await CalculateRemainingBalance(activeCycle.Id);
 
-        
+
+
             if (activeCycle == null)
             {
                 MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
@@ -109,90 +112,25 @@ namespace Masroofy
             }
 
             var worning = remainingBalance - Convert.ToDecimal(txtAmountInput.Text);
-     
+
 
             decimal totalBudget = activeCycle.TotalAllowance;
 
             decimal remainingPercentage = totalBudget > 0
-                ? (Convert.ToDecimal(remainingBalance) / totalBudget) * 100
+                ? (Convert.ToDecimal(totalBudget - remainingBalance) / totalBudget) * 100
                 : 0;
-
-            decimal remainingPercentage1 = totalBudget > 0
-             ? (Convert.ToDecimal(worning) / totalBudget) * 100
-             : 0;
-           
-            if (worning <= 0 || remainingPercentage1 <=80 )
+            if (activeCycle == null)
             {
-                var result = MessageBox.Show($"This expense exceeds your remaining budget! Your remaining budget will be = {remainingPercentage1}% ", "Warning", MessageBoxButtons.YesNo,
+                MessageBox.Show("No active budget cycle found.\nPlease create a cycle first.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var result = MessageBox.Show($"This expense exceeds your remaining budget! Your remaining budget will be = {remainingPercentage}% ", "Warning", MessageBoxButtons.YesNo,
          MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
-                {
-                    bool success = await _loggingController.OnSaveTapped(
-                    txtAmountInput.Text,
-                    _selectedCategoryId,
-                    activeCycle.Id);
-
-                    if (success)
-                    {
-                        MessageBox.Show("Expense saved successfully! ", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Reset();
-                        Dashbourd.Instance.ShowNotification("Worning", $"You used %{remainingPercentage} of your budget");
-                        Dashbourd._instance.ShowNotify();
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid amount. Please enter a positive number.",
-                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                }
-                
-
-            }
-          
-
-            if (remainingPercentage <= 80)
+            if (result == DialogResult.Yes)
             {
-
-                var result = MessageBox.Show(
-          $"You used %{remainingPercentage} of your budget {totalBudget}. Do you want to continue?",
-         "Confirmation",
-         MessageBoxButtons.YesNo,
-         MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    bool success = await _loggingController.OnSaveTapped(
-                txtAmountInput.Text,
-                _selectedCategoryId,
-                activeCycle.Id);
-
-                    if (success)
-                    {
-                        MessageBox.Show("Expense saved successfully! ", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Reset();
-                        Dashbourd.Instance.ShowNotification("Worning", $"You used %{remainingPercentage} of your budget");
-                        Dashbourd._instance.ShowNotify();
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid amount. Please enter a positive number.",
-                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                }
-
-            }
-            else
-            {
-
                 bool success = await _loggingController.OnSaveTapped(
                 txtAmountInput.Text,
                 _selectedCategoryId,
@@ -203,16 +141,20 @@ namespace Masroofy
                     MessageBox.Show("Expense saved successfully! ", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Reset();
+                    Dashbourd._instance.ShowNotify();
                     return;
                 }
                 else
                 {
                     MessageBox.Show("Invalid amount. Please enter a positive number.",
                         "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                    return;
                 }
 
             }
+
+
+
 
 
         }
@@ -223,7 +165,7 @@ namespace Masroofy
                 _activeButton.BackColor = SystemColors.Control;
             _activeButton = null;
             txtAmountInput.Text = "";
-        }   
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -238,6 +180,11 @@ namespace Masroofy
         }
 
         private void ExpenseEntryScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CategoryButton1_Click(object sender, EventArgs e)
         {
 
         }

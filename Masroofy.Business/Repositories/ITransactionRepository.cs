@@ -12,5 +12,7 @@ namespace Masroofy.Data.Repositories
         Task<List<Transaction>> GetHistoryAsync(int cycleId);
         Task UpdateAsync(Transaction transaction);
         Task DeleteAsync(int id);
+        Task<decimal> GetTotalspendingAsync();
+
     }
 }

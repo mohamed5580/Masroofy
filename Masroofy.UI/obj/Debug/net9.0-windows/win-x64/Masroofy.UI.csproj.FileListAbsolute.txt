@@ -164,7 +164,6 @@ C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\bin\Debug\net9.0-w
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.BudgetCycleForm.resources
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.BudgetCycleScreen.resources
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Dashbourd.resources
-C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.DBConfig.resources
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Properties.Resources.resources
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.csproj.GenerateResource.cache
 C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.GeneratedMSBuildEditorConfig.editorconfig
@@ -723,3 +722,8 @@ C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x6
 C:\Users\joemo\Source\Repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\ref\Masroofy.UI.dll
 C:\Users\joemo\source\repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Setting.resources
 C:\Users\joemo\source\repos\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.PIN.resources
+C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.ExpenseEntryScreen.resources
+C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.PIN.resources
+C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.Setting.resources
+C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.StatisticsDashbourd.resources
+C:\Users\joemo\OneDrive\Documents\GitHub\Masroofy\Masroofy.UI\obj\Debug\net9.0-windows\win-x64\Masroofy.UI.HistoryTransactions.resources
