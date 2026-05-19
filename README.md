@@ -95,7 +95,7 @@ Masroofy/
 
 ⚙️ How to Run
 1️⃣ Clone Repository
-git clone https://github.com/your-username/Masroofy.git
+git clone https://github.com/mohamed5580/Masroofy.git
 cd Masroofy
 2️⃣ Open Solution
 start Masroofy.slnx
